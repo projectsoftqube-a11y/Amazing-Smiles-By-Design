@@ -1,67 +1,49 @@
 import { homeGallery, homeReviews } from "@/content/pages/home";
-import { Button, TextLink } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
+import { GalleryCompare } from "./GalleryCompare";
+import { ReviewsSlider } from "./ReviewsSlider";
 import styles from "./Reviews.module.css";
 
 /**
- * Reviews are plain text with name and date. No Review or AggregateRating markup:
- * self-serving reviews are not eligible for review rich results (SEO handoff).
+ * Reviews are the ones on the practice's current site, with name, date and the
+ * star rating shown there. No Review or AggregateRating markup: self-serving reviews
+ * are not eligible for review rich results (SEO handoff).
  */
 export function Reviews() {
   return (
-    <>
-      <section className={styles.section} aria-labelledby="reviews-title">
-        <div className="container">
-          <div className={styles.head}>
-            <div className={styles.headText}>
-              <p className="eyebrow" data-reveal="">
-                Patient reviews
-              </p>
-              <h2 id="reviews-title" data-reveal="">
-                {homeReviews.title}
-              </h2>
-            </div>
-            <div data-reveal="">
-              <TextLink href={homeReviews.link.href}>{homeReviews.link.label}</TextLink>
-            </div>
-          </div>
-
-          <ul role="list" className={styles.list}>
-            {homeReviews.reviews.map((review) => (
-              <li key={review.name} data-reveal="">
-                <figure className={styles.review}>
-                  <span className={styles.mark} aria-hidden="true">
-                    “
-                  </span>
-                  <blockquote className={styles.quote}>
-                    <p>{review.quote}</p>
-                  </blockquote>
-                  <figcaption className={styles.caption}>
-                    <span className={styles.name}>{review.name}</span>
-                    <span className={styles.date}>{review.date}</span>
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
+    <section className={styles.section} aria-labelledby="reviews-title">
+      <div className="container">
+        <div className={styles.head}>
+          <p className="eyebrow" data-reveal="">
+            Patient reviews
+          </p>
+          <h2 id="reviews-title" data-reveal="">
+            {homeReviews.title}
+          </h2>
         </div>
-      </section>
 
-      <section className={styles.gallery} aria-labelledby="gallery-title">
-        <div className={`container ${styles.galleryInner}`}>
-          <div className={styles.galleryText}>
+        <ReviewsSlider />
+
+        {/* Smile gallery teaser */}
+        <section className={styles.gallery} aria-labelledby="gallery-title">
+          <div className={styles.galleryCopy}>
             <p className="eyebrow" data-reveal="">
               Smile gallery
             </p>
-            <h2 id="gallery-title" className={styles.galleryTitle} data-reveal="">
+            <h2 id="gallery-title" data-reveal="">
               {homeGallery.title}
             </h2>
-            <p data-reveal="">{homeGallery.body}</p>
+            <p className={styles.galleryBody} data-reveal="">
+              {homeGallery.body}
+            </p>
+            <div data-reveal="">
+              <Button href={homeGallery.link.href}>{homeGallery.link.label}</Button>
+            </div>
           </div>
-          <div data-reveal="">
-            <Button href={homeGallery.link.href}>{homeGallery.link.label}</Button>
-          </div>
-        </div>
-      </section>
-    </>
+
+          <GalleryCompare />
+        </section>
+      </div>
+    </section>
   );
 }

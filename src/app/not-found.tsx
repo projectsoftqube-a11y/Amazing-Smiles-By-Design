@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { appointmentHref } from "@/content/navigation";
 import { contactLinks, practice } from "@/content/site";
 import { Button, TextLink } from "@/components/ui/Button";
-import { Ring } from "@/components/ui/Ring";
 import styles from "./not-found.module.css";
 
 export const metadata: Metadata = {
@@ -13,7 +12,6 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <section className={styles.section}>
-      <Ring className={styles.ring} strokeWidth={2} />
       <div className={`container ${styles.inner}`}>
         <p className="eyebrow">Error 404</p>
         <h1>We couldn’t find that page</h1>

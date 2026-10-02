@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { useEffect, useRef } from "react";
 import { appointmentHref, mainNav } from "@/content/navigation";
 import { serviceHubs } from "@/content/services";

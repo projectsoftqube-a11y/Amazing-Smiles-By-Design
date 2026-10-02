@@ -22,16 +22,16 @@ export type ServiceHub = {
 export const serviceHubs: ServiceHub[] = [
   {
     id: "general",
-    title: "General and Family Dentistry",
+    title: "General & Family Dentistry",
     navLabel: "General & Family",
     summary: "Preventive care that keeps teeth and gums healthy for every age.",
     path: "/general-dentistry/",
     allLabel: "All general dentistry",
     services: [
-      { name: "Dental checkups, cleanings and X-rays", path: "/general-dentistry/dental-checkups-x-rays/" },
+      { name: "Dental checkups, cleanings & X-rays", path: "/general-dentistry/dental-checkups-x-rays/" },
       { name: "Children's dentistry", path: "/general-dentistry/child-dentistry/" },
       { name: "Dental sealants", path: "/general-dentistry/dental-sealants/" },
-      { name: "Deep cleaning (scaling and root planing)", path: "/general-dentistry/scaling-and-root-planing/" },
+      { name: "Deep cleaning (scaling & root planing)", path: "/general-dentistry/scaling-and-root-planing/" },
       { name: "Periodontal maintenance", path: "/general-dentistry/periodontal-maintenance/" },
       { name: "Arestin gum treatment", path: "/general-dentistry/arestin/" },
       { name: "Oral cancer screening", path: "/general-dentistry/oral-cancer-screening/" },
@@ -53,7 +53,7 @@ export const serviceHubs: ServiceHub[] = [
       { name: "Dental bridges", path: "/restorative-dentistry/dental-bridges/" },
       { name: "Dental fillings", path: "/restorative-dentistry/dental-fillings/" },
       { name: "Non-surgical root canal", path: "/restorative-dentistry/non-surgical-root-canal/" },
-      { name: "Inlays and onlays", path: "/restorative-dentistry/inlays-onlays/" },
+      { name: "Inlays & onlays", path: "/restorative-dentistry/inlays-onlays/" },
       { name: "Dentures", path: "/restorative-dentistry/dentures/" },
     ],
   },

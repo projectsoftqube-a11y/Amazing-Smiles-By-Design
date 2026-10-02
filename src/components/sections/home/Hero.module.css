@@ -1,235 +1,312 @@
+/* ——— Full-bleed photo hero (light treatment) ——— */
 .hero {
   position: relative;
-  padding-top: clamp(2.5rem, 1.5rem + 5vw, 7rem);
+  display: flex;
+  align-items: center;
+  min-height: clamp(38rem, calc(100svh - var(--header-h)), 54rem);
+  padding-bottom: 5rem; /* room for the overlapping facts card */
   overflow: clip;
+  background: var(--porcelain);
+  isolation: isolate;
 }
 
-/* The logo ring, drawn segment by segment at first paint (CSS only). */
-.ring {
+.media {
   position: absolute;
-  top: clamp(1rem, -2rem + 6vw, 4rem);
-  right: max(-6vw, calc((100vw - 1440px) / 2 - 8vw));
-  width: clamp(16rem, 8rem + 34vw, 44rem);
-  aspect-ratio: 1;
-  pointer-events: none;
+  inset: 0;
+  z-index: -2;
 }
 
-.ring path {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: ring-draw 1.2s var(--ease-in-out) calc(0.25s + var(--i) * 0.11s) forwards;
+.media picture {
+  display: contents;
 }
 
-@keyframes ring-draw {
-  to {
-    stroke-dashoffset: 0;
+/* Slow settle from a gentle zoom (ken burns), CSS so it starts at first paint */
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: settle 2.8s var(--ease-out) both;
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.08);
   }
 }
 
-.grid {
-  position: relative;
+/* Soft porcelain fade over the photo's clear wall keeps the copy crisp */
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(243 246 249 / 0.97) 0%, rgb(243 246 249 / 0.9) 30%, rgb(243 246 249 / 0.45) 48%, rgb(243 246 249 / 0) 62%),
+    linear-gradient(0deg, rgb(243 246 249 / 0.85) 0%, rgb(243 246 249 / 0) 22%);
+}
+
+.content {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-m);
+  justify-items: start;
+  gap: clamp(0.875rem, 0.7rem + 0.6vw, 1.375rem);
+  padding-block: var(--space-xl);
+  --accent-color: var(--blue-700);
+  --smile-color: var(--blue-500);
+}
+
+.content > * {
+  max-width: min(34rem, 100%);
 }
 
 .eyebrow {
-  grid-column: 1 / -1;
-  animation: fade-in 700ms var(--ease-out) both;
+  animation: fade-up 900ms var(--ease-out) 100ms both;
+}
+
+/* Slightly more compact buttons in the hero */
+.actions a {
+  min-height: 3rem;
+  padding-inline: 1.375rem;
+  font-size: 0.9375rem;
 }
 
 .title {
-  grid-column: 1 / span 11;
-  font-size: var(--step-display);
-  line-height: 1.02;
-  letter-spacing: var(--tracking-display);
-  font-variation-settings: "opsz" 72;
-}
-
-.body {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-m);
-  align-items: end;
-  margin-top: var(--space-s);
+  font-size: var(--step-hero);
+  line-height: 1.12;
+  color: var(--navy-800);
 }
 
 .intro {
-  grid-column: 1 / span 6;
-  color: var(--ink);
-  animation: fade-up 900ms var(--ease-out) 450ms both;
+  max-width: 52ch !important;
+  font-size: clamp(0.9375rem, 0.9rem + 0.19vw, 1.0625rem); /* 15 → 17 */
+  line-height: 1.7;
+  color: var(--slate-600);
+  animation: fade-up 1s var(--ease-out) 700ms both;
 }
 
 .actions {
-  grid-column: 8 / span 5;
-  display: grid;
-  gap: var(--space-s);
-  animation: fade-up 900ms var(--ease-out) 600ms both;
-}
-
-.buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-top: var(--space-2xs);
+  animation: fade-up 1s var(--ease-out) 850ms both;
 }
 
-.minor {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-}
-
-.minorLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--blue-700);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.3em;
-}
-
-.minorLink:hover {
-  text-decoration-color: transparent;
-}
-
-.mediaWrap {
-  --hero-ratio: 1440 / 600;
+/* ——— Facts card (overlaps the hero) ——— */
+.factsWrap {
   position: relative;
-  margin-top: var(--space-xl);
+  z-index: 2;
+  margin-top: -4.5rem;
 }
 
 .facts {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  border-bottom: 1px solid var(--line);
+  padding: 0.5rem;
+  background: var(--white);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-lift);
 }
 
 .fact {
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: var(--space-m) var(--space-m) var(--space-m) 0;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.25rem;
   font-size: var(--step-small);
-  line-height: 1.45;
+  line-height: 1.4;
   color: var(--navy-800);
-  animation: fade-in 800ms var(--ease-out) both;
-  animation-delay: calc(900ms + var(--n, 0) * 80ms);
+  font-weight: 500;
+  animation: fade-up 900ms var(--ease-out) both;
+  animation-delay: calc(1100ms + var(--n, 0) * 90ms);
 }
 
 .fact + .fact {
-  padding-left: var(--space-m);
   border-left: 1px solid var(--line);
 }
 
 .factIcon {
   flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--ice-100);
   color: var(--blue-700);
-  margin-top: 0.05rem;
+}
+
+/* ——— Treatment marquee ——— */
+.marquee {
+  overflow: hidden;
+  margin-top: var(--space-l);
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--line);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 70s linear infinite;
+}
+
+.marqueeList {
+  display: flex;
+  flex: none;
+}
+
+.marqueeList li {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  padding-right: 2.25rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.875rem);
+  color: var(--navy-800);
+  white-space: nowrap;
+}
+
+.marqueeList li::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--blue-500);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(20px);
   }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-/* 1280 and below: give the headline the full width */
+/* ——— Responsive ——— */
+/* Facts card, 768–1299px: two full rows (3 + 2) on a 6-column grid, so no cell is
+   left empty and the dividers line up */
 @media (max-width: 1299px) {
-  .title {
-    grid-column: 1 / -1;
-  }
-
-  .intro {
-    grid-column: 1 / span 7;
-  }
-
-  .actions {
-    grid-column: 8 / span 5;
-  }
-
   .facts {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
-  .fact:nth-child(4) {
-    padding-left: 0;
-    border-left: 0;
+  .fact {
+    grid-column: span 2;
+    padding: 1.125rem 1.25rem;
   }
 
   .fact:nth-child(n + 4) {
+    grid-column: span 3;
     border-top: 1px solid var(--line);
   }
+
+  .fact:nth-child(4) {
+    border-left: 0;
+  }
 }
 
-/* Tablet: stack the intro and the actions */
+/* Below 992px: 2 × 2, with the last fact across the full width */
 @media (max-width: 991px) {
-  .intro,
-  .actions {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fact,
+  .fact + .fact,
+  .fact:nth-child(n + 4) {
+    grid-column: auto;
+    border-left: 0;
+  }
+
+  .fact:nth-child(even) {
+    border-left: 1px solid var(--line);
+  }
+
+  .fact:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+
+  .fact:last-child:nth-child(odd) {
     grid-column: 1 / -1;
   }
+}
 
-  .intro {
-    max-width: 62ch;
-  }
-
-  .mediaWrap {
-    --hero-ratio: 16 / 9;
-  }
-
-  .ring {
-    opacity: 0.55;
+/* Tablet: the wall is narrower, so the fade reaches further */
+@media (max-width: 1199px) {
+  .shade {
+    background:
+      linear-gradient(90deg, rgb(243 246 249 / 0.97) 0%, rgb(243 246 249 / 0.92) 42%, rgb(243 246 249 / 0.5) 62%, rgb(243 246 249 / 0) 80%),
+      linear-gradient(0deg, rgb(243 246 249 / 0.85) 0%, rgb(243 246 249 / 0) 22%);
   }
 }
 
+/* Phones: portrait crop on top, copy on porcelain below */
 @media (max-width: 767px) {
+  .hero {
+    display: grid;
+    min-height: 0;
+    padding-bottom: 4.5rem;
+  }
+
+  /* Full width; height follows the 5:6 crop but is capped, so wide phones and small
+     tablets crop top and bottom instead of shrinking the photo's width */
+  .media {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: min(calc(100vw * 1.2), 34rem);
+    overflow: hidden;
+  }
+
+  .shade {
+    background: linear-gradient(0deg, var(--porcelain) 0%, rgb(243 246 249 / 0) 22%);
+    inset: 0 0 auto;
+    height: min(calc(100vw * 1.2), 34rem);
+  }
+
+  .content {
+    padding-block: var(--space-m) var(--space-l);
+  }
+
   .facts {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .fact,
-  .fact + .fact {
-    padding: 0.875rem 0;
+  .fact + .fact,
+  .fact:nth-child(even) {
+    grid-column: auto;
     border-left: 0;
+    padding: 0.875rem 1rem;
   }
 
   .fact + .fact {
     border-top: 1px solid var(--line);
   }
-
-  .mediaWrap {
-    --hero-ratio: 4 / 3;
-    margin-top: var(--space-l);
-  }
-
-  .ring {
-    top: -2.5rem;
-    right: -5.5rem;
-    width: 15rem;
-    opacity: 0.45;
-  }
 }
 
 @media (max-width: 575px) {
-  .buttons {
+  .actions {
     display: grid;
+    width: 100%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ring path {
-    stroke-dashoffset: 0;
+  .image,
+  .marqueeTrack {
     animation: none;
+  }
+
+  .marqueeList + .marqueeList {
+    display: none;
   }
 }

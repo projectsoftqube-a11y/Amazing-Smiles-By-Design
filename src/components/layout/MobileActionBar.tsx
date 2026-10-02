@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { appointmentHref } from "@/content/navigation";
 import { contactLinks } from "@/content/site";
 import { Icon } from "@/components/ui/Icon";

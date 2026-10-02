@@ -14,18 +14,29 @@ export const homeMeta = {
   ogDescription: "Family, implant and cosmetic dentistry with Dr. Keyur Dudhat in Bensalem, PA.",
 };
 
+/*
+ * Client rule (2 Oct 2026): titles, headings, names and labels use "&" instead of
+ * "and". Paragraphs, FAQ answers, reviews and meta tags keep the content files' wording.
+ */
 export const homeHero = {
   /** H1, split so the last phrase can carry the italic accent */
-  title: { lead: "Bensalem Dentist for Family, Implant and", accent: "Cosmetic Care" },
+  title: { lead: "Bensalem Dentist for Family, Implant &", accent: "Cosmetic Care" },
   intro:
     "Amazing Smiles By Design is a dental practice at 3101 Bristol Road, Suite 1, in Bensalem, Pennsylvania 19020. Dr. Keyur Dudhat, DMD, provides general, restorative and cosmetic dentistry for the whole family, with a special focus on dental implants and cosmetic care. We accept PPO dental insurance, are in-network with a variety of insurance plans, and offer membership plans for patients without insurance.",
+  /**
+   * Short line shown in the hero: the intro's second sentence, verbatim. The full
+   * intro (the entity definition the SEO notes rely on) is still on the page,
+   * in the band directly under the hero.
+   */
+  summary:
+    "Dr. Keyur Dudhat, DMD, provides general, restorative and cosmetic dentistry for the whole family, with a special focus on dental implants and cosmetic care.",
   secondaryCta: { label: "Request an Appointment", href: appointmentHref },
   newPatientLink: { label: "New patient? Here's what to expect", href: "/patient-information/new-patients/" },
   facts: [
     { icon: "pin", text: "3101 Bristol Road, Suite 1, Bensalem, PA 19020" },
     { icon: "clock", text: "Open Monday to Thursday" },
     { icon: "shield", text: "PPO insurance accepted" },
-    { icon: "tag", text: "No insurance? Membership plans for adults ($269/yr) and children ($212/yr)" },
+    { icon: "tag", text: "No insurance? Membership plans for adults ($269/yr) & children ($212/yr)" },
     { icon: "alert", text: "$59 emergency exam for new patients" },
   ],
 } as const;
@@ -55,7 +66,7 @@ export const homeDoctor = {
   facts: [
     { label: "Degree", value: "Doctor of Dental Medicine (DMD), Temple University" },
     { label: "Undergraduate", value: "Penn State University" },
-    { label: "Special focus", value: "Dental implants and cosmetic dentistry" },
+    { label: "Special focus", value: "Dental implants & cosmetic dentistry" },
     { label: "Community", value: "Volunteers with Missions of Mercy in Pennsylvania" },
     { label: "Hometown", value: "Lansdale, Pennsylvania" },
   ],
@@ -75,11 +86,11 @@ export const homeTechnology = {
 };
 
 export const homeCoverage = {
-  title: "Insurance, Membership Plans and Financing",
+  title: "Insurance, Membership Plans & Financing",
   insurance: {
     title: "Dental insurance",
     body: "Your PPO insurance is accepted here. We are in-network with a variety of insurance plans and work with carriers including Aetna, Anthem, Cigna, Delta Dental, Humana, MetLife and UnitedHealthcare. Coverage depends on your plan, so call us to confirm your plan before your visit. We bill your insurance company and track your claim. Payment for your share is due at the time of service.",
-    link: { label: "Insurance and payment details", href: "/patient-information/insurance-payment-options/" },
+    link: { label: "Insurance & payment details", href: "/patient-information/insurance-payment-options/" },
   },
   membership: {
     title: "No insurance? No problem.",
@@ -106,24 +117,35 @@ export const homeEmergency = {
 
 export const homeReviews = {
   title: "What Our Patients Say",
+  /** All reviews from the practice's current site, in its order; each shows 5 stars there */
   reviews: [
+    {
+      quote:
+        "All of my visits to Amazing Smiles by Design have been great! Erin is quick, efficient, careful and friendly as a hygienist. Dr. Jenish is thorough, kind and friendly. Colleen, at the front desk is also always friendly and upbeat.",
+      name: "John C.",
+      date: "January 2026",
+      rating: 5,
+    },
     {
       quote:
         "I had an absolutely good experience at this dental office. The staff were incredibly welcoming, the environment was comfortable and modern, and everything about the visit was just top-notch. Highly recommend.",
       name: "Renee V.",
       date: "February 2026",
+      rating: 5,
     },
     {
       quote:
         "I just recently had some visits to Amazing Smiles. They took Xrays and cleaned my teeth. I returned to get an impression for a nightguard and then to actually get the nightguard. The dentist and staff are friendly, polite, and professional.",
       name: "Louis F.",
       date: "December 2025",
+      rating: 5,
     },
     {
       quote:
         "I had a filling and a root canal at Amazing Smiles by Design and the experience was amazing-completely pain-free! The dentist was gentle, professional, and made me feel comfortable throughout the entire process.",
       name: "Anton A.",
       date: "August 2025",
+      rating: 5,
     },
   ],
   link: { label: "Read more patient reviews", href: "/about-us/patient-reviews/" },
@@ -136,7 +158,7 @@ export const homeGallery = {
 };
 
 export const homeAreas = {
-  title: "Serving Bensalem and Nearby Communities",
+  title: "Serving Bensalem & Nearby Communities",
   intro:
     "Looking for a dentist in 19020 or nearby? Our office is on Bristol Road in Bensalem, and we proudly serve patients from:",
   /** `path: null` = listed without a link (Bensalem is this page) */
@@ -153,7 +175,8 @@ export const homeAreas = {
 };
 
 export const homeLocation = {
-  title: "Office Hours and Location",
+  /** Client request (2 Oct 2026): "&" instead of "and"; the content file reads "Office Hours and Location" */
+  title: "Office Hours & Location",
 };
 
 export const homeFaqs = {

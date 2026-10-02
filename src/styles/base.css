@@ -81,11 +81,12 @@
     overflow-x: clip;
   }
 
+  /* Titles: the logo's serif (Gelasio, drawn to Georgia's metrics) */
   h1,
   h2,
   h3 {
     font-family: var(--font-serif);
-    font-weight: 500;
+    font-weight: 600;
     color: var(--color-heading);
     text-wrap: balance;
   }
@@ -99,18 +100,21 @@
   h2 {
     font-size: var(--step-h2);
     line-height: var(--leading-heading);
-    letter-spacing: -0.01em;
+    letter-spacing: var(--tracking-display);
   }
 
   h3 {
     font-size: var(--step-h3);
     line-height: 1.25;
+    letter-spacing: -0.005em;
   }
 
+  /* Italic accent phrase, like "By Design" in the logo */
   h1 em,
-  h2 em {
-    font-weight: 400;
+  h2 em,
+  h3 em {
     font-style: italic;
+    font-weight: 500;
   }
 
   p {
@@ -160,24 +164,35 @@
     border: 0;
   }
 
+  /* Section label: plain text with the logo's smile swoosh beneath it
+     (the exact tapered path from under "Amazing" in the logo SVG). */
   .eyebrow {
     display: inline-flex;
-    align-items: center;
-    gap: 0.75em;
+    flex-direction: column;
+    align-items: var(--eyebrow-align, flex-start);
+    gap: 0.45rem;
     font-family: var(--font-sans);
     font-size: var(--step-eyebrow);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
     color: var(--color-accent);
   }
 
-  .eyebrow::before {
+  .eyebrow::after {
     content: "";
-    width: 1.75rem;
-    height: 1px;
-    background: currentColor;
+    width: 4.25rem;
+    height: 0.5rem;
+    background: var(--eyebrow-line, var(--blue-500));
+    -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='14 630 1802 256' preserveAspectRatio='none'%3E%3Cpath d='M14.4399 757.31C14.4399 757.31 464.7 634.42 1096.72 757.31C1096.72 757.31 1560.98 811.93 1814.57 741.7C1814.57 741.7 1502.46 882.15 866.54 796.32C230.62 710.49 48.0999 768.05 14.4399 757.31Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='14 630 1802 256' preserveAspectRatio='none'%3E%3Cpath d='M14.4399 757.31C14.4399 757.31 464.7 634.42 1096.72 757.31C1096.72 757.31 1560.98 811.93 1814.57 741.7C1814.57 741.7 1502.46 882.15 866.54 796.32C230.62 710.49 48.0999 768.05 14.4399 757.31Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  }
+
+  /* On dark backgrounds */
+  .eyebrow-inverse {
+    color: var(--ice-300);
+    --eyebrow-line: var(--ice-300);
   }
 
   .lead {

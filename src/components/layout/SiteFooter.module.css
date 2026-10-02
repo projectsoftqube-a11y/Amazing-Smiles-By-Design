@@ -1,15 +1,38 @@
+/* Same ice-blue background as the services section */
 .footer {
-  background: var(--porcelain);
-  border-top: 1px solid var(--line);
+  position: relative;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--ice-200);
   font-size: var(--step-small);
   color: var(--color-muted);
+  background:
+    radial-gradient(45% 50% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
 }
 
-.grid {
+.main {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.8fr) minmax(0, 3fr);
+  grid-template-columns: minmax(0, 3.4fr) minmax(0, 8.6fr);
   gap: var(--space-l);
-  padding-block: var(--space-xl) var(--space-l);
+  align-items: stretch;
+}
+
+/* Right side: link columns on top, the areas card pinned to the bottom so both
+   columns end on the same line */
+.side {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--space-l);
+}
+
+/* ——— Practice column ——— */
+/* Flex column so the hours card can sit at the bottom, level with the areas card */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-m);
 }
 
 .logo {
@@ -19,12 +42,6 @@
 .logo img {
   width: auto;
   height: 3rem;
-}
-
-.brand {
-  display: grid;
-  align-content: start;
-  gap: var(--space-m);
 }
 
 .nap {
@@ -43,95 +60,149 @@
 
 .napPhone {
   justify-self: start;
-  margin-top: 0.5rem;
+  margin-top: 0.625rem;
   color: var(--navy-800);
-  font-size: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
   font-weight: 600;
+  line-height: 1.1;
   text-decoration: none;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
+  transition: color var(--dur-ui) var(--ease-out);
 }
 
 .napPhone:hover {
   color: var(--blue-700);
 }
 
-.contactList {
+.quick {
   display: grid;
   gap: 0.5rem;
 }
 
-.contactList li {
-  display: grid;
-}
-
-.contactLabel {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.contactList a {
+.quick a,
+.quick span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
   color: var(--navy-800);
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   font-variant-numeric: tabular-nums;
 }
 
-.contactList a:hover {
+.quick svg {
+  flex: none;
   color: var(--blue-700);
 }
 
-.directions {
-  justify-self: start;
+.quick a:hover {
   color: var(--blue-700);
-  font-weight: 600;
+  text-decoration: underline;
   text-underline-offset: 0.25em;
 }
 
-.title {
-  margin-bottom: 0.875rem;
+/* ——— Office hours card ——— */
+.hours {
+  margin-top: auto;
+  width: 100%;
+  max-width: 22rem;
+  padding: 1.125rem 1.25rem;
+  border: 1px solid var(--white);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.hoursTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--line);
   color: var(--navy-800);
   font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.hours dl {
+.hoursTitle svg {
+  color: var(--blue-700);
+}
+
+.hoursList {
   display: grid;
 }
 
-.hours dl div {
-  display: grid;
-  gap: 0.125rem;
-  padding-block: 0.5rem;
-  border-bottom: 1px solid var(--line);
+.hoursList div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.4rem;
+  border-bottom: 1px dashed var(--line);
 }
 
-.hours dt {
+.hoursList div:last-child {
+  border-bottom: 0;
+}
+
+.hoursList dt {
   color: var(--navy-800);
-  font-weight: 500;
+  font-weight: 600;
 }
 
-.hours dd {
+.hoursList dd {
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
+.hoursList div[data-closed] dd {
+  color: var(--blue-700);
+  font-weight: 600;
+}
+
+/* ——— Link columns ——— */
+/* Subgrid rows: the four column titles share one row, so their underlines line up */
 .nav {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-m);
+  grid-template-rows: auto auto;
+  column-gap: var(--space-m);
+}
+
+.nav > div {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  align-content: start;
+}
+
+.title {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--ice-300);
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .nav ul {
   display: grid;
+  align-content: start;
   gap: 0.125rem;
 }
 
 .nav a {
   display: inline-block;
-  padding-block: 0.3rem;
+  padding-block: 0.28rem;
   color: var(--color-muted);
   line-height: 1.4;
   text-decoration: none;
@@ -144,44 +215,176 @@
   text-underline-offset: 0.25em;
 }
 
+/* ——— Areas we serve card ——— */
+.areas {
+  align-self: end;
+  display: grid;
+  gap: 0.875rem;
+  padding: 1.125rem 1.375rem 1.25rem;
+  border-radius: var(--radius-m);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.areasHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.areasTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.areasTitle svg {
+  color: var(--blue-700);
+}
+
+.areasAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--blue-700);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.areasAll:hover {
+  color: var(--navy-800);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* All towns on one row on desktop */
+.towns {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.towns a {
+  display: grid;
+  place-items: center;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius-s);
+  background: var(--ice-50);
+  border: 1px solid var(--ice-200);
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    border-color var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.towns a:hover {
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: var(--white);
+}
+
+/* ——— Base: copyright, legal links and credit on one line ——— */
 .base {
-  border-top: 1px solid var(--line);
+  margin-top: var(--space-l);
+  border-top: 1px solid var(--ice-300);
 }
 
 .baseInner {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 2rem;
-  padding-block: 1.5rem;
-  font-size: 0.875rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding-block: 1.25rem;
+  font-size: 0.8125rem;
+  white-space: nowrap;
 }
 
 .legal {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  justify-content: center;
+  gap: 0.375rem 1.125rem;
 }
 
 .legal a {
   color: inherit;
+  text-decoration: none;
+}
+
+.legal a:hover {
+  color: var(--navy-800);
+  text-decoration: underline;
   text-underline-offset: 0.25em;
 }
 
+.credit a {
+  color: var(--navy-800);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.credit a:hover {
+  color: var(--blue-700);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* Too narrow for one line: stack copyright, legal links and credit, centred */
 @media (max-width: 1299px) {
-  .grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  .baseInner {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 1199px) {
+  .main {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .nav {
-    grid-column: 1 / -1;
+  /* Practice details and hours side by side above the links */
+  .brand {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--space-l);
+    align-items: start;
+    justify-items: start;
+  }
+
+  .hours {
+    margin-top: 0;
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    justify-self: end;
   }
 }
 
 @media (max-width: 800px) {
+  .towns {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: var(--space-l);
+    gap: var(--space-m) var(--space-s);
   }
 
   /* Leave room for the fixed action bar */
@@ -190,9 +393,37 @@
   }
 }
 
-@media (max-width: 575px) {
-  .grid,
+@media (max-width: 640px) {
+  .towns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hours {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+@media (max-width: 359px) {
   .nav {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ≤389: one town per row */
+@media (max-width: 389px) {
+  .towns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .areasHead {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

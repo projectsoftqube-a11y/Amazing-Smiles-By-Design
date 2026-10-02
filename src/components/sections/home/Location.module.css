@@ -1,32 +1,61 @@
+/* Same ice-blue background as the footer (and the services section) */
 .section {
   padding-block: var(--space-section);
-  background: var(--porcelain);
+  background:
+    radial-gradient(45% 50% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-l);
-  align-items: stretch;
-}
-
-.info {
-  grid-column: 1 / span 5;
-  display: grid;
-  align-content: start;
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
   gap: var(--space-m);
-  justify-items: start;
 }
 
-.details {
+.headCopy {
   display: grid;
   gap: var(--space-s);
+}
+
+/* Contact and hours cards on the left, the map spanning both rows on the right */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-rows: auto 1fr;
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+
+/* ——— Contact card ——— */
+.contact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1rem;
+  row-gap: var(--space-s);
+  padding: var(--space-m);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.cardIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
 }
 
 .address {
   display: grid;
   line-height: 1.55;
+  color: var(--ink);
 }
 
 .address > span {
@@ -35,7 +64,7 @@
 
 .name {
   color: var(--navy-800);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .phoneLine {
@@ -44,96 +73,233 @@
   margin-top: var(--space-s);
   color: var(--navy-800);
   font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+  font-weight: 600;
+  font-size: clamp(1.625rem, 1.4rem + 1vw, 2.25rem);
   line-height: 1.1;
   text-decoration: none;
   font-variant-numeric: lining-nums;
+  transition: color var(--dur-ui) var(--ease-out);
 }
 
 .phoneLine::before {
   content: "Phone (call or text)";
   margin-bottom: 0.375rem;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--blue-700);
 }
 
 .phoneLine:hover {
   color: var(--blue-700);
 }
 
+.contactFoot {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line);
+}
+
 .label {
   margin-right: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--blue-700);
 }
 
 .fax {
   color: var(--color-muted);
+  font-size: var(--step-small);
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.textLink:hover {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+/* ——— Hours card (navy) ——— */
+.hoursCard {
+  grid-column: 1;
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  border-radius: var(--radius-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 14px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.hoursTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .hours {
   width: 100%;
-  border-top: 1px solid var(--line-strong);
+  border-collapse: separate;
+  border-spacing: 0 0.375rem;
   font-variant-numeric: tabular-nums;
 }
 
 .hours th,
 .hours td {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--line);
+  padding: 0.7rem 0.9rem;
+  background: rgb(255 255 255 / 0.05);
   text-align: left;
   vertical-align: baseline;
 }
 
 .hours th {
-  font-weight: 500;
-  color: var(--navy-800);
+  border-radius: 12px 0 0 12px;
+  font-weight: 600;
+  color: var(--white);
 }
 
 .hours td {
+  border-radius: 0 12px 12px 0;
   text-align: right;
-  color: var(--ink);
+  white-space: nowrap;
+}
+
+.hours tr[data-closed] td {
+  color: var(--blue-500);
 }
 
 /* Today's row, marked by HoursToday after load */
 .hours tr[data-today] th,
 .hours tr[data-today] td {
-  color: var(--blue-700);
-  font-weight: 600;
+  background: var(--ice-300);
+  color: var(--navy-900);
 }
 
 .hours tr[data-today] th::after {
   content: "Today";
   margin-left: 0.625rem;
-  padding: 0.125rem 0.375rem;
-  border: 1px solid currentColor;
-  border-radius: var(--radius-xs);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  padding: 0.125rem 0.45rem;
+  border-radius: var(--radius-pill);
+  background: var(--navy-900);
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   vertical-align: 0.15em;
 }
 
-.map {
-  grid-column: 7 / span 6;
-  min-height: 26rem;
+/* ——— Map ——— */
+.mapFrame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  border: 0;
 }
 
-@media (max-width: 991px) {
-  .info,
+.map {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-height: 30rem;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: var(--radius-l);
+  background: var(--ice-100);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ≤1199: one column: contact card, hours card, then the map */
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .hoursCard,
   .map {
-    grid-column: 1 / -1;
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .map {
     min-height: 0;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 767px) {
+  .map {
+    aspect-ratio: 4 / 5;
+  }
+
+  .hoursCard {
+    padding: var(--space-s);
+  }
+}
+
+@media (max-width: 400px) {
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contactFoot {
+    grid-column: 1;
+  }
+
+  .hours th,
+  .hours td {
+    padding: 0.6rem 0.65rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ≤389: tighter cells and card padding so the times stay inside the card */
+@media (max-width: 389px) {
+  .hoursCard {
+    padding: 0.875rem;
+  }
+
+  .hours th,
+  .hours td {
+    padding: 0.6rem 0.55rem;
+    font-size: 0.8125rem;
+  }
+
+  .hours tr[data-today] th::after {
+    margin-left: 0.375rem;
   }
 }

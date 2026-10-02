@@ -19,6 +19,36 @@
   box-shadow: var(--shadow-header);
 }
 
+/* Reading progress: a hairline under the header, driven by the page scroll in CSS
+   (browsers without scroll-driven animations simply don't show it). */
+@supports (animation-timeline: scroll()) {
+  .header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue-500), var(--navy-800));
+    transform-origin: left center;
+    transform: scaleX(0);
+    animation: progress linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes progress {
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header::after {
+    display: none;
+  }
+}
+
 .header[data-hidden] {
   transform: translateY(-100%);
 }
@@ -37,9 +67,28 @@
   border-radius: var(--radius-xs);
 }
 
+/* Larger at the top of the page so the brand holds its own against the hero;
+   once the header sticks (data-scrolled) it eases back to the compact size.
+   The bar keeps its height, so nothing below moves. */
 .logo img {
   width: auto;
-  height: clamp(2.375rem, 2rem + 1vw, 3.25rem); /* 38 → 52px; tagline stays legible */
+  height: clamp(3rem, 2.4rem + 1.6vw, 4.25rem); /* 48 → 68px at the top */
+  transition: height 420ms var(--ease-out);
+}
+
+.header[data-scrolled] .logo img {
+  height: clamp(2.375rem, 2rem + 1vw, 3.25rem); /* 38 → 52px when sticky */
+}
+
+/* ≤389: the logo plus the phone and menu buttons must fit a 320px screen */
+@media (max-width: 389px) {
+  .logo img {
+    height: 2.5rem;
+  }
+
+  .header[data-scrolled] .logo img {
+    height: 2.25rem;
+  }
 }
 
 /* Desktop navigation */
@@ -198,8 +247,8 @@
   transition: transform var(--dur-ui) var(--ease-out);
 }
 
-.megaTitle:hover svg {
-  transform: translateX(4px);
+.megaTitle:hover {
+  color: var(--blue-700);
 }
 
 .megaSummary {
@@ -278,7 +327,7 @@
 }
 
 .phoneLabel {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -329,6 +378,11 @@
     display: none;
   }
 
+  /* The nav is hidden, so push the actions to the right edge: logo left, the rest right */
+  .nav + .actions {
+    margin-left: auto;
+  }
+
   .iconButton,
   .menuButton {
     display: inline-flex;
@@ -354,5 +408,9 @@
 @media (prefers-reduced-motion: reduce) {
   .header[data-hidden] {
     transform: none;
+  }
+
+  .logo img {
+    transition: none;
   }
 }

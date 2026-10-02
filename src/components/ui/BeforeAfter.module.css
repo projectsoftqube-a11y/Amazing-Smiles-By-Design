@@ -1,0 +1,128 @@
+.compare {
+  --pos: 50%;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--radius-l);
+  background: var(--ice-100);
+  box-shadow: var(--shadow-lift);
+  user-select: none;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* The "before" photo is clipped at the handle position */
+.before {
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: end;
+  gap: 0.25rem;
+  padding: 1.25rem;
+  background: linear-gradient(160deg, var(--ice-100), var(--ice-300));
+  color: var(--slate-600);
+  font-size: 0.8125rem;
+}
+
+.before .placeholder {
+  background: linear-gradient(160deg, var(--porcelain), var(--line-strong));
+}
+
+.placeholderTag {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.tag {
+  position: absolute;
+  top: 1rem;
+  z-index: 2;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.tagBefore {
+  left: 1rem;
+  background: rgb(14 24 56 / 0.72);
+  color: var(--white);
+  backdrop-filter: blur(6px);
+}
+
+.tagAfter {
+  right: 1rem;
+  background: rgb(255 255 255 / 0.88);
+  color: var(--navy-800);
+  backdrop-filter: blur(6px);
+}
+
+/* Divider line with a pill handle */
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  z-index: 2;
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--white);
+  box-shadow: 0 0 12px rgb(14 24 56 / 0.25);
+  pointer-events: none;
+}
+
+.handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--navy-800);
+  box-shadow: var(--shadow-lift);
+  transform: translate(-50%, -50%);
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+/* Full-size transparent range input: the actual control */
+.range {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  appearance: none;
+}
+
+.compare:has(.range:focus-visible) .handle {
+  background: var(--navy-800);
+  color: var(--white);
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+.compare:hover .handle {
+  background: var(--navy-800);
+  color: var(--white);
+}

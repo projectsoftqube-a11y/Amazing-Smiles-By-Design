@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { SiteImage } from "@/content/images";
-import { Ring } from "./Ring";
 import styles from "./MediaFrame.module.css";
 
 type MediaFrameProps = {
@@ -16,13 +15,15 @@ type MediaFrameProps = {
   className?: string;
   /** Object position for art-directed crops */
   position?: string;
+  /** next/image quality; must be listed in next.config images.qualities */
+  quality?: 75 | 85;
 };
 
 /**
  * Image slot with a fixed aspect ratio (no layout shift). While a photo is awaiting
  * approval (`src: null`) it shows a labelled placeholder in the brand palette.
  */
-export function MediaFrame({ image, ratio, sizes, priority, reveal, parallax, className, position }: MediaFrameProps) {
+export function MediaFrame({ image, ratio, sizes, priority, reveal, parallax, className, position, quality }: MediaFrameProps) {
   const classes = [styles.frame, reveal === "load" ? styles.revealLoad : null, className].filter(Boolean).join(" ");
 
   return (
@@ -34,13 +35,13 @@ export function MediaFrame({ image, ratio, sizes, priority, reveal, parallax, cl
             alt={image.alt}
             fill
             sizes={sizes}
+            quality={quality}
             placeholder="blur"
             {...(priority ? { fetchPriority: "high" as const, loading: "eager" as const } : {})}
-            style={{ objectFit: "cover", objectPosition: position ?? "center" }}
+            style={{ objectFit: "cover", objectPosition: position ?? image.position ?? "center" }}
           />
         ) : (
           <div className={styles.placeholder} role="img" aria-label={image.alt}>
-            <Ring className={styles.placeholderRing} strokeWidth={2} />
             <span className={styles.placeholderLabel}>
               <span className={styles.placeholderTag}>Photo pending approval</span>
               {image.brief}

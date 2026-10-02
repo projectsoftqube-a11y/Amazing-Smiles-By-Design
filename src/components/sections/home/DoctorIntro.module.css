@@ -1,34 +1,9 @@
 .section {
-  position: relative;
   padding-block: var(--space-section);
-  background: var(--navy-800);
-  color: var(--slate-on-navy);
-  overflow: clip;
-  --color-heading: var(--white);
-  --accent-color: var(--ice-300);
-}
-
-.ring {
-  position: absolute;
-  right: max(-16rem, -18vw);
-  top: -12%;
-  width: clamp(22rem, 12rem + 40vw, 56rem);
-  aspect-ratio: 1;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-@media (max-width: 1023px) {
-  .ring {
-    top: auto;
-    bottom: -8rem;
-    right: -10rem;
-    opacity: 0.35;
-  }
+  background: var(--white);
 }
 
 .grid {
-  position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter);
@@ -36,90 +11,201 @@
   align-items: center;
 }
 
+/* ——— Profile card ——— */
+.card {
+  grid-column: 1 / span 5;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Navy cover band: a soft light sweep and a fine diagonal texture */
+.cover {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 9.5rem;
+  padding: 1.25rem;
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 14px),
+    linear-gradient(115deg, transparent 35%, rgb(193 222 238 / 0.22) 60%, transparent 80%),
+    linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 45%, var(--blue-700) 100%);
+}
+
+.coverTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(6px);
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Portrait overlaps the cover band; name and role sit beside it */
+.profile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: end;
+  gap: var(--space-m);
+  padding: 0 var(--space-m);
+}
+
+.portrait {
+  position: relative;
+  z-index: 1;
+  width: 11rem;
+  aspect-ratio: 4 / 5;
+  margin-top: -6rem;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: 22px;
+  background: var(--ice-100);
+  box-shadow: var(--shadow-lift);
+}
+
+.profileText {
+  display: grid;
+  justify-items: start;
+  padding-bottom: 0.25rem;
+}
+
+.cardName {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--step-h3);
+  line-height: 1.2;
+  color: var(--navy-800);
+}
+
+.cardRole {
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* Facts as icon tiles */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem;
+  padding: var(--space-m);
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.75rem;
+  row-gap: 0.125rem;
+  align-content: start;
+  padding: 0.875rem;
+  border-radius: var(--radius-m);
+  background: var(--ice-50);
+  border: 1px solid var(--ice-200);
+}
+
+/* Odd count: the last tile spans the row */
+.fact:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.factIcon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 12px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.fact dt {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.fact dd {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--navy-800);
+}
+
+/* ——— Bio ——— */
+.titleName {
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .titleName {
+    white-space: normal;
+  }
+}
+
 .copy {
-  grid-column: 1 / span 6;
+  grid-column: 7 / span 6;
   display: grid;
   gap: var(--space-m);
   justify-items: start;
 }
 
-.eyebrow {
-  color: var(--ice-300);
+.lead {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--ink);
 }
 
-.title {
-  color: var(--white);
+.text {
+  color: var(--color-muted);
 }
 
-.leadText {
-  color: var(--white);
-}
-
-.panel {
-  grid-column: 8 / span 5;
-  position: relative;
-  padding: var(--space-l) var(--space-m) var(--space-m);
-  border: 1px solid var(--line-on-navy);
-  border-radius: var(--radius-s);
-  background: rgb(255 255 255 / 0.03);
-}
-
-/* Large initials in place of a portrait */
-.monogram {
-  position: absolute;
-  top: calc(-0.55em);
-  right: var(--space-m);
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(4rem, 3rem + 4vw, 7.5rem);
-  line-height: 1;
-  color: var(--blue-500);
-  padding-inline: 0.15em;
-  background: var(--navy-800);
-}
-
-.facts {
-  display: grid;
-}
-
-.fact {
-  display: grid;
-  grid-template-columns: minmax(7rem, 0.45fr) minmax(0, 1fr);
-  gap: 0.25rem 1.5rem;
-  padding-block: 1rem;
-  border-bottom: 1px solid var(--line-on-navy);
-}
-
-.fact:last-child {
-  border-bottom: 0;
-}
-
-.fact dt {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ice-300);
-  padding-top: 0.2rem;
-}
-
-.fact dd {
-  color: var(--white);
-}
-
-@media (max-width: 1023px) {
-  .copy,
-  .panel {
+/* ≤1199: stack the profile card above the bio */
+@media (max-width: 1199px) {
+  .card,
+  .copy {
     grid-column: 1 / -1;
   }
 
-  .panel {
-    max-width: 40rem;
+  .card {
+    max-width: 36rem;
   }
 }
 
-@media (max-width: 480px) {
-  .fact {
+/* ≤575: one fact per row */
+@media (max-width: 575px) {
+  .facts {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ≤575: portrait above the name */
+@media (max-width: 575px) {
+  .profile {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-s);
+  }
+
+  .portrait {
+    width: 9rem;
+    margin-top: -5rem;
   }
 }

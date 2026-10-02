@@ -1,76 +1,148 @@
 .section {
-  padding-block: var(--space-xl);
-  background: var(--navy-900);
-  color: var(--slate-on-navy);
+  padding-block: var(--space-section);
+  background: var(--white);
 }
 
-.grid {
+/* Soft ice panel holding the copy, with the navy call card set into it */
+.panel {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-l);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-l);
   align-items: center;
+  padding: var(--space-l);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(50% 80% at 0% 0%, var(--white) 0%, transparent 70%),
+    radial-gradient(60% 90% at 100% 100%, var(--ice-300) 0%, transparent 70%),
+    var(--ice-100);
 }
 
 .copy {
-  grid-column: 1 / span 6;
   display: grid;
   gap: var(--space-m);
-}
-
-.eyebrow {
-  color: var(--ice-300);
-}
-
-.eyebrow::before {
-  display: none;
-}
-
-.title {
-  color: var(--white);
+  justify-items: start;
 }
 
 .body {
   max-width: 58ch;
+  font-size: var(--step-lead);
+  color: var(--ink);
 }
 
 .inlinePhone {
-  color: var(--white);
-  font-weight: 600;
+  color: var(--blue-700);
+  font-weight: 700;
   text-underline-offset: 0.25em;
   white-space: nowrap;
 }
 
-.contact {
-  grid-column: 8 / span 5;
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem 0.5rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.chips svg {
+  color: var(--blue-700);
+}
+
+/* ——— Call card ——— */
+.call {
   display: grid;
-  gap: var(--space-m);
   justify-items: start;
-  padding-left: var(--space-l);
-  border-left: 1px solid var(--line-on-navy);
+  gap: var(--space-m);
+  padding: var(--space-l) var(--space-m);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(90% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: rgb(193 222 238 / 0.14);
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgb(74 222 128 / 0.6);
+  animation: dot 1.8s var(--ease-out) infinite;
+}
+
+@keyframes dot {
+  70% {
+    box-shadow: 0 0 0 8px rgb(74 222 128 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(74 222 128 / 0);
+  }
 }
 
 .phone {
-  display: grid;
-  gap: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   color: var(--white);
   text-decoration: none;
 }
 
-.phoneLabel {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ice-300);
+.phoneIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--ice-300);
+  color: var(--navy-900);
+  box-shadow: 0 0 0 0 rgb(193 222 238 / 0.5);
+  animation: pulse 2.4s var(--ease-out) infinite;
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 16px rgb(193 222 238 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(193 222 238 / 0);
+  }
 }
 
 .phoneNumber {
   font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 1.6rem + 3vw, 4.25rem);
-  line-height: 1;
-  letter-spacing: -0.01em;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.5rem);
+  line-height: 1.1;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums;
   transition: color var(--dur-ui) var(--ease-out);
 }
 
@@ -78,29 +150,53 @@
   color: var(--ice-300);
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+.callActions {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+  width: 100%;
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--line-on-navy);
 }
 
-@media (max-width: 991px) {
-  .copy,
-  .contact {
-    grid-column: 1 / -1;
-  }
-
-  .contact {
-    padding-left: 0;
-    padding-top: var(--space-l);
-    border-left: 0;
-    border-top: 1px solid var(--line-on-navy);
+/* ≤1199: copy above the call card */
+@media (max-width: 1199px) {
+  .panel {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-m);
   }
 }
 
-@media (max-width: 575px) {
-  .actions {
-    display: grid;
-    width: 100%;
+@media (max-width: 400px) {
+  .phoneIcon {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phoneIcon,
+  .liveDot {
+    animation: none;
+  }
+}
+
+/* ≤389: smaller number and icon so the phone line fits inside the card */
+@media (max-width: 389px) {
+  .call {
+    padding: var(--space-m) 1.125rem;
+  }
+
+  .phone {
+    gap: 0.75rem;
+  }
+
+  .phoneIcon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .phoneNumber {
+    font-size: 1.375rem;
   }
 }

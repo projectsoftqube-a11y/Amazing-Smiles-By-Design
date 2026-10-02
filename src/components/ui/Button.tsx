@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import type { ComponentProps, ReactNode } from "react";
 import { Icon, type IconName } from "./Icon";
 import styles from "./Button.module.css";

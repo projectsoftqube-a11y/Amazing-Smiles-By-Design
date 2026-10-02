@@ -1,0 +1,316 @@
+.section {
+  position: relative;
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(40% 60% at 0% 50%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+  overflow: clip;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--space-xl);
+  align-items: center;
+}
+
+/* ——— Photo composition ——— */
+.visual {
+  grid-column: 1 / span 5;
+  position: relative;
+  padding: 0;
+}
+
+/* White frame around the photo: 10px padding, thin border, soft shadow.
+   Large radius on top-left and bottom-right, small on the other two corners. */
+.frame {
+  position: relative;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 120px 24px 120px 24px;
+  background: var(--white);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Inner radii = outer radii minus the 10px padding, so the border stays even */
+.media {
+  --frame-radius: 110px 14px 110px 14px;
+}
+
+/* ——— Floating info cards ——— */
+.hoursCard,
+.ppoCard {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  gap: 0.875rem;
+  padding: 1rem 1.125rem;
+  border: 1px solid rgb(255 255 255 / 0.7);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(10px);
+}
+
+/* Top-right, overlapping the frame edge */
+.hoursCard {
+  top: 2.5rem;
+  right: -2.5rem;
+}
+
+/* Bottom-left, overlapping the frame edge */
+.ppoCard {
+  left: -2.5rem;
+  bottom: 3rem;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cardIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--ice-100);
+  color: var(--blue-700);
+}
+
+.cardIconNavy {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.cardTitle {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--navy-800);
+}
+
+/* Week strip: open days in navy, closed days faint */
+.week {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.week li {
+  display: grid;
+  place-items: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+  background: var(--porcelain);
+  color: var(--line-strong);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.week li[data-open] {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.week abbr {
+  text-decoration: none;
+}
+
+.carriers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.carriers li {
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.carriers .more {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+/* ——— Copy ——— */
+.copy {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: var(--space-m);
+  justify-items: start;
+}
+
+.lead {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+/* "We treat you like family" in a soft note card */
+.note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  padding: var(--space-m);
+  border-radius: var(--radius-m);
+  background: var(--ice-50);
+  border: 1px solid var(--ice-200);
+  color: var(--slate-600);
+}
+
+.noteIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--blue-700);
+  box-shadow: var(--shadow-soft);
+}
+
+.text {
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--space-2xs);
+}
+
+/* Small pill links next to the main button (colour change only on hover) */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 2.75rem;
+  padding: 0.375rem 1.125rem 0.375rem 0.375rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color var(--dur-ui) var(--ease-out);
+}
+
+.pillIcon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--ice-100);
+  color: var(--blue-700);
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.pill:hover {
+  border-color: var(--navy-800);
+}
+
+.pill:hover .pillIcon {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+@media (max-width: 1199px) {
+  .visual {
+    grid-column: 1 / span 6;
+  }
+
+  .copy {
+    grid-column: 7 / span 6;
+  }
+}
+
+@media (max-width: 1099px) {
+  .visual,
+  .copy {
+    grid-column: 1 / -1;
+  }
+
+  .visual {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .frame {
+    border-radius: 72px 18px 72px 18px;
+  }
+
+  .media {
+    --frame-radius: 62px 8px 62px 8px;
+  }
+
+  .visual {
+    padding: 0;
+  }
+
+  /* Phones: the cards would cover faces, so they stack under the photo,
+     the first one overlapping the frame's bottom edge */
+  .visual {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .hoursCard,
+  .ppoCard {
+    position: relative;
+    inset: auto;
+    margin-inline: 1rem;
+  }
+
+  .hoursCard {
+    margin-top: -3.5rem;
+  }
+
+  .note {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ≤389: the week strip (7 day circles) plus card padding was wider than a 320px
+   screen and pushed the photo column past the edge; tighten it and keep the
+   column at the container width */
+@media (max-width: 389px) {
+  .visual {
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
+  }
+
+  .hoursCard,
+  .ppoCard {
+    margin-inline: 0.5rem;
+    padding: 0.875rem;
+  }
+
+  .week {
+    gap: 0.25rem;
+  }
+
+  .week li {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .cardTitle {
+    font-size: 0.875rem;
+  }
+}

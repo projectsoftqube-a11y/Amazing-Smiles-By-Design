@@ -1,174 +1,278 @@
 .section {
   padding-block: var(--space-section);
-  background: var(--ice-100);
+  background:
+    radial-gradient(45% 35% at 100% 0%, var(--ice-200) 0%, transparent 70%),
+    radial-gradient(40% 30% at 0% 60%, var(--ice-100) 0%, transparent 70%),
+    var(--porcelain);
 }
 
 .head {
+  --eyebrow-align: center;
   display: grid;
+  justify-items: center;
   gap: var(--space-s);
-  max-width: 52rem;
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .subTitle {
   font-size: var(--step-h3);
 }
 
-/* Shared two-column rows: H3 on the left, content on the right */
-.insurance,
-.financing {
+.badgeIcon {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-s);
-  padding-block: var(--space-l);
-  border-top: 1px solid var(--line-strong);
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--ice-300);
+  color: var(--navy-900);
 }
 
+/* ——— Insurance: navy copy band + logo wall ——— */
 .insurance {
+  margin-top: var(--space-l);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+}
+
+.insuranceCopy {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--space-m) var(--space-l);
+  align-items: start;
+  padding: var(--space-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 14px),
+    radial-gradient(70% 120% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+  color: var(--slate-on-navy);
+}
+
+.insuranceLead {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+}
+
+.insuranceLead .subTitle {
+  color: var(--white);
+}
+
+.insuranceBody {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+}
+
+.logoWall {
+  display: grid;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  background:
+    radial-gradient(60% 80% at 100% 100%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+}
+
+.logoLabel {
+  justify-self: center;
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Six tiles per row on desktop; the last row stays centred */
+.logos {
+  --cols: 6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.logos li {
+  display: grid;
+  place-items: center;
+  flex: 0 0 calc((100% - (var(--cols) - 1) * 0.75rem) / var(--cols));
+  height: 5.5rem;
+  padding: 0.875rem 1.125rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  transition:
+    border-color var(--dur-ui) var(--ease-out),
+    box-shadow 500ms var(--ease-expo);
+}
+
+.logos li:hover {
+  border-color: var(--ice-300);
+  box-shadow: var(--shadow-soft);
+}
+
+.logo {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 3.25rem;
+  object-fit: contain;
+}
+
+/* ——— Membership ——— */
+.membership {
   margin-top: var(--space-xl);
 }
 
-.insurance .subTitle,
-.financing .subTitle {
-  grid-column: 1 / span 4;
-}
-
-.insuranceBody,
-.financingBody {
-  grid-column: 6 / span 7;
-  display: grid;
-  gap: var(--space-m);
-  justify-items: start;
-}
-
-.insuranceBody p,
-.financingBody p {
-  max-width: 62ch;
-}
-
-.carriers {
+.membershipHead {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-m);
 }
 
-.carriers li {
-  padding: 0.4rem 0.8rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-xs);
-  background: var(--white);
-  color: var(--navy-800);
-  font-size: var(--step-small);
-  font-weight: 500;
-}
-
-.membership {
-  padding-block: var(--space-l) var(--space-xl);
-  border-top: 1px solid var(--line-strong);
-}
-
-.membershipHead {
+.membershipIntro {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-s);
-  align-items: baseline;
+  gap: var(--space-2xs);
+  max-width: 40rem;
 }
 
-.membershipHead .subTitle {
-  grid-column: 1 / span 4;
+.membershipIntro p {
+  color: var(--color-muted);
+  font-size: var(--step-lead);
 }
 
-.membershipHead p {
-  grid-column: 6 / span 7;
-}
-
+/* Three plans plus the emergency special: one row of four on desktop, 2×2 on tablets */
 .plans {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--gutter);
+  gap: var(--space-m);
   margin-top: var(--space-l);
 }
 
+/* Subgrid rows (audience, name, price, details, action) so prices and lists
+   line up across cards even when a label wraps */
 .plan {
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-m);
+  position: relative;
+  grid-row: span 5;
+  display: grid;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  align-content: start;
+  justify-items: start;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  border-radius: var(--radius-l);
   background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-s);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+/* Thin brand bar along the top of each card */
+.plan::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-700), var(--ice-300));
+}
+
+.planAudience {
+  align-self: start;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .planName {
+  margin-top: var(--space-s);
   font-family: var(--font-serif);
+  font-weight: 600;
   font-size: var(--step-h4);
   line-height: 1.25;
   color: var(--navy-800);
 }
 
-.planAudience {
-  margin-top: 0.25rem;
-  font-size: var(--step-small);
-  color: var(--color-muted);
-}
-
 .price {
   display: flex;
   align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0 0.15rem;
-  margin-block: var(--space-m);
+  gap: 0.125rem;
+  margin-top: var(--space-xs);
+  padding-bottom: var(--space-s);
+  width: 100%;
+  border-bottom: 1px solid var(--line);
   font-family: var(--font-serif);
+  font-weight: 600;
   font-size: var(--step-price);
-  font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.02em;
   color: var(--navy-800);
-  font-variant-numeric: lining-nums;
 }
 
 .currency {
   align-self: flex-start;
+  margin-top: 0.35em;
   font-size: 0.45em;
-  margin-top: 0.2em;
 }
 
 .term {
   margin-left: 0.5rem;
   font-family: var(--font-sans);
   font-size: var(--step-small);
-  letter-spacing: 0;
+  font-weight: 500;
   color: var(--color-muted);
 }
 
 .includes {
   display: grid;
-  gap: 0.5rem;
-  padding-top: var(--space-s);
-  border-top: 1px solid var(--line);
+  align-self: start;
+  align-content: start;
+  gap: 0.625rem;
+  margin-top: var(--space-s);
+  color: var(--ink);
   font-size: var(--step-small);
 }
 
 .includes li {
-  position: relative;
-  padding-left: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
 }
 
-/* A short ring-blue tick, cut square like the logo segments */
-.includes li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.62em;
-  width: 0.625rem;
-  height: 2px;
-  background: var(--blue-500);
-}
-
-.special {
+.check {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
   background: var(--navy-800);
-  border-color: var(--navy-800);
+  color: var(--white);
+}
+
+/* ——— Emergency special (navy card) ——— */
+.special {
+  background:
+    radial-gradient(90% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
   color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.special::before {
+  background: linear-gradient(90deg, var(--ice-300), var(--blue-500));
+}
+
+.special .planAudience {
+  background: rgb(193 222 238 / 0.16);
+  color: var(--ice-300);
 }
 
 .special .planName,
@@ -176,40 +280,164 @@
   color: var(--white);
 }
 
-.special .planAudience,
+.special .price {
+  border-bottom-color: var(--line-on-navy);
+}
+
 .special .term {
   color: var(--ice-300);
 }
 
 .specialNote {
-  padding-top: var(--space-s);
-  border-top: 1px solid var(--line-on-navy);
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-m);
   font-size: var(--step-small);
 }
 
-.membershipCta {
-  margin-top: var(--space-l);
+.special :global(a) {
+  align-self: end;
+}
+
+/* ——— Financing band ——— */
+.financing {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-m);
+  margin-top: var(--space-xl);
+  padding: var(--space-m) var(--space-l);
+  border: 1px solid var(--ice-300);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(50% 140% at 0% 50%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(120deg, var(--ice-100), var(--white));
+}
+
+.financingIcon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--navy-800);
+  color: var(--white);
+  box-shadow: 0 0 0 8px rgb(255 255 255 / 0.7);
+}
+
+.financingCopy {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.financingCopy p {
+  color: var(--color-muted);
+}
+
+.partners {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.partners li {
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-weight: 600;
 }
 
 @media (max-width: 1199px) {
   .plans {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .financing {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .partners,
+  .financing > :last-child {
+    grid-column: 2;
+  }
+
+  .partners {
+    margin-top: calc(var(--space-xs) * -1);
+  }
 }
 
 @media (max-width: 991px) {
-  .insurance .subTitle,
-  .financing .subTitle,
-  .membershipHead .subTitle,
-  .insuranceBody,
-  .financingBody,
-  .membershipHead p {
-    grid-column: 1 / -1;
+  .insuranceCopy {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .logos {
+    --cols: 4;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .plans {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .financing {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    padding: var(--space-m);
+  }
+
+  .partners,
+  .financing > :last-child {
+    grid-column: 1;
+  }
+
+  .partners {
+    margin-top: 0;
+  }
+
+  .financingIcon {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .logos {
+    --cols: 2;
   }
 }
 
 @media (max-width: 575px) {
-  .plans {
-    grid-template-columns: minmax(0, 1fr);
+  .logos {
+    --cols: 2;
+    gap: 0.5rem;
+  }
+
+  .logos li {
+    height: 4.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-m);
+  }
+
+  .logo {
+    max-height: 2.75rem;
+  }
+
+  .insuranceCopy,
+  .logoWall {
+    padding: var(--space-m);
+  }
+}
+
+/* ≤389: the audience badge can wrap to two lines, so it uses a soft corner
+   instead of a pill, with tighter letter spacing */
+@media (max-width: 389px) {
+  .planAudience {
+    border-radius: var(--radius-s);
+    letter-spacing: 0.08em;
+    line-height: 1.4;
   }
 }

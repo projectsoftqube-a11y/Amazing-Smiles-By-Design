@@ -17,20 +17,20 @@
   --ice-300: #c1deee;
   --ice-200: #d9eaf4;
   --ice-100: #eaf3f9;
+  --ice-50: #f4f9fc;
   --porcelain: #f3f6f9;
   --white: #ffffff;
   --silver: #9e9e9e;
-  --silver-light: #d9d9d9;
 
   /* Neutrals biased toward the brand navy */
-  --ink: #2a3348;
+  --ink: #1f2a44;
   --slate-600: #4f5a6e;
-  --slate-on-navy: #b9c8db;
-  --line: #dce3ea;
-  --line-strong: #c4cfdb;
-  --line-on-navy: rgb(193 222 238 / 0.18);
+  --slate-on-navy: #c3d0e0;
+  --line: #e1e7ee;
+  --line-strong: #c9d4e0;
+  --line-on-navy: rgb(193 222 238 / 0.2);
 
-  /* Feedback (forms only) */
+  /* Feedback */
   --error: #b42318;
   --success: #1f7a4d;
 
@@ -42,28 +42,28 @@
   --color-accent: var(--blue-700);
   --color-focus: var(--blue-700);
 
-  /* Typography */
-  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
+  /* Typography: titles in the logo's serif, everything else in Hanken Grotesk */
+  --font-serif: var(--font-display), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-hanken), "Segoe UI", system-ui, -apple-system, sans-serif;
 
-  /* Fluid scale: values interpolate between a 320px and a 1920px viewport. */
-  --step-display: clamp(2.375rem, 1.65rem + 3.625vw, 6rem);   /* 38 → 96 */
-  --step-h1: clamp(2.375rem, 1.85rem + 2.625vw, 5rem);        /* 38 → 80 */
-  --step-h2: clamp(1.875rem, 1.55rem + 1.625vw, 3.5rem);      /* 30 → 56 */
-  --step-h3: clamp(1.375rem, 1.275rem + 0.5vw, 1.875rem);     /* 22 → 30 */
-  --step-h4: clamp(1.125rem, 1.0875rem + 0.1875vw, 1.3125rem); /* 18 → 21 */
-  --step-price: clamp(2.5rem, 2.1rem + 2vw, 4.5rem);          /* 40 → 72 */
-  --step-lead: clamp(1.125rem, 1.075rem + 0.25vw, 1.375rem);  /* 18 → 22 */
-  --step-body: clamp(1rem, 0.975rem + 0.125vw, 1.125rem);     /* 16 → 18 */
+  /* Fluid scale between a 320px and a 1920px viewport */
+  --step-hero: clamp(2.125rem, 1.7rem + 2.125vw, 3.75rem);   /* 34 → 60 */
+  --step-h1: clamp(2.25rem, 1.75rem + 2.5vw, 4.25rem);      /* 36 → 68 */
+  --step-h2: clamp(1.875rem, 1.55rem + 1.625vw, 3.5rem);    /* 30 → 56 */
+  --step-h3: clamp(1.375rem, 1.275rem + 0.5vw, 1.875rem);   /* 22 → 30 */
+  --step-h4: clamp(1.125rem, 1.075rem + 0.25vw, 1.375rem);  /* 18 → 22 */
+  --step-price: clamp(2.5rem, 2.1rem + 2vw, 4.5rem);        /* 40 → 72 */
+  --step-lead: clamp(1.0625rem, 1.025rem + 0.19vw, 1.25rem); /* 17 → 20 */
+  --step-body: clamp(1rem, 0.975rem + 0.125vw, 1.125rem);   /* 16 → 18 */
   --step-small: 0.9375rem;
-  --step-eyebrow: 0.8125rem;
+  --step-eyebrow: 0.8125rem; /* 13px: the minimum text size on the site */
 
-  --leading-tight: 1.04;
-  --leading-heading: 1.12;
-  --leading-body: 1.65;
+  --leading-tight: 1.08;
+  --leading-heading: 1.15;
+  --leading-body: 1.7;
   --tracking-display: -0.015em;
-  --tracking-eyebrow: 0.14em;
-  --measure: 68ch;
+  --tracking-eyebrow: 0.16em;
+  --measure: 64ch;
 
   /* Space */
   --space-3xs: 0.25rem;
@@ -73,32 +73,46 @@
   --space-m: clamp(1.25rem, 1.1rem + 0.75vw, 2rem);
   --space-l: clamp(2rem, 1.6rem + 2vw, 4rem);
   --space-xl: clamp(3rem, 2.4rem + 3vw, 6rem);
-  --space-section: clamp(4rem, 2.8rem + 6vw, 10rem);          /* 64 → 160 */
-  --gutter: clamp(0.75rem, 0.5rem + 1.25vw, 2rem);            /* grid gap 12 → 32 */
+  /* Section padding (top and bottom): 100px desktop, 80px ≤1199px, 60px ≤767px */
+  --space-section: 100px;
+  --gutter: clamp(0.75rem, 0.5rem + 1.25vw, 2rem);
 
   /* Layout: 1440px at 1536px and up, 48px gutters down to 960px, then 90%. */
   --container-max: 1440px;
   --container: min(var(--container-max), max(90%, 100% - 96px));
-  --container-narrow: min(760px, var(--container));
+  --container-narrow: min(860px, var(--container));
+  --page-gutter: max((100vw - var(--container-max)) / 2, min(5vw, 48px));
   --header-h: 5.5rem;
 
-  /* Shape: the logo ring's square-cut segments → small radii, no pills */
-  --radius-xs: 2px;
-  --radius-s: 4px;
-  --radius-m: 6px;
+  /* Shape */
+  --radius-xs: 4px;
+  --radius-s: 10px;
+  --radius-m: 18px;
+  --radius-l: 28px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1px 2px rgb(14 24 56 / 0.04), 0 12px 32px -12px rgb(14 24 56 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(14 24 56 / 0.04), 0 28px 60px -24px rgb(14 24 56 / 0.28);
   --shadow-menu: 0 24px 48px -24px rgb(14 24 56 / 0.28), 0 2px 6px rgb(14 24 56 / 0.06);
   --shadow-header: 0 1px 0 var(--line), 0 12px 32px -24px rgb(14 24 56 / 0.25);
 
   /* Motion (GSAP equivalents in src/lib/gsap.ts) */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-ui: 180ms;
-  --dur-reveal: 700ms;
-  --dur-hero: 1100ms;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-ui: 200ms;
+  --dur-reveal: 800ms;
+  --dur-hero: 1200ms;
 }
 
 @media (max-width: 1199px) {
   :root {
     --header-h: 4.5rem;
+    --space-section: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --space-section: 60px;
   }
 }

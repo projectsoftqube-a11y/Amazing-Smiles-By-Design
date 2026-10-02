@@ -1,6 +1,5 @@
 import { Faq } from "@/components/sections/Faq";
 import { Areas } from "@/components/sections/home/Areas";
-import { CareIntro } from "@/components/sections/home/CareIntro";
 import { Coverage } from "@/components/sections/home/Coverage";
 import { DoctorIntro } from "@/components/sections/home/DoctorIntro";
 import { Emergency } from "@/components/sections/home/Emergency";
@@ -10,6 +9,7 @@ import { Location } from "@/components/sections/home/Location";
 import { Reviews } from "@/components/sections/home/Reviews";
 import { Services } from "@/components/sections/home/Services";
 import { Technology } from "@/components/sections/home/Technology";
+import { Welcome } from "@/components/sections/home/Welcome";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { homeAreas, homeFaqs, homeMeta } from "@/content/pages/home";
 import { dentistEntity, dentistPerson, faqPage, graph, webPageEntity, websiteEntity } from "@/lib/schema";
@@ -32,7 +32,7 @@ export default function HomePage() {
       <JsonLd data={coreSchema} />
       <JsonLd data={faqSchema} />
       <Hero />
-      <CareIntro />
+      <Welcome />
       <Services />
       <DoctorIntro />
       <Technology />

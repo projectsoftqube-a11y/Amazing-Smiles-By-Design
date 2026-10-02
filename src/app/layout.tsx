@@ -9,7 +9,7 @@ import { MotionController } from "@/components/motion/MotionController";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { TrackClicks } from "@/components/motion/TrackClicks";
 import { practice, SITE_URL } from "@/content/site";
-import { hankenGrotesk, newsreader } from "@/lib/fonts";
+import { gelasio, hankenGrotesk } from "@/lib/fonts";
 import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
@@ -27,8 +27,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-US" className={`${newsreader.variable} ${hankenGrotesk.variable}`}>
-      <body>
+    <html lang="en-US" className={`${gelasio.variable} ${hankenGrotesk.variable}`}>
+      {/* Browser extensions (e.g. ColorZilla's cz-shortcut-listen) add attributes to <body>
+          before React hydrates; this only silences that attribute mismatch on this element. */}
+      <body suppressHydrationWarning>
         <a href="#main" className={styles.skipLink}>
           Skip to main content
         </a>

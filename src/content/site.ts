@@ -48,7 +48,7 @@ export const contactLinks = {
   directions:
     "https://www.google.com/maps/dir/?api=1&destination=3101+Bristol+Road+Suite+1+Bensalem+PA+19020",
   map: `https://www.google.com/maps/place/?q=place_id:${practice.googlePlaceId}`,
-  /** Keyless embed; loaded only after the visitor asks for the map. */
+  /** Keyless embed (no API key or billing); the Location section lazy-loads it. */
   mapEmbed:
     "https://maps.google.com/maps?q=Amazing+Smiles+By+Design,+3101+Bristol+Road+Suite+1,+Bensalem,+PA+19020&z=15&output=embed",
 } as const;
@@ -109,7 +109,7 @@ export const membershipPlans: MembershipPlan[] = [
     term: "per year",
     includes: [
       "4 periodontal maintenance visits",
-      "2 checkup exams and screenings",
+      "2 checkup exams & screenings",
       "Routine X-rays",
       "Emergency exam",
     ],

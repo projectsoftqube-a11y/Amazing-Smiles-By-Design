@@ -4,15 +4,6 @@
   overflow: clip;
 }
 
-.ring {
-  position: absolute;
-  right: -6rem;
-  top: 2rem;
-  width: clamp(16rem, 10rem + 25vw, 36rem);
-  aspect-ratio: 1;
-  opacity: 0.6;
-}
-
 .inner {
   position: relative;
   display: grid;

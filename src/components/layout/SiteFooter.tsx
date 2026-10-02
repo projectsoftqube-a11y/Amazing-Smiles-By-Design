@@ -1,13 +1,15 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { footerNav, legalNav } from "@/content/navigation";
+import { homeAreas } from "@/content/pages/home";
+import { linkTo } from "@/content/routes";
 import { contactLinks, hoursTable, practice } from "@/content/site";
+import { Icon } from "@/components/ui/Icon";
 import { Logo } from "./Logo";
 import styles from "./SiteFooter.module.css";
 
 /**
- * Light footer (the logo only works on light backgrounds). Holds the full NAP as
- * text, matching the Google Business Profile character for character.
- * Column titles are paragraphs, not headings, so each page keeps the exact
+ * Light footer on the same ice-blue background as the services section. Holds the full NAP as text, matching the Google Business Profile character for
+ * character. Column titles are paragraphs, not headings, so each page keeps the exact
  * heading outline from its content file.
  */
 export function SiteFooter() {
@@ -15,9 +17,11 @@ export function SiteFooter() {
 
   return (
     <footer id="site-footer" className={styles.footer}>
-      <div className={`container ${styles.grid}`}>
-        <div className={styles.brand}>
+      <div className={`container ${styles.main}`}>
+        {/* Practice column */}
+        <div className={styles.brand} data-reveal="">
           <Logo className={styles.logo} priority={false} />
+
           {/* Reads exactly as napLine: "Amazing Smiles By Design, 3101 Bristol Road, Suite 1, Bensalem, PA 19020, (215) 639-5331" */}
           <address className={styles.nap}>
             <span className={styles.napName}>{practice.name},</span>{" "}
@@ -29,49 +33,76 @@ export function SiteFooter() {
               {practice.phone.display}
             </a>
           </address>
-          <ul role="list" className={styles.contactList}>
+
+          <ul role="list" className={styles.quick}>
             <li>
-              <span className={styles.contactLabel}>Call or text</span>
-              <a href={contactLinks.text} data-track="text_click">
-                Send a text to {practice.phone.display}
+              <span>
+                <Icon name="phone" size={16} />
+                Fax {practice.fax.display}
+              </span>
+            </li>
+            <li>
+              <a href={contactLinks.directions} data-track="directions_click" target="_blank" rel="noopener">
+                <Icon name="map" size={16} />
+                Get directions<span className="visually-hidden"> (opens in a new tab)</span>
               </a>
             </li>
-            <li>
-              <span className={styles.contactLabel}>Fax</span>
-              <span>{practice.fax.display}</span>
-            </li>
           </ul>
-          <a href={contactLinks.directions} className={styles.directions} data-track="directions_click" target="_blank" rel="noopener">
-            Get directions<span className="visually-hidden"> (opens in a new tab)</span>
-          </a>
+
+          {/* Office hours card */}
+          <div className={styles.hours} data-reveal="">
+            <p className={styles.hoursTitle}>
+              <Icon name="clock" size={16} />
+              Office hours
+            </p>
+            <dl className={styles.hoursList}>
+              {hoursTable.map((row) => (
+                <div key={row.label} data-closed={row.value === "Closed" ? "" : undefined}>
+                  <dt>{row.label}</dt>
+                  <dd>{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
 
-        <div className={styles.hours}>
-          <p className={styles.title}>Office hours</p>
-          <dl>
-            {hoursTable.map((row) => (
-              <div key={row.label}>
-                <dt>{row.label}</dt>
-                <dd>{row.value}</dd>
+        {/* Link columns, with the service-area card underneath */}
+        <div className={styles.side}>
+          <nav aria-label="Footer" className={styles.nav}>
+            {footerNav.map((column) => (
+              <div key={column.title} data-reveal="">
+                <p className={styles.title}>{column.title}</p>
+                <ul role="list">
+                  {column.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href}>{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
-          </dl>
-        </div>
+          </nav>
 
-        <nav aria-label="Footer" className={styles.nav}>
-          {footerNav.map((column) => (
-            <div key={column.title}>
-              <p className={styles.title}>{column.title}</p>
-              <ul role="list">
-                {column.links.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
+          <div className={styles.areas} data-reveal="">
+            <div className={styles.areasHead}>
+              <p className={styles.areasTitle}>
+                <Icon name="pin" size={18} />
+                Areas we serve
+              </p>
+              <Link href={homeAreas.link.href} className={styles.areasAll}>
+                {homeAreas.link.label}
+                <Icon name="arrowRight" size={16} />
+              </Link>
             </div>
-          ))}
-        </nav>
+            <ul role="list" className={styles.towns}>
+              {homeAreas.towns.map((town) => (
+                <li key={town.name}>
+                  <Link href={town.path ? linkTo(town.path) : "/"}>{town.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div className={styles.base}>
@@ -86,6 +117,12 @@ export function SiteFooter() {
               </li>
             ))}
           </ul>
+          <p className={styles.credit}>
+            Design and Developed By{" "}
+            <a href="https://www.softqubes.com/" target="_blank" rel="noopener">
+              Softqube Technologies LLC<span className="visually-hidden"> (opens in a new tab)</span>
+            </a>
+          </p>
         </div>
       </div>
     </footer>

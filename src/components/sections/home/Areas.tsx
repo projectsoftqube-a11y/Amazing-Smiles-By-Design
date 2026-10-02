@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { homeAreas } from "@/content/pages/home";
 import { linkTo } from "@/content/routes";
 import { practice } from "@/content/site";
@@ -18,7 +18,9 @@ export function Areas() {
           <h2 id="areas-title" data-reveal="">
             {homeAreas.title}
           </h2>
-          <p data-reveal="">{homeAreas.intro}</p>
+          <p className={styles.intro} data-reveal="">
+            {homeAreas.intro}
+          </p>
           <div data-reveal="">
             <TextLink href={homeAreas.link.href}>{homeAreas.link.label}</TextLink>
           </div>
@@ -29,16 +31,19 @@ export function Areas() {
             <li key={town.name} data-reveal="">
               {town.path ? (
                 <Link href={linkTo(town.path)} className={styles.town}>
+                  <span className={styles.pin}>
+                    <Icon name="pin" size={18} />
+                  </span>
                   <span className={styles.townName}>{town.name}</span>
-                  <Icon name="arrowUpRight" size={20} className={styles.townIcon} />
+                  <Icon name="arrowUpRight" size={18} className={styles.arrow} />
                 </Link>
               ) : (
                 <span className={`${styles.town} ${styles.home}`}>
-                  <span className={styles.townName}>{town.name}</span>
-                  <span className={styles.homeTag}>
-                    <Icon name="pin" size={16} />
-                    {practice.address.postalCode}
+                  <span className={styles.pin}>
+                    <Icon name="pin" size={18} />
                   </span>
+                  <span className={styles.townName}>{town.name}</span>
+                  <span className={styles.homeTag}>Our office · {practice.address.postalCode}</span>
                 </span>
               )}
             </li>

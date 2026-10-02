@@ -1,15 +1,20 @@
-import { Hanken_Grotesk, Newsreader } from "next/font/google";
+import { Gelasio, Hanken_Grotesk } from "next/font/google";
 
-/** Display and headings. Variable weight plus the optical-size axis, with real italics for accents. */
-export const newsreader = Newsreader({
+/**
+ * Titles: the logo's "Amazing Smiles" wordmark is set in Georgia Bold. Gelasio is an
+ * open-source face drawn to Georgia's metrics, so titles match the logo, and the
+ * Georgia fallback swaps in with no layout shift. Italic is used for accents, like
+ * "By Design" in the logo.
+ */
+export const gelasio = Gelasio({
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
   display: "swap",
-  variable: "--font-newsreader",
+  variable: "--font-display",
 });
 
-/** Body copy, UI, buttons and forms. */
+/** Everything else: paragraphs, navigation, buttons, labels and forms. */
 export const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
   display: "swap",
