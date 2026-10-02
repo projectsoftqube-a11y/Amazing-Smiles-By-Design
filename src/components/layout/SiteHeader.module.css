@@ -1,0 +1,358 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(255 255 255 / 0.96);
+  transition:
+    transform 420ms var(--ease-out),
+    box-shadow var(--dur-ui) var(--ease-out);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .header {
+    background: rgb(255 255 255 / 0.88);
+    backdrop-filter: saturate(1.4) blur(14px);
+  }
+}
+
+.header[data-scrolled] {
+  box-shadow: var(--shadow-header);
+}
+
+.header[data-hidden] {
+  transform: translateY(-100%);
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  height: var(--header-h);
+}
+
+.logo {
+  flex: none;
+  display: block;
+  border-radius: var(--radius-xs);
+}
+
+.logo img {
+  width: auto;
+  height: clamp(2.375rem, 2rem + 1vw, 3.25rem); /* 38 → 52px; tagline stays legible */
+}
+
+/* Desktop navigation */
+.nav {
+  margin-inline: auto;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.25rem, -0.6rem + 1.1vw, 1rem);
+}
+
+.item {
+  position: relative;
+}
+
+.itemMega {
+  position: static;
+}
+
+.topLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.5rem;
+  border: 0;
+  background: none;
+  color: var(--navy-800);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.topLink::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.45rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 360ms var(--ease-out);
+}
+
+.topLink[aria-current="page"]::after,
+.item[data-open] > .topLink::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+@media (hover: hover) {
+  .topLink:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+}
+
+.chevron {
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.item[data-open] .chevron {
+  transform: rotate(180deg);
+}
+
+/* Panels: open on click (data-open). Hover and focus-within also open them, which
+   keeps the menus usable before hydration or without JavaScript. */
+.panel {
+  position: absolute;
+  top: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 320ms var(--ease-out),
+    visibility 0s linear 320ms;
+}
+
+.item[data-open] > .panel,
+.item:focus-within > .panel {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+@media (hover: hover) {
+  .item:hover > .panel {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+}
+
+.drop {
+  left: -0.75rem;
+  min-width: 15rem;
+  padding: 0.5rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  box-shadow: var(--shadow-menu);
+}
+
+.dropList a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-xs);
+  color: var(--navy-800);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.dropList a:hover,
+.dropList a[aria-current="page"] {
+  background: var(--ice-100);
+}
+
+/* Services mega menu spans the header width */
+.mega {
+  left: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding-block: var(--space-l);
+  background: var(--white);
+  border-top: 1px solid var(--line);
+  box-shadow: var(--shadow-menu);
+}
+
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.9fr);
+  gap: var(--space-l);
+}
+
+.megaTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  color: var(--navy-800);
+  text-decoration: none;
+}
+
+.megaTitle svg {
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.megaTitle:hover svg {
+  transform: translateX(4px);
+}
+
+.megaSummary {
+  margin-top: 0.375rem;
+  color: var(--color-muted);
+  font-size: var(--step-small);
+}
+
+.megaList {
+  margin-top: var(--space-s);
+  border-top: 1px solid var(--line);
+}
+
+.megaList a {
+  display: block;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition:
+    color var(--dur-ui) var(--ease-out),
+    padding var(--dur-ui) var(--ease-out);
+}
+
+.megaList a:hover {
+  color: var(--blue-700);
+  padding-left: 0.375rem;
+}
+
+.megaAside {
+  align-self: start;
+  display: grid;
+  gap: 0.75rem;
+  padding: var(--space-m);
+  background: var(--navy-800);
+  border-radius: var(--radius-s);
+  color: var(--slate-on-navy);
+  font-size: var(--step-small);
+}
+
+.megaAsideTitle {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  line-height: 1.2;
+  color: var(--white);
+}
+
+.megaPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ice-300);
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  margin-left: auto;
+}
+
+.nav + .actions {
+  margin-left: 0;
+}
+
+.phone {
+  display: grid;
+  line-height: 1.2;
+  color: var(--navy-800);
+  text-decoration: none;
+}
+
+.phoneLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.phoneNumber {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.phone:hover .phoneNumber {
+  color: var(--blue-700);
+}
+
+.iconButton,
+.menuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-xs);
+  background: var(--white);
+  color: var(--navy-800);
+  text-decoration: none;
+}
+
+.menuButton {
+  padding-inline: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+/* ≤ 1440: tighten before collapsing */
+@media (max-width: 1499px) {
+  .phone {
+    display: none;
+  }
+}
+
+/* ≤ 1199: collapse to the mobile menu */
+@media (max-width: 1199px) {
+  .nav,
+  .phone {
+    display: none;
+  }
+
+  .iconButton,
+  .menuButton {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 800px) {
+  .cta {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions {
+    gap: 0.5rem;
+  }
+
+  .menuLabel {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header[data-hidden] {
+    transform: none;
+  }
+}

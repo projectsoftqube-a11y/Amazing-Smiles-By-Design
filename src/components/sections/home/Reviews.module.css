@@ -1,0 +1,117 @@
+.section {
+  padding-block: var(--space-section) var(--space-xl);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-m);
+}
+
+.headText {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: var(--space-l);
+}
+
+.list > li {
+  display: flex;
+}
+
+.review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  width: 100%;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  border-top: 2px solid var(--navy-800);
+}
+
+.mark {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  line-height: 0.6;
+  height: 2.25rem;
+  color: var(--blue-500);
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1875rem, 1.1rem + 0.35vw, 1.5rem);
+  line-height: 1.45;
+  color: var(--navy-800);
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin-top: auto;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line);
+  font-size: var(--step-small);
+}
+
+.name {
+  font-weight: 600;
+  color: var(--navy-800);
+}
+
+.date {
+  color: var(--color-muted);
+}
+
+/* Smile gallery teaser */
+.gallery {
+  padding-block: 0 var(--space-section);
+}
+
+.galleryInner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-l);
+  padding: var(--space-l);
+  background: var(--porcelain);
+  border-radius: var(--radius-s);
+}
+
+.galleryText {
+  display: grid;
+  gap: var(--space-xs);
+  max-width: 60ch;
+}
+
+.galleryTitle {
+  font-size: var(--step-h3);
+}
+
+@media (max-width: 1023px) {
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .review {
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .galleryInner {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    padding: var(--space-m);
+  }
+}

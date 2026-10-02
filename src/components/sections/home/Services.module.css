@@ -1,0 +1,134 @@
+.section {
+  padding-block: var(--space-section);
+  background: var(--porcelain);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--space-s);
+  align-items: end;
+}
+
+.head :global(.eyebrow) {
+  grid-column: 1 / -1;
+}
+
+.title {
+  grid-column: 1 / span 7;
+}
+
+.intro {
+  grid-column: 9 / span 4;
+  color: var(--color-muted);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: var(--space-xl);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-m);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+}
+
+.segments {
+  margin-bottom: var(--space-m);
+}
+
+.hubTitle {
+  font-size: var(--step-h3);
+}
+
+.summary {
+  margin-top: 0.5rem;
+  color: var(--color-muted);
+  font-size: var(--step-small);
+}
+
+.list {
+  width: 100%;
+  margin-block: var(--space-m);
+  border-top: 1px solid var(--line);
+}
+
+.list li {
+  border-bottom: 1px solid var(--line);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.75rem;
+  padding-block: 0.6rem;
+  color: var(--ink);
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.linkIcon {
+  flex: none;
+  color: var(--line-strong);
+  transition:
+    color var(--dur-ui) var(--ease-out),
+    transform 320ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: var(--blue-700);
+  }
+
+  .link:hover .linkIcon {
+    color: var(--blue-700);
+    transform: translate(2px, -2px);
+  }
+}
+
+.all {
+  margin-top: auto;
+}
+
+@media (max-width: 1199px) {
+  .title {
+    grid-column: 1 / -1;
+  }
+
+  .intro {
+    grid-column: 1 / span 8;
+  }
+}
+
+@media (max-width: 991px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .intro {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  /* Two-column link lists keep long hubs from becoming a tall stack */
+  .list {
+    columns: 2;
+    column-gap: var(--gutter);
+  }
+
+  .list li {
+    break-inside: avoid;
+  }
+}

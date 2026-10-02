@@ -1,0 +1,114 @@
+.section {
+  padding-block: var(--space-section);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--space-l);
+  align-items: start;
+}
+
+.head {
+  grid-column: 1 / span 4;
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-m));
+  display: grid;
+  gap: var(--space-s);
+}
+
+.list {
+  grid-column: 6 / span 7;
+  border-top: 1px solid var(--line-strong);
+}
+
+.item {
+  border-bottom: 1px solid var(--line);
+}
+
+/* Smooth open/close where the browser supports animating <details> content */
+.item::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 420ms var(--ease-out),
+    content-visibility 420ms allow-discrete;
+}
+
+.item[open]::details-content {
+  block-size: auto;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-block: 1.25rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.question {
+  font-size: var(--step-h4);
+  line-height: 1.35;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.summary:hover .question {
+  color: var(--blue-700);
+}
+
+.toggle {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-xs);
+  color: var(--navy-800);
+  transition:
+    transform 320ms var(--ease-out),
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.item[open] .toggle {
+  transform: rotate(180deg);
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: var(--white);
+}
+
+.answer {
+  padding-bottom: 1.5rem;
+  padding-right: 3.25rem;
+  color: var(--color-muted);
+}
+
+.answer p {
+  max-width: 64ch;
+}
+
+@media (max-width: 991px) {
+  .head,
+  .list {
+    grid-column: 1 / -1;
+  }
+
+  .head {
+    position: static;
+  }
+}
+
+@media (max-width: 575px) {
+  .answer {
+    padding-right: 0;
+  }
+}

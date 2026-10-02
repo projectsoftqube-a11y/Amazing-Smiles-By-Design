@@ -1,0 +1,235 @@
+.hero {
+  position: relative;
+  padding-top: clamp(2.5rem, 1.5rem + 5vw, 7rem);
+  overflow: clip;
+}
+
+/* The logo ring, drawn segment by segment at first paint (CSS only). */
+.ring {
+  position: absolute;
+  top: clamp(1rem, -2rem + 6vw, 4rem);
+  right: max(-6vw, calc((100vw - 1440px) / 2 - 8vw));
+  width: clamp(16rem, 8rem + 34vw, 44rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.ring path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ring-draw 1.2s var(--ease-in-out) calc(0.25s + var(--i) * 0.11s) forwards;
+}
+
+@keyframes ring-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--space-m);
+}
+
+.eyebrow {
+  grid-column: 1 / -1;
+  animation: fade-in 700ms var(--ease-out) both;
+}
+
+.title {
+  grid-column: 1 / span 11;
+  font-size: var(--step-display);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-display);
+  font-variation-settings: "opsz" 72;
+}
+
+.body {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--space-m);
+  align-items: end;
+  margin-top: var(--space-s);
+}
+
+.intro {
+  grid-column: 1 / span 6;
+  color: var(--ink);
+  animation: fade-up 900ms var(--ease-out) 450ms both;
+}
+
+.actions {
+  grid-column: 8 / span 5;
+  display: grid;
+  gap: var(--space-s);
+  animation: fade-up 900ms var(--ease-out) 600ms both;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.minor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.minorLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--blue-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.minorLink:hover {
+  text-decoration-color: transparent;
+}
+
+.mediaWrap {
+  --hero-ratio: 1440 / 600;
+  position: relative;
+  margin-top: var(--space-xl);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+
+.fact {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: var(--space-m) var(--space-m) var(--space-m) 0;
+  font-size: var(--step-small);
+  line-height: 1.45;
+  color: var(--navy-800);
+  animation: fade-in 800ms var(--ease-out) both;
+  animation-delay: calc(900ms + var(--n, 0) * 80ms);
+}
+
+.fact + .fact {
+  padding-left: var(--space-m);
+  border-left: 1px solid var(--line);
+}
+
+.factIcon {
+  flex: none;
+  color: var(--blue-700);
+  margin-top: 0.05rem;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* 1280 and below: give the headline the full width */
+@media (max-width: 1299px) {
+  .title {
+    grid-column: 1 / -1;
+  }
+
+  .intro {
+    grid-column: 1 / span 7;
+  }
+
+  .actions {
+    grid-column: 8 / span 5;
+  }
+
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .fact:nth-child(4) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .fact:nth-child(n + 4) {
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* Tablet: stack the intro and the actions */
+@media (max-width: 991px) {
+  .intro,
+  .actions {
+    grid-column: 1 / -1;
+  }
+
+  .intro {
+    max-width: 62ch;
+  }
+
+  .mediaWrap {
+    --hero-ratio: 16 / 9;
+  }
+
+  .ring {
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 767px) {
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fact,
+  .fact + .fact {
+    padding: 0.875rem 0;
+    border-left: 0;
+  }
+
+  .fact + .fact {
+    border-top: 1px solid var(--line);
+  }
+
+  .mediaWrap {
+    --hero-ratio: 4 / 3;
+    margin-top: var(--space-l);
+  }
+
+  .ring {
+    top: -2.5rem;
+    right: -5.5rem;
+    width: 15rem;
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 575px) {
+  .buttons {
+    display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring path {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}

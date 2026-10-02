@@ -1,0 +1,104 @@
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-s);
+  background: var(--ice-100);
+}
+
+/* Taller than the frame so parallax can move it without exposing an edge. */
+.inner {
+  position: absolute;
+  inset: -7% 0;
+  will-change: transform;
+}
+
+.inner:not([data-parallax]) {
+  inset: 0;
+  will-change: auto;
+}
+
+/* Navy curtain that slides away; the image underneath is painted from the first frame. */
+.curtain {
+  position: absolute;
+  inset: 0;
+  background: var(--navy-800);
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+.revealLoad .curtain {
+  animation: curtain-lift var(--dur-hero) var(--ease-in-out) 0.35s forwards;
+}
+
+.revealLoad .inner {
+  animation: settle 1.8s var(--ease-out) 0.35s both;
+}
+
+@keyframes curtain-lift {
+  to {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.08);
+  }
+}
+
+/* Scroll reveal: the curtain stays out of the way unless MotionController raises it
+   for frames below the fold, so the image is always visible without JavaScript. */
+.frame[data-reveal-media] .curtain {
+  transform: scaleY(0);
+  transform-origin: bottom center;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 90% at 85% 10%, var(--white) 0%, transparent 55%),
+    linear-gradient(160deg, var(--ice-100), var(--ice-200));
+}
+
+.placeholderRing {
+  position: absolute;
+  width: min(62%, 420px);
+  aspect-ratio: 1;
+  opacity: 0.85;
+}
+
+.placeholderLabel {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  right: 1rem;
+  display: grid;
+  gap: 0.25rem;
+  max-width: 34ch;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--slate-600);
+}
+
+.placeholderTag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain {
+    display: none;
+  }
+
+  .revealLoad .inner {
+    animation: none;
+  }
+}
