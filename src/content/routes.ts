@@ -46,15 +46,15 @@ export const routes: RouteEntry[] = [
   r("/contact-us/", "Contact Us", "core", true),
 
   // Patient information
-  r("/patient-information/", "Patient Information", "patient-info"),
-  r("/patient-information/new-patients/", "New Patients", "patient-info"),
-  r("/patient-information/scheduling/", "Scheduling", "patient-info"),
-  r("/patient-information/emergency-scheduling/", "Emergency Scheduling", "patient-info"),
-  r("/patient-information/insurance-payment-options/", "Insurance & Payment", "patient-info"),
-  r("/patient-information/financing-options/", "Financing Options", "patient-info"),
-  r("/patient-information/advanced-technology/", "Advanced Technology", "patient-info"),
-  r("/patient-information/why-choose-us/", "Why Choose Us", "patient-info"),
-  r("/patient-information/patient-education/", "Patient Education", "patient-info"),
+  r("/patient-information/", "Patient Information", "patient-info", true),
+  r("/patient-information/new-patients/", "New Patients", "patient-info", true),
+  r("/patient-information/scheduling/", "Scheduling", "patient-info", true),
+  r("/patient-information/emergency-scheduling/", "Emergency Scheduling", "patient-info", true),
+  r("/patient-information/insurance-payment-options/", "Insurance & Payment", "patient-info", true),
+  r("/patient-information/financing-options/", "Financing Options", "patient-info", true),
+  r("/patient-information/advanced-technology/", "Advanced Technology", "patient-info", true),
+  r("/patient-information/why-choose-us/", "Why Choose Us", "patient-info", true),
+  r("/patient-information/patient-education/", "Patient Education", "patient-info", true),
 
   // General dentistry
   r("/general-dentistry/", "General Dentistry", "general"),

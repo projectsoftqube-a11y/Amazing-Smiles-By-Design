@@ -1,0 +1,318 @@
+/* White form card with an ice top edge; inputs are 16px+ so iOS never zooms in */
+.card {
+  position: relative;
+  padding: var(--space-l);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 40% at 100% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+  box-shadow: var(--shadow-lift);
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-m);
+}
+
+/* Red asterisk on required fields */
+.required {
+  color: var(--error);
+  font-weight: 700;
+}
+
+.required {
+  margin-left: 0.2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-s);
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.label {
+  color: var(--navy-800);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.input {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--ice-50);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.4;
+  transition:
+    border-color var(--dur-ui) var(--ease-out),
+    background var(--dur-ui) var(--ease-out),
+    box-shadow var(--dur-ui) var(--ease-out);
+}
+
+.input::placeholder {
+  color: #7a8597;
+}
+
+.input:hover {
+  border-color: var(--blue-500);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--blue-700);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgb(90 150 196 / 0.18);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--error);
+  background: #fff6f5;
+}
+
+.textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+/* Date input: keep the native picker but match the other fields */
+.input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+/* Red message under the field */
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.375rem;
+  color: var(--error);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  animation: hint-in 260ms var(--ease-out) both;
+}
+
+.error svg {
+  flex: none;
+}
+
+/* ——— Dropdowns ——— */
+.selectWrap {
+  position: relative;
+  display: block;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.75rem;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+/* Placeholder option shown in the muted colour */
+.select:has(option[value=""]:checked) {
+  color: #7a8597;
+}
+
+.select option {
+  color: var(--ink);
+}
+
+.selectIcon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  color: var(--navy-800);
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.selectWrap:focus-within .selectIcon {
+  color: var(--blue-700);
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  animation: hint-in 300ms var(--ease-out) both;
+}
+
+@keyframes hint-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* Honeypot */
+/* Honeypot: clipped in place (an off-screen offset could widen the page on phones) */
+.trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #f4c7c3;
+  border-radius: 14px;
+  background: #fff6f5;
+  color: var(--error);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.alert svg {
+  flex: none;
+  margin-top: 0.15rem;
+}
+
+.alert a {
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* ——— Footer: privacy line + submit ——— */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--line);
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex: 1 1 18rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.note svg {
+  flex: none;
+  margin-top: 0.1rem;
+  color: var(--blue-700);
+}
+
+.note a {
+  color: var(--blue-700);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.note a:hover {
+  text-decoration: underline;
+}
+
+.submit:disabled {
+  cursor: progress;
+  opacity: 0.8;
+}
+
+/* ——— Sent ——— */
+.done {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
+  padding-block: var(--space-l);
+  text-align: center;
+}
+
+.done:focus {
+  outline: none;
+}
+
+.doneIcon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 20px;
+  background: var(--navy-800);
+  color: var(--white);
+  animation: pop 600ms var(--ease-expo) both;
+}
+
+.doneTitle {
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: var(--step-h3);
+  font-weight: 600;
+}
+
+.doneText {
+  max-width: 40ch;
+  color: var(--color-muted);
+}
+
+.doneText a {
+  color: var(--blue-700);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: var(--space-m);
+  }
+
+  .footer .submit {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 389px) {
+  .card {
+    padding: 1.125rem;
+  }
+}

@@ -121,6 +121,59 @@ export function dentistEntity({
   };
 }
 
+/**
+ * The short Dentist node the Patient Information handoffs use: name, URL, phone and
+ * address, plus opening hours on the scheduling pages. Same @id as the homepage.
+ */
+export function dentistSummary({ withHours = false }: { withHours?: boolean } = {}): Json {
+  return {
+    "@type": "Dentist",
+    "@id": ids.dentist,
+    name: practice.name,
+    url: absoluteUrl("/"),
+    telephone: practice.phone.schema,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: practice.address.street,
+      addressLocality: practice.address.city,
+      addressRegion: practice.address.region,
+      postalCode: practice.address.postalCode,
+      addressCountry: practice.address.country,
+    },
+    ...(withHours ? { openingHoursSpecification: openingHours() } : {}),
+  };
+}
+
+/**
+ * Core graph for a Patient Information page (each 03 Developer Handoff.md, 3a):
+ * WebPage or CollectionPage about the dentist, its BreadcrumbList and the Dentist node.
+ */
+export function infoPageSchema({
+  meta,
+  breadcrumb,
+  type = "WebPage",
+  withHours = false,
+}: {
+  meta: { path: string; title: string; description: string };
+  breadcrumb: { name: string; path: string }[];
+  type?: "WebPage" | "CollectionPage";
+  withHours?: boolean;
+}): Json {
+  return graph(
+    webPageEntity({
+      path: meta.path,
+      name: meta.title,
+      description: meta.description,
+      type,
+      breadcrumb: true,
+      mainEntity: null,
+    }),
+    breadcrumbList(meta.path, breadcrumb),
+    dentistSummary({ withHours }),
+    websiteEntity(),
+  );
+}
+
 export function dentistPerson({
   description,
   image,

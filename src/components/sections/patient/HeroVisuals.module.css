@@ -1,0 +1,624 @@
+/* ——— Shared stage ——— */
+.stage {
+  isolation: isolate;
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  justify-self: end;
+  padding: 3.25rem 1.5rem 3.5rem 2.5rem;
+}
+
+/* Soft halo behind the cards */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 8% 4% 6% 10%;
+  z-index: -1;
+  border-radius: 48px;
+  background:
+    radial-gradient(60% 60% at 70% 30%, rgb(90 150 196 / 0.35) 0%, transparent 70%),
+    radial-gradient(50% 50% at 20% 80%, rgb(193 222 238 / 0.8) 0%, transparent 70%);
+  filter: blur(24px);
+}
+
+/* ——— Hub: main glass card ——— */
+.glass {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.125rem;
+  padding: 1.75rem;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 32px;
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgb(217 234 244 / 0.9) 0%, transparent 70%),
+    rgb(255 255 255 / 0.86);
+  box-shadow:
+    0 2px 4px rgb(14 24 56 / 0.04),
+    0 40px 80px -32px rgb(14 24 56 / 0.4);
+  backdrop-filter: blur(14px);
+  animation: rise 1s var(--ease-out) 300ms both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+}
+
+.glassHead {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgb(34 197 94 / 0.5);
+  animation: live 2.4s var(--ease-out) infinite;
+}
+
+@keyframes live {
+  70% {
+    box-shadow: 0 0 0 8px rgb(34 197 94 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(34 197 94 / 0);
+  }
+}
+
+.phone {
+  justify-self: start;
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: clamp(1.875rem, 1.5rem + 1.5vw, 2.625rem);
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-decoration: none;
+  font-variant-numeric: lining-nums;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.phone:hover {
+  color: var(--blue-700);
+}
+
+.phoneNote {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem;
+}
+
+.tile {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  gap: 1.5rem;
+  min-height: 7.25rem;
+  padding: 1rem;
+  border: 1px solid var(--ice-200);
+  border-radius: 20px;
+  background: var(--white);
+  color: var(--navy-800);
+  text-decoration: none;
+  transition:
+    border-color var(--dur-ui) var(--ease-out),
+    box-shadow 360ms var(--ease-out),
+    transform 360ms var(--ease-out),
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.tiles li:nth-child(1) .tile {
+  border-color: transparent;
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+  color: var(--white);
+}
+
+.tileIcon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--ice-100);
+  color: var(--blue-700);
+}
+
+.tiles li:nth-child(1) .tileIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.tileLabel {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.tileArrow {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--blue-500);
+  transition: transform 360ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .tile:hover {
+    border-color: var(--blue-500);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-3px);
+  }
+
+  .tile:hover .tileArrow {
+    transform: translate(2px, -2px);
+  }
+}
+
+.address {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  border-radius: 16px;
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.address svg {
+  flex: none;
+  color: var(--blue-700);
+}
+
+.address > span {
+  flex: 1;
+}
+
+.address:hover {
+  background: var(--ice-200);
+}
+
+/* ——— Floating pills ——— */
+.pill {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.94);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(10px);
+  animation:
+    pop 700ms var(--ease-expo) both,
+    float 6s ease-in-out 1.6s infinite;
+}
+
+.pillIcon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--ice-100);
+  color: var(--blue-700);
+}
+
+.pillIconNavy {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.pillTop {
+  top: 1.25rem;
+  left: 0;
+  animation-delay: 900ms, 1.6s;
+}
+
+.pillBottom {
+  right: 0;
+  bottom: 0.75rem;
+  animation-delay: 1.05s, 2.4s;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ——— New Patients: appointment ticket ——— */
+.stageTicket {
+  padding: 3rem 2.5rem 3.75rem 2rem;
+}
+
+.ticket {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 32px;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow:
+    0 2px 4px rgb(14 24 56 / 0.04),
+    0 40px 80px -32px rgb(14 24 56 / 0.4);
+  backdrop-filter: blur(14px);
+  animation: rise 1s var(--ease-out) 300ms both;
+}
+
+.ticketTop {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1rem;
+  padding: 1.5rem 1.75rem;
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.04) 0 1px, transparent 1px 14px),
+    radial-gradient(80% 140% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--white);
+}
+
+.ticketIcon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 16px;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.ticketKicker {
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ticketTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 1.5rem 1.75rem 1rem;
+  list-style: none;
+}
+
+/* Connecting line through the check marks */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 2.25rem;
+  bottom: 1.75rem;
+  left: calc(1.75rem + 0.8125rem - 1px);
+  width: 2px;
+  background: linear-gradient(var(--blue-500), var(--ice-200));
+}
+
+.timeline li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-block: 0.5rem;
+  animation: step-in 600ms var(--ease-out) both;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+}
+
+.timelineDot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 50%;
+  background: var(--navy-800);
+  color: var(--white);
+  box-shadow: 0 0 0 4px var(--white);
+}
+
+.timelineIndex {
+  color: var(--blue-500);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.timelineText {
+  color: var(--navy-800);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ticketFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0 1.75rem;
+  padding-top: 1rem;
+  border-top: 1.5px dashed var(--line-strong);
+}
+
+.footLabel {
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.footChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.footChips span {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.footNote {
+  padding: 0.5rem 1.75rem 1.5rem;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
+/* Tilted price tag */
+.priceTag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  gap: 0.125rem;
+  padding: 1rem 1.375rem;
+  border-radius: 24px;
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--blue-600) 0%, transparent 60%),
+    var(--navy-800);
+  color: var(--white);
+  box-shadow: var(--shadow-lift);
+  transform: rotate(6deg);
+  animation: tag-in 900ms var(--ease-expo) 700ms both;
+}
+
+@keyframes tag-in {
+  from {
+    opacity: 0;
+    transform: rotate(-8deg) scale(0.8);
+  }
+}
+
+.priceTop,
+.priceBottom {
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.priceValue {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+}
+
+.priceCurrency {
+  font-size: 0.5em;
+  vertical-align: 0.8em;
+}
+
+/* Bottom-right corner, below the "*If applicable" line, so it never covers the chips */
+.pillRight {
+  right: 0;
+  bottom: -0.25rem;
+  animation-delay: 1.25s, 2.6s;
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 1199px) {
+  .stage {
+    justify-self: stretch;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .stage,
+  .stageTicket {
+    padding: 2.75rem 0 0;
+  }
+
+  .stage::before {
+    inset: 10% 0 10%;
+  }
+
+  .glass {
+    padding: 1.25rem;
+    border-radius: 26px;
+  }
+
+  .tile {
+    min-height: 6.5rem;
+    padding: 0.875rem;
+  }
+
+  /* Pills sit in a row under the card on phones */
+  .pill {
+    position: relative;
+    inset: auto;
+    margin-top: 0.75rem;
+    margin-right: 0.5rem;
+    white-space: normal;
+  }
+
+  .priceTag {
+    top: 0;
+    right: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .priceValue {
+    font-size: 2.375rem;
+  }
+
+  /* The $59 tag sits above the card and only overlaps its top edge */
+  .stageTicket {
+    padding-top: 5rem;
+  }
+
+  .ticketTop {
+    padding: 1.25rem;
+  }
+
+  .timeline {
+    padding-inline: 1.25rem;
+  }
+
+  .timeline::before {
+    left: calc(1.25rem + 0.8125rem - 1px);
+  }
+
+  .ticketFoot {
+    margin-inline: 1.25rem;
+  }
+
+  .footNote {
+    padding-inline: 1.25rem;
+  }
+}
+
+/* <=480: one tile per row, icon + label + arrow on a single line */
+@media (max-width: 480px) {
+  .tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tile {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.875rem;
+    min-height: 0;
+    padding: 0.75rem 0.875rem;
+  }
+
+  .tileLabel {
+    white-space: nowrap;
+  }
+
+  .tileArrow {
+    position: static;
+  }
+}
+
+@media (max-width: 413px) {
+  .tiles {
+    gap: 0.5rem;
+  }
+
+  /* Smallest phones: compact icon, no decorative arrow (the whole tile is the link),
+     so "Insurance & payment options" still fits on one line */
+  .tile {
+    gap: 0.625rem;
+    padding: 0.625rem 0.75rem;
+  }
+
+  .tileIcon {
+    width: 2.125rem;
+    height: 2.125rem;
+    border-radius: 10px;
+  }
+
+  .tileArrow {
+    display: none;
+  }
+
+  .tileLabel {
+    font-size: 0.8125rem;
+  }
+
+  .glass {
+    padding: 1rem;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass,
+  .pill,
+  .ticket,
+  .timeline li,
+  .priceTag,
+  .liveDot {
+    animation: none;
+  }
+}

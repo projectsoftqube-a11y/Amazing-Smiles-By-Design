@@ -64,6 +64,11 @@
   animation: fade-up 1s var(--ease-out) 850ms both;
 }
 
+.note {
+  max-width: 56ch;
+  animation: fade-up 1s var(--ease-out) 950ms both;
+}
+
 /* ——— Photo ——— */
 .visual {
   position: relative;
@@ -179,6 +184,18 @@
     padding-top: var(--space-l);
   }
 
+  /* Phones: the note (emergency 911 line) moves up under the H1 so it is above the
+     fold; the fixed bottom bar already keeps a Call button on screen */
+  .note {
+    order: 1;
+  }
+
+  .copy:has(.note) .subtitle,
+  .copy:has(.note) .intro,
+  .copy:has(.note) .actions {
+    order: 2;
+  }
+
   .frame {
     border-radius: 72px 18px 72px 18px;
   }
@@ -234,6 +251,7 @@
   .eyebrow,
   .intro,
   .actions,
+  .note,
   .visual,
   .card {
     animation: none;

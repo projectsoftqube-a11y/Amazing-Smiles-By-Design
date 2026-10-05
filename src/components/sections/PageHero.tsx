@@ -16,6 +16,8 @@ type PageHeroProps = {
   intro: string;
   /** Buttons under the intro */
   actions: ReactNode;
+  /** Short line under the buttons (e.g. the emergency page's 911 safety line) */
+  note?: ReactNode;
   /** Framed photo on the right; omit it and pass `aside` instead for a card */
   image?: SiteImage;
   /** CSS aspect ratio of the photo frame, e.g. "4 / 5" for a portrait */
@@ -40,6 +42,7 @@ export function PageHero({
   subtitle,
   intro,
   actions,
+  note,
   image,
   ratio = "5 / 4",
   aside,
@@ -63,6 +66,7 @@ export function PageHero({
           {subtitle ? <p className={styles.subtitle}>{subtitle}</p> : null}
           <p className={styles.intro}>{intro}</p>
           <div className={styles.actions}>{actions}</div>
+          {note ? <div className={styles.note}>{note}</div> : null}
         </div>
 
         <div className={`${styles.visual} ${portrait ? styles.visualPortrait : ""}`}>
