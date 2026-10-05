@@ -47,7 +47,17 @@ function openingHours(): Json[] {
   });
 }
 
-export function dentistEntity({ areaServed }: { areaServed: string[] }): Json {
+export function dentistEntity({
+  areaServed,
+  employee = false,
+  contactPoint = false,
+}: {
+  areaServed: string[];
+  /** Link back to Dr. Dudhat (bio page Developer Handoff) */
+  employee?: boolean;
+  /** Appointments contact point (Contact page Developer Handoff) */
+  contactPoint?: boolean;
+}): Json {
   return {
     "@type": "Dentist",
     "@id": ids.dentist,
@@ -68,6 +78,16 @@ export function dentistEntity({ areaServed }: { areaServed: string[] }): Json {
     logo: logoUrl,
     image: logoUrl,
     medicalSpecialty: "https://schema.org/Dentistry",
+    ...(employee ? { employee: { "@id": ids.person } } : {}),
+    ...(contactPoint
+      ? {
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: practice.phone.schema,
+            contactType: "appointments",
+          },
+        }
+      : {}),
     areaServed: areaServed.map((name) => ({ "@type": "Place", name: `${name}, ${practice.address.region}` })),
     makesOffer: [
       ...membershipPlans.map((plan) => ({
@@ -101,7 +121,18 @@ export function dentistEntity({ areaServed }: { areaServed: string[] }): Json {
   };
 }
 
-export function dentistPerson(): Json {
+export function dentistPerson({
+  description,
+  image,
+  birthPlace = false,
+  knowsAbout = ["Dental implants", "Cosmetic dentistry"],
+}: {
+  description?: string;
+  /** Absolute URL of the headshot */
+  image?: string;
+  birthPlace?: boolean;
+  knowsAbout?: string[];
+} = {}): Json {
   const { dentist } = practice;
   return {
     "@type": "Person",
@@ -111,7 +142,10 @@ export function dentistPerson(): Json {
     honorificSuffix: dentist.degree,
     jobTitle: "Dentist",
     url: absoluteUrl(dentist.bioPath),
+    ...(description ? { description } : {}),
+    ...(image ? { image } : {}),
     worksFor: { "@id": ids.dentist },
+    ...(birthPlace ? { birthPlace: { "@type": "Place", name: dentist.hometown } } : {}),
     alumniOf: [
       { "@type": "CollegeOrUniversity", name: dentist.school },
       { "@type": "CollegeOrUniversity", name: dentist.undergrad },
@@ -122,7 +156,7 @@ export function dentistPerson(): Json {
       name: `${dentist.degreeName} (${dentist.degree})`,
       recognizedBy: { "@type": "CollegeOrUniversity", name: dentist.school },
     },
-    knowsAbout: ["Dental implants", "Cosmetic dentistry"],
+    knowsAbout,
   };
 }
 
@@ -143,6 +177,8 @@ export function webPageEntity({
   description,
   type = "WebPage",
   breadcrumb = false,
+  mainEntity = ids.dentist,
+  about = ids.dentist,
 }: {
   path: string;
   name: string;
@@ -151,6 +187,10 @@ export function webPageEntity({
   type?: string;
   /** Link to this page's BreadcrumbList node */
   breadcrumb?: boolean;
+  /** @id of the page's main entity: the dentist by default, the person on the bio page, none on some pages */
+  mainEntity?: string | null;
+  /** @id the page is about: the dentist by default; null to omit (ProfilePage) */
+  about?: string | null;
 }): Json {
   return {
     "@type": type,
@@ -160,8 +200,8 @@ export function webPageEntity({
     description,
     inLanguage: "en-US",
     isPartOf: { "@id": ids.website },
-    about: { "@id": ids.dentist },
-    mainEntity: { "@id": ids.dentist },
+    ...(about ? { about: { "@id": about } } : {}),
+    ...(mainEntity ? { mainEntity: { "@id": mainEntity } } : {}),
     ...(breadcrumb ? { breadcrumb: { "@id": ids.breadcrumb(path) } } : {}),
   };
 }

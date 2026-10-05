@@ -26,7 +26,7 @@ Amazing Smiles By Design is a dental practice at 3101 Bristol Road, Suite 1, in 
 - 3101 Bristol Road, Suite 1, Bensalem, PA 19020
 - Open Monday to Thursday
 - PPO insurance accepted
-- No insurance? Membership plans for adults ($269/yr) and children ($212/yr)
+- No insurance? Regular plan $269/yr, Child plan $212/yr
 - $59 emergency exam for new patients
 
 ---
@@ -136,7 +136,7 @@ Our in-office membership plans cover your preventive care for one annual fee:
 
 ### Financing
 
-You can spread the cost of treatment over time with CareCredit or Cherry, subject to approval.
+You can spread the cost of treatment over time with CareCredit or Cherry.
 
 **[Link] Financing options** → `/patient-information/financing-options/`
 
@@ -239,7 +239,7 @@ Call or text (215) 639-5331 as soon as possible and describe what happened. New 
 We are open Monday 8 am to 6 pm, Tuesday 8 am to 5 pm, Wednesday 8 am to 6 pm and Thursday 8 am to 2 pm. The office is closed Friday through Sunday.
 
 ### Do you offer financing for dental treatment?
-Yes. We work with CareCredit and Cherry, which let you pay for treatment over time, subject to approval. Ask our team which option suits your treatment plan.
+Yes. We work with CareCredit and Cherry, which let you pay for treatment over time. Ask our team which option suits your treatment plan.
 
 ---
 

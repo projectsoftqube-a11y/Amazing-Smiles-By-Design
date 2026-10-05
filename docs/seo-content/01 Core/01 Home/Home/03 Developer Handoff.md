@@ -498,7 +498,7 @@ Google stopped showing FAQ rich results on 7 May 2026. The markup is still valid
           "name": "Do you offer financing for dental treatment?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. We work with CareCredit and Cherry, which let you pay for treatment over time, subject to approval. Ask our team which option suits your treatment plan."
+            "text": "Yes. We work with CareCredit and Cherry, which let you pay for treatment over time. Ask our team which option suits your treatment plan."
           }
         }
       ]

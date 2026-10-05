@@ -11,10 +11,17 @@ type PageHeroProps = {
   breadcrumb: { name: string; path: string }[];
   eyebrow: string;
   title: { lead: string; accent: string };
+  /** Styled line under the H1 (a paragraph, not a heading) */
+  subtitle?: string;
   intro: string;
   /** Buttons under the intro */
   actions: ReactNode;
-  image: SiteImage;
+  /** Framed photo on the right; omit it and pass `aside` instead for a card */
+  image?: SiteImage;
+  /** CSS aspect ratio of the photo frame, e.g. "4 / 5" for a portrait */
+  ratio?: string;
+  /** Right-hand column content when there is no photo (e.g. the contact card) */
+  aside?: ReactNode;
   /** Small floating cards over the photo frame (decorative summaries of page facts) */
   cards?: ReactNode;
 };
@@ -25,7 +32,20 @@ type PageHeroProps = {
  * Entrance motion is CSS only (it runs at first paint and never delays the LCP):
  * the headline rises word by word, then the copy, actions and photo fade up.
  */
-export function PageHero({ id, breadcrumb, eyebrow, title, intro, actions, image, cards }: PageHeroProps) {
+export function PageHero({
+  id,
+  breadcrumb,
+  eyebrow,
+  title,
+  subtitle,
+  intro,
+  actions,
+  image,
+  ratio = "5 / 4",
+  aside,
+  cards,
+}: PageHeroProps) {
+  const portrait = ratio === "4 / 5";
   const leadWords = title.lead.split(" ").length;
 
   return (
@@ -40,24 +60,29 @@ export function PageHero({ id, breadcrumb, eyebrow, title, intro, actions, image
               <RiseWords text={title.accent} start={leadWords} />
             </Accent>
           </h1>
+          {subtitle ? <p className={styles.subtitle}>{subtitle}</p> : null}
           <p className={styles.intro}>{intro}</p>
           <div className={styles.actions}>{actions}</div>
         </div>
 
-        <div className={styles.visual}>
-          <div className={styles.frame}>
-            <MediaFrame
-              image={image}
-              ratio="5 / 4"
-              // Wider than the frame: object-fit cover crops a landscape photo into the 5:4
-              // frame, so it renders ~1.2x the frame width and needs the extra pixels.
-              sizes="(min-width: 1200px) 52vw, (min-width: 768px) 96vw, 120vw"
-              priority
-              reveal="load"
-              quality={85}
-              className={styles.media}
-            />
-          </div>
+        <div className={`${styles.visual} ${portrait ? styles.visualPortrait : ""}`}>
+          {image ? (
+            <div className={styles.frame}>
+              <MediaFrame
+                image={image}
+                ratio={ratio}
+                // Wider than the frame: object-fit cover crops a landscape photo into the 5:4
+                // frame, so it renders ~1.2x the frame width and needs the extra pixels.
+                sizes={portrait ? "(min-width: 1200px) 30vw, (min-width: 768px) 60vw, 100vw" : "(min-width: 1200px) 52vw, (min-width: 768px) 96vw, 120vw"}
+                priority
+                reveal="load"
+                quality={85}
+                className={styles.media}
+              />
+            </div>
+          ) : (
+            aside
+          )}
           {cards}
         </div>
       </div>

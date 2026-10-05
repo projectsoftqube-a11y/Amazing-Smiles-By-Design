@@ -20,7 +20,6 @@ Use in: H1, title tag, URL, first 100 words, one H2, and the meta description.
 
 | Keyword | Role | Volume / mo | KD | Source | Where to use |
 |---|---|---|---|---|---|
-| amazing smiles by design google reviews | Secondary | pending | pending | Pending Semrush | H2/H3 headings and body copy |
 | bensalem dentist reviews | Long-tail | pending | pending | Pending Semrush | H3 or paragraph topic |
 | dentist reviews | National (context) | 8,100 | 41 | Semrush verified | Natural body mention only; not a ranking target |
 
@@ -28,9 +27,9 @@ Use each secondary keyword at least once, naturally. Don't force them all into h
 
 ## On-page
 
-- **H1:** Patient Reviews
-- **Title tag (52 chars):** Patient Reviews | Amazing Smiles By Design, Bensalem
-- **Meta description (86 chars):** Read what patients say about their visits to Amazing Smiles By Design in Bensalem, PA.
+- **H1:** Amazing Smiles By Design Reviews
+- **Title tag (55 chars):** Patient Reviews | Amazing Smiles By Design, Bensalem PA
+- **Meta description (150 chars):** Read what patients say about Amazing Smiles By Design in Bensalem, PA: friendly staff, comfortable visits, caring hygienists and help in an emergency.
 
 ## H2 outline
 

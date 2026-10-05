@@ -1,0 +1,441 @@
+/* ——— Shared ——— */
+.headCenter {
+  --eyebrow-align: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.intro {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+/* ——— What patients mention most ——— */
+.themes {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(35% 45% at 0% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+}
+
+.themeList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-s);
+  margin-top: var(--space-l);
+}
+
+.theme {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background: linear-gradient(160deg, var(--white) 0%, var(--ice-50) 100%);
+}
+
+.themeIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.themeCount {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 2.2rem + 2vw, 4rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--navy-800);
+  font-variant-numeric: lining-nums;
+}
+
+.themeOf {
+  margin-left: 0.125rem;
+  font-size: 0.4em;
+  color: var(--blue-500);
+}
+
+.themeText {
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.themeText strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--navy-800);
+  font-weight: 700;
+}
+
+/* Bar filled to the share of reviews (count / total) */
+.themeBar {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ice-200);
+  overflow: hidden;
+}
+
+.themeBar span {
+  display: block;
+  width: calc(var(--share) * 100%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--navy-800), var(--blue-500));
+}
+
+/* ——— Review wall (masonry columns) ——— */
+.wall {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 50% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
+}
+
+.reviews {
+  columns: 3;
+  column-gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+
+.review {
+  break-inside: avoid;
+  margin-bottom: var(--space-m);
+}
+
+.review figure {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  gap: var(--space-m);
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.reviewFeatured figure {
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
+    radial-gradient(70% 90% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  box-shadow: var(--shadow-lift);
+}
+
+.glyph {
+  position: absolute;
+  top: 0.75rem;
+  right: 1.25rem;
+  z-index: -1;
+  height: 4rem;
+  font-family: var(--font-serif);
+  font-size: 7rem;
+  line-height: 0.9;
+  color: var(--ice-200);
+}
+
+.reviewFeatured .glyph {
+  color: rgb(193 222 238 / 0.14);
+}
+
+.quote {
+  font-size: var(--step-body);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.reviewFeatured .quote {
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--white);
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line);
+}
+
+.reviewFeatured .caption {
+  border-top-color: var(--line-on-navy);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--ice-100), var(--ice-300));
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.who {
+  display: grid;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--navy-800);
+}
+
+.reviewFeatured .name {
+  color: var(--ice-300);
+}
+
+.date {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.reviewFeatured .date {
+  color: var(--slate-on-navy);
+}
+
+/* ——— Share + meet ——— */
+.next {
+  padding-block: var(--space-section);
+  background: var(--white);
+}
+
+.nextGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-m);
+  align-items: stretch;
+}
+
+.share {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  border-radius: var(--radius-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    radial-gradient(60% 60% at 0% 100%, var(--navy-700) 0%, transparent 70%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.shareIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.shareTitle {
+  font-size: var(--step-h3);
+  color: var(--white);
+}
+
+.shareText {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+}
+
+.shareText a {
+  color: var(--white);
+  font-weight: 700;
+  white-space: nowrap;
+  text-underline-offset: 0.2em;
+}
+
+/* Call / text as two rows, like the link list on the right */
+.shareLinks {
+  display: grid;
+  gap: 0.625rem;
+  width: 100%;
+  margin-top: var(--space-2xs);
+}
+
+.shareLink {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  border: 1px solid var(--line-on-navy);
+  border-radius: var(--radius-m);
+  background: rgb(255 255 255 / 0.04);
+  color: var(--white);
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    border-color var(--dur-ui) var(--ease-out);
+}
+
+.shareLinkIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.shareLinkText {
+  flex: 1;
+  display: grid;
+}
+
+.shareLinkLabel {
+  font-weight: 700;
+}
+
+.shareLinkValue {
+  color: var(--ice-300);
+  font-size: 0.875rem;
+  font-variant-numeric: lining-nums;
+}
+
+.shareArrow {
+  flex: none;
+  color: var(--ice-300);
+}
+
+/* Colour only on hover; nothing moves */
+.shareLink:hover {
+  border-color: var(--ice-300);
+  background: rgb(193 222 238 / 0.12);
+}
+
+.meet {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 80% at 100% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.meetTitle {
+  font-size: var(--step-h3);
+}
+
+.meetIntro {
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.meetLinks {
+  display: grid;
+  margin-top: var(--space-2xs);
+}
+
+.meetLink {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--navy-800);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.meetLinks li:last-child .meetLink {
+  border-bottom: 0;
+}
+
+.meetIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--ice-100);
+  color: var(--blue-700);
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.meetLabel {
+  flex: 1;
+}
+
+.meetArrow {
+  flex: none;
+  color: var(--blue-700);
+}
+
+/* Colour only on hover; nothing moves */
+.meetLink:hover {
+  color: var(--blue-700);
+}
+
+.meetLink:hover .meetIcon {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 1199px) {
+  .themeList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reviews {
+    columns: 2;
+  }
+
+  .nextGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .reviews {
+    columns: 1;
+  }
+
+  .share,
+  .meet {
+    padding: var(--space-m);
+  }
+}
+
+@media (max-width: 575px) {
+  .themeList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

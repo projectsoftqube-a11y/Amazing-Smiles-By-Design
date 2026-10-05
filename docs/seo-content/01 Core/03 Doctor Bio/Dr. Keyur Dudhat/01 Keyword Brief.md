@@ -20,6 +20,8 @@ Use in: H1, title tag, URL, first 100 words, one H2, and the meta description.
 
 | Keyword | Role | Volume / mo | KD | Source | Where to use |
 |---|---|---|---|---|---|
+| dr dudhat | Secondary | 30 | 8 | Semrush verified | H2/H3 headings and body copy |
+| keyur dudhat | Secondary | 10 | 0 | Semrush verified | H2/H3 headings and body copy |
 | dr dudhat bensalem | Secondary | pending | pending | Pending Semrush | H2/H3 headings and body copy |
 | dentist keyur dudhat | Secondary | pending | pending | Pending Semrush | H2/H3 headings and body copy |
 | dr keyur dudhat dentist bensalem | Long-tail | pending | pending | Pending Semrush | H3 or paragraph topic |
@@ -28,9 +30,9 @@ Use each secondary keyword at least once, naturally. Don't force them all into h
 
 ## On-page
 
-- **H1:** Dr. Keyur Dudhat, DMD/DDS
-- **Title tag (42 chars):** Dr. Keyur Dudhat | Dentist in Bensalem, PA
-- **Meta description (136 chars):** Meet Dr. Keyur Dudhat of Amazing Smiles By Design in Bensalem, PA: education, training and approach to gentle, personalised dental care.
+- **H1:** Dr. Keyur Dudhat, DMD
+- **Title tag (48 chars):** Dr. Keyur Dudhat, DMD | Amazing Smiles By Design
+- **Meta description (144 chars):** Meet Dr. Keyur Dudhat, DMD, of Amazing Smiles By Design in Bensalem, PA: a Temple University graduate focused on implant and cosmetic dentistry.
 
 ## H2 outline
 

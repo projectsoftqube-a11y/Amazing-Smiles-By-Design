@@ -12,6 +12,8 @@ type BeforeAfterProps = {
   ratio?: string;
   sizes: string;
   className?: string;
+  /** Names the case for screen readers, e.g. "case 1" */
+  label?: string;
 };
 
 function Layer({ image, sizes, label }: { image: SiteImage; sizes: string; label: string }) {
@@ -37,7 +39,7 @@ function Layer({ image, sizes, label }: { image: SiteImage; sizes: string; label
  * handle; dragging (or the arrow keys) moves it. A native range input drives it, so
  * it is keyboard and screen-reader accessible and needs no custom pointer code.
  */
-export function BeforeAfter({ before, after, ratio = "4 / 3", sizes, className }: BeforeAfterProps) {
+export function BeforeAfter({ before, after, ratio = "4 / 3", sizes, className, label }: BeforeAfterProps) {
   const [position, setPosition] = useState(50);
 
   return (
@@ -75,7 +77,7 @@ export function BeforeAfter({ before, after, ratio = "4 / 3", sizes, className }
         value={position}
         onChange={(event) => setPosition(Number(event.target.value))}
         className={styles.range}
-        aria-label="Compare before and after: drag to reveal more of either photo"
+        aria-label={`Compare before and after${label ? `, ${label}` : ""}: drag to reveal more of either photo`}
         aria-valuetext={`${position}% before`}
       />
     </div>

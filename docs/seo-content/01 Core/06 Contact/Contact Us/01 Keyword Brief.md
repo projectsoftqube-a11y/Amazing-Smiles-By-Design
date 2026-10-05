@@ -30,9 +30,9 @@ Use each secondary keyword at least once, naturally. Don't force them all into h
 
 ## On-page
 
-- **H1:** Contact Amazing Smiles By Design
-- **Title tag (42 chars):** Contact Us | Dental Office in Bensalem, PA
-- **Meta description (125 chars):** Visit us at 3101 Bristol Road Suite 1, Bensalem, PA 19020. Call or text (215) 639-5331. Office hours, directions and parking.
+- **H1:** Contact Our Dental Office in Bensalem
+- **Title tag (54 chars):** Contact Our Dental Office in Bensalem | Amazing Smiles
+- **Meta description (146 chars):** Contact Amazing Smiles By Design at 3101 Bristol Road, Suite 1, Bensalem, PA 19020. Call or text (215) 639-5331. Office hours, map and directions.
 
 ## H2 outline
 

@@ -7,6 +7,9 @@ import galleryCase3BeforeImg from "@/assets/images/gallery-case-3-before.jpg";
 import galleryCase3AfterImg from "@/assets/images/gallery-case-3-after.jpg";
 import aboutHeroImg from "@/assets/images/about-hero-dentist-exam.jpg";
 import aboutTechnologyImg from "@/assets/images/about-technology-dental-microscope.jpg";
+import galleryHeroImg from "@/assets/images/gallery-hero-smile-mirror.jpg";
+import reviewsHeroImg from "@/assets/images/reviews-hero-happy-patient.jpg";
+import specialsHeroImg from "@/assets/images/specials-hero-family-visit.jpg";
 import doctorPortraitImg from "@/assets/images/dr-keyur-dudhat-portrait.jpg";
 import homeBannerImg from "@/assets/images/home-hero-banner.jpg";
 import homeBannerMobileImg from "@/assets/images/home-hero-banner-mobile.jpg";
@@ -116,7 +119,7 @@ export const images = {
    */
   galleryCase1Before: {
     src: galleryCase1BeforeImg,
-    alt: "Smile gallery case 1: a patient's smile before treatment at Amazing Smiles By Design",
+    alt: "Smile before treatment, case 1",
     brief: "Case 1 before photo",
     source: {
       provider: "practice",
@@ -127,7 +130,7 @@ export const images = {
   },
   galleryCase1After: {
     src: galleryCase1AfterImg,
-    alt: "Smile gallery case 1: a patient's smile after treatment at Amazing Smiles By Design",
+    alt: "Smile after treatment, case 1",
     brief: "Case 1 after photo",
     source: {
       provider: "practice",
@@ -138,7 +141,7 @@ export const images = {
   },
   galleryCase2Before: {
     src: galleryCase2BeforeImg,
-    alt: "Smile gallery case 2: a patient's smile before treatment at Amazing Smiles By Design",
+    alt: "Smile before treatment, case 2",
     brief: "Case 2 before photo",
     source: {
       provider: "practice",
@@ -149,7 +152,7 @@ export const images = {
   },
   galleryCase2After: {
     src: galleryCase2AfterImg,
-    alt: "Smile gallery case 2: a patient's smile after treatment at Amazing Smiles By Design",
+    alt: "Smile after treatment, case 2",
     brief: "Case 2 after photo",
     source: {
       provider: "practice",
@@ -160,7 +163,7 @@ export const images = {
   },
   galleryCase3Before: {
     src: galleryCase3BeforeImg,
-    alt: "Smile gallery case 3: a patient's smile before treatment at Amazing Smiles By Design",
+    alt: "Smile before treatment, case 3",
     brief: "Case 3 before photo",
     source: {
       provider: "practice",
@@ -171,7 +174,7 @@ export const images = {
   },
   galleryCase3After: {
     src: galleryCase3AfterImg,
-    alt: "Smile gallery case 3: a patient's smile after treatment at Amazing Smiles By Design",
+    alt: "Smile after treatment, case 3",
     brief: "Case 3 after photo",
     source: {
       provider: "practice",
@@ -221,6 +224,54 @@ export const images = {
     source: {
       provider: "practice",
       licence: "Supplied by the client",
+      downloaded: "2026-10-05",
+    },
+  },
+  /** Patient Reviews hero. Magnific premium stock; master resized from 5504×3072 to 2400px. */
+  reviewsHero: {
+    src: reviewsHeroImg,
+    alt: "A smiling patient sitting in a bright dental treatment room",
+    brief: "Happy patient smiling in a bright dental office",
+    position: "62% 40%",
+    source: {
+      provider: "magnific",
+      id: "428451913",
+      url: "https://www.magnific.com/premium-photo/happy-young-hispanic-woman-green-sweater-smiling-dentist-office_428451913.htm",
+      licence: "Freepik Premium",
+      listedCredits: 150,
+      creditsCharged: 0,
+      downloaded: "2026-10-05",
+    },
+  },
+  /** Smile Gallery hero. Magnific premium stock; master resized from 6720×4480 to 2400px. */
+  galleryHero: {
+    src: galleryHeroImg,
+    alt: "A smiling patient checking her teeth in a hand mirror in the dental chair",
+    brief: "Patient admiring her smile in a mirror",
+    position: "58% 40%",
+    source: {
+      provider: "magnific",
+      id: "357096913",
+      url: "https://www.magnific.com/premium-photo/young-woman-smiling-while-looking-mirror-her-perfect-white-teeth-sitting-chair-dental_357096913.htm",
+      licence: "Freepik Premium",
+      listedCredits: 150,
+      creditsCharged: 0,
+      downloaded: "2026-10-05",
+    },
+  },
+  /** Specials hero. Magnific premium stock; master resized from 5760×3840 to 2400px. */
+  specialsHero: {
+    src: specialsHeroImg,
+    alt: "A smiling dentist with a young patient and his mother in a bright dental office",
+    brief: "Dentist with a child patient and his mother",
+    position: "50% 40%",
+    source: {
+      provider: "magnific",
+      id: "7572292",
+      url: "https://www.magnific.com/premium-photo/portrait-dentist-with-young-patient-his-mother_7572292.htm",
+      licence: "Freepik Premium",
+      listedCredits: 150,
+      creditsCharged: 0,
       downloaded: "2026-10-05",
     },
   },

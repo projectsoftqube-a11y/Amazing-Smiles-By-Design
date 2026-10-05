@@ -4,6 +4,7 @@ import { homeAreas } from "@/content/pages/home";
 import { linkTo } from "@/content/routes";
 import { contactLinks, hoursTable, practice } from "@/content/site";
 import { Icon } from "@/components/ui/Icon";
+import { ProtectedEmail } from "@/components/ui/ProtectedEmail";
 import { Logo } from "./Logo";
 import styles from "./SiteFooter.module.css";
 
@@ -36,10 +37,8 @@ export function SiteFooter() {
 
           <ul role="list" className={styles.quick}>
             <li>
-              <a href={contactLinks.email} data-track="email_click">
-                <Icon name="mail" size={16} />
-                <span className={styles.email}>{practice.email}</span>
-              </a>
+              {/* Protected: assembled in the browser so scrapers can't read it from the HTML */}
+              <ProtectedEmail icon={<Icon name="mail" size={16} />} />
             </li>
             <li>
               <span>

@@ -19,36 +19,6 @@
   box-shadow: var(--shadow-header);
 }
 
-/* Reading progress: a hairline under the header, driven by the page scroll in CSS
-   (browsers without scroll-driven animations simply don't show it). */
-@supports (animation-timeline: scroll()) {
-  .header::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--blue-500), var(--navy-800));
-    transform-origin: left center;
-    transform: scaleX(0);
-    animation: progress linear both;
-    animation-timeline: scroll(root block);
-  }
-
-  @keyframes progress {
-    to {
-      transform: scaleX(1);
-    }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .header::after {
-    display: none;
-  }
-}
-
 .header[data-hidden] {
   transform: translateY(-100%);
 }

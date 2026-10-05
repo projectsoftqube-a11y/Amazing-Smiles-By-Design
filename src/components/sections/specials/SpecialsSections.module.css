@@ -1,0 +1,644 @@
+/* ——— Shared ——— */
+.headCenter {
+  --eyebrow-align: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.lead {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.text {
+  line-height: 1.75;
+  color: var(--color-muted);
+}
+
+.text a,
+.cardText a {
+  color: var(--blue-700);
+  font-weight: 600;
+  white-space: nowrap;
+  text-underline-offset: 0.2em;
+}
+
+.currency {
+  align-self: flex-start;
+  font-size: 0.5em;
+  vertical-align: 0.6em;
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+/* ——— Comparison table ——— */
+.compare {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(35% 45% at 0% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+}
+
+/* position: relative makes the scroller the containing block for the cells'
+   visually-hidden (absolute) labels. Without it they were placed against the page,
+   so scrolling the table sideways widened the whole page on phones. */
+.tableWrap {
+  position: relative;
+  margin-top: var(--space-l);
+  overflow-x: auto;
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-lift);
+  overscroll-behavior-x: contain;
+}
+
+.tableWrap:focus-visible {
+  outline: 2px solid var(--blue-700);
+  outline-offset: 3px;
+}
+
+.table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--step-small);
+}
+
+.table th,
+.table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Header row */
+.table thead th {
+  padding-block: 1.25rem;
+  background: var(--ice-50);
+  vertical-align: bottom;
+}
+
+.colIcon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 0.625rem;
+  border-radius: 12px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.colName {
+  display: block;
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Feature column, pinned while the table scrolls sideways */
+.table tbody th,
+.table thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 30%;
+  background: var(--white);
+  text-align: left;
+  color: var(--navy-800);
+  font-weight: 600;
+  box-shadow: 1px 0 0 var(--line);
+}
+
+.table thead th:first-child {
+  background: var(--ice-50);
+}
+
+/* The Regular plan column is highlighted */
+.table td.featured {
+  background: var(--ice-50);
+}
+
+.table thead th.featured {
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+}
+
+.table thead th.featured .colIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.table thead th.featured .colName {
+  color: var(--white);
+}
+
+.fee {
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: var(--step-h3);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+}
+
+.yes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--navy-800);
+  font-weight: 600;
+}
+
+.tick {
+  display: grid;
+  place-items: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.none {
+  color: var(--line-strong);
+  font-size: var(--step-h4);
+}
+
+.scrollHint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ——— Plan cards (each an H2 section) ——— */
+.plans {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 50% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
+}
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-m);
+  align-items: stretch;
+}
+
+.plan {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-s);
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.plan::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-700), var(--ice-300));
+}
+
+.planFeatured {
+  box-shadow: var(--shadow-lift);
+}
+
+.planFeatured::before {
+  height: 6px;
+  background: linear-gradient(90deg, var(--navy-800), var(--blue-500), var(--ice-300));
+}
+
+.planIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.planTitle {
+  display: grid;
+  gap: 0.375rem;
+  font-size: var(--step-h4);
+  line-height: 1.25;
+}
+
+.planName {
+  display: block;
+}
+
+.planPrice {
+  display: block;
+  font-size: clamp(2.5rem, 2rem + 2vw, 3.75rem);
+  line-height: 1;
+  color: var(--navy-800);
+  font-variant-numeric: lining-nums;
+}
+
+.planTerm {
+  font-family: var(--font-sans);
+  font-size: var(--step-small);
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.audience {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-s);
+  background: var(--ice-100);
+  color: var(--blue-700);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.includes {
+  display: grid;
+  gap: 0.625rem;
+  width: 100%;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.includes li {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.check {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.note {
+  margin-top: auto;
+  padding-top: var(--space-s);
+  color: var(--color-muted);
+  font-size: var(--step-small);
+  line-height: 1.6;
+}
+
+.note a {
+  color: var(--blue-700);
+  font-weight: 600;
+  text-underline-offset: 0.2em;
+}
+
+/* ——— 20% + $59 band ——— */
+.save {
+  padding-block: var(--space-section);
+  background: var(--white);
+}
+
+.saveGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-m);
+  align-items: stretch;
+}
+
+.discount {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-m);
+  padding: var(--space-xl) var(--space-l);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 80% at 100% 0%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(160deg, var(--white), var(--ice-50));
+  box-shadow: var(--shadow-soft);
+}
+
+.bigPercent {
+  font-family: var(--font-serif);
+  font-size: clamp(4.5rem, 3.5rem + 4vw, 7.5rem);
+  font-weight: 600;
+  line-height: 0.9;
+  background: linear-gradient(120deg, var(--navy-800), var(--blue-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cardTitle {
+  font-size: var(--step-h3);
+}
+
+.cardText {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.emergency {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  border-radius: var(--radius-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.emergency .cardTitle {
+  display: grid;
+  gap: 0.375rem;
+  color: var(--white);
+}
+
+.emergencyIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.emergencyPrice {
+  font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+}
+
+.audienceInverse {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-s);
+  background: rgb(193 222 238 / 0.16);
+  color: var(--ice-300);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.includesInverse {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--white);
+}
+
+.includesInverse li {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.checkInverse {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.cardTextInverse {
+  line-height: 1.7;
+}
+
+.cardTextInverse a {
+  color: var(--white);
+  font-weight: 700;
+  white-space: nowrap;
+  text-underline-offset: 0.2em;
+}
+
+/* ——— How it works ——— */
+.how {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 55% at 100% 100%, var(--ice-300) 0%, transparent 70%),
+    linear-gradient(180deg, var(--porcelain) 0%, var(--ice-100) 100%);
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.howCopy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-m);
+}
+
+.steps {
+  display: grid;
+  gap: var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.125rem var(--space-m);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.stepIndex {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--blue-500);
+}
+
+.stepIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.stepLabel {
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ——— Insurance / financing ——— */
+.coverage {
+  padding-block: var(--space-section);
+  background: var(--white);
+}
+
+.coverageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+
+.coverageCard {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 80% at 100% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.coverageIcon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.coverageText {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.coverageText strong {
+  color: var(--navy-800);
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 1199px) {
+  .planGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .saveGrid,
+  .howGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l);
+  }
+}
+
+@media (max-width: 991px) {
+  .scrollHint {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .planGrid,
+  .coverageGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discount,
+  .emergency,
+  .coverageCard {
+    padding: var(--space-m);
+  }
+
+  /* Phones: fixed layout with a narrow pinned first column, so most of the
+     screen shows plan columns while the table scrolls sideways */
+  .table {
+    table-layout: fixed;
+    width: 36rem;
+    min-width: 0;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem 0.625rem;
+  }
+
+  .table tbody th,
+  .table thead th:first-child {
+    width: 7.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+  }
+
+  .table td {
+    font-size: 0.875rem;
+  }
+
+  .colIcon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .colName {
+    font-size: 0.9375rem;
+  }
+
+  .fee {
+    font-size: var(--step-h4);
+  }
+
+  .yes {
+    gap: 0.375rem;
+  }
+}

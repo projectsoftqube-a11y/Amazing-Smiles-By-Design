@@ -248,6 +248,12 @@
   .visual {
     max-width: 30rem;
   }
+
+  /* The photo now starts at the container edge, so the PPO card can only overhang
+     by less than the page gutter */
+  .ppoCard {
+    left: -1.5rem;
+  }
 }
 
 @media (max-width: 767px) {

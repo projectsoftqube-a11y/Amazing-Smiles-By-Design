@@ -36,7 +36,7 @@ export const homeHero = {
     { icon: "pin", text: "3101 Bristol Road, Suite 1, Bensalem, PA 19020" },
     { icon: "clock", text: "Open Monday to Thursday" },
     { icon: "shield", text: "PPO insurance accepted" },
-    { icon: "tag", text: "No insurance? Membership plans for adults ($269/yr) & children ($212/yr)" },
+    { icon: "tag", text: "No insurance? Regular plan $269/yr, Child plan $212/yr" },
     { icon: "alert", text: "$59 emergency exam for new patients" },
   ],
 } as const;
@@ -99,7 +99,7 @@ export const homeCoverage = {
   },
   financing: {
     title: "Financing",
-    body: "You can spread the cost of treatment over time with CareCredit or Cherry, subject to approval.",
+    body: "You can spread the cost of treatment over time with CareCredit or Cherry.",
     link: { label: "Financing options", href: "/patient-information/financing-options/" },
   },
 };
@@ -225,7 +225,7 @@ export const homeFaqs = {
     {
       question: "Do you offer financing for dental treatment?",
       answer:
-        "Yes. We work with CareCredit and Cherry, which let you pay for treatment over time, subject to approval. Ask our team which option suits your treatment plan.",
+        "Yes. We work with CareCredit and Cherry, which let you pay for treatment over time. Ask our team which option suits your treatment plan.",
     },
   ],
 };

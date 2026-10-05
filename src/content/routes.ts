@@ -39,11 +39,11 @@ export const routes: RouteEntry[] = [
   // Core
   r("/", "Home", "core", true),
   r("/about-us/", "About Us", "core", true),
-  r("/about-us/dr-keyur-dudhat/", "Dr. Keyur Dudhat", "core"),
-  r("/about-us/patient-reviews/", "Patient Reviews", "core"),
-  r("/smile-gallery/", "Smile Gallery", "core"),
-  r("/specials/", "Specials & Membership Plans", "core"),
-  r("/contact-us/", "Contact Us", "core"),
+  r("/about-us/dr-keyur-dudhat/", "Dr. Keyur Dudhat", "core", true),
+  r("/about-us/patient-reviews/", "Patient Reviews", "core", true),
+  r("/smile-gallery/", "Smile Gallery", "core", true),
+  r("/specials/", "Specials & Membership Plans", "core", true),
+  r("/contact-us/", "Contact Us", "core", true),
 
   // Patient information
   r("/patient-information/", "Patient Information", "patient-info"),

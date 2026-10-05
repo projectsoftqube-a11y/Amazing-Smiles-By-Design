@@ -1,0 +1,522 @@
+/* ——— Shared ——— */
+.lead {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.cardTitle {
+  font-size: var(--step-h3);
+}
+
+/* ——— Hero contact card ——— */
+.card {
+  display: grid;
+  gap: var(--space-s);
+  width: 100%;
+  max-width: 30rem;
+  justify-self: end;
+  padding: var(--space-l);
+  border-radius: var(--radius-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.cardLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  justify-self: start;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: rgb(193 222 238 / 0.14);
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #4ade80;
+}
+
+.cardPhone {
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-decoration: none;
+  font-variant-numeric: lining-nums;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.cardPhone:hover {
+  color: var(--ice-300);
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cardChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding-inline: 1.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-300);
+  color: var(--navy-900);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.cardChip:hover {
+  background: var(--white);
+}
+
+.cardList {
+  display: grid;
+  margin-top: var(--space-2xs);
+  border-top: 1px solid var(--line-on-navy);
+}
+
+.cardList li {
+  border-bottom: 1px solid var(--line-on-navy);
+}
+
+.cardList li:last-child {
+  border-bottom: 0;
+}
+
+.cardRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding-block: 0.875rem;
+  color: var(--white);
+  font-weight: 500;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.cardRow svg {
+  flex: none;
+  margin-top: 0.125rem;
+  color: var(--ice-300);
+}
+
+a.cardRow:hover {
+  color: var(--ice-300);
+}
+
+/* ——— Reach + hours ——— */
+.reach {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(35% 45% at 0% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+}
+
+.reachGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-m);
+  align-items: stretch;
+}
+
+.reachCard {
+  display: grid;
+  align-content: start;
+  gap: var(--space-m);
+  padding: var(--space-l);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 80% at 100% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.ways {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.way {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.875rem;
+  row-gap: 0.25rem;
+  align-content: start;
+  padding: 1rem;
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-m);
+  background: var(--ice-50);
+}
+
+.wayWide {
+  grid-column: 1 / -1;
+}
+
+.wayIcon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.way dt {
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.way dd {
+  color: var(--navy-800);
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.way dd a {
+  color: var(--blue-700);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+.way dd a:hover {
+  text-decoration: underline;
+}
+
+.strongLink {
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+  white-space: nowrap;
+}
+
+.wayAlert {
+  border-color: transparent;
+  background:
+    radial-gradient(70% 140% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+}
+
+.wayAlert .wayIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.wayAlert dt {
+  color: var(--ice-300);
+}
+
+.wayAlert dd {
+  color: var(--white);
+}
+
+.wayAlert dd a {
+  color: var(--white);
+}
+
+.hoursCard {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  border-radius: var(--radius-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 14px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.hoursCard .cardTitle {
+  color: var(--white);
+}
+
+.hoursIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.hours {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.hours thead th {
+  padding: 0 0.9rem 0.25rem;
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.hours thead th:last-child {
+  text-align: right;
+}
+
+.hours tbody th,
+.hours tbody td {
+  padding: 0.75rem 0.9rem;
+  background: rgb(255 255 255 / 0.05);
+  text-align: left;
+}
+
+.hours tbody th {
+  border-radius: 12px 0 0 12px;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.hours tbody td {
+  border-radius: 0 12px 12px 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.hours tr[data-closed] td {
+  color: var(--blue-500);
+}
+
+/* Today's row, marked by HoursToday after load */
+.hours tr[data-today] th,
+.hours tr[data-today] td {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.hours tr[data-today] th::after {
+  content: "Today";
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.45rem;
+  border-radius: var(--radius-pill);
+  background: var(--navy-900);
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ——— Find us: directions + map ——— */
+.find {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 50% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
+}
+
+.findGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.findCopy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-m);
+}
+
+.map {
+  min-height: 28rem;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: var(--radius-l);
+  background: var(--ice-100);
+  box-shadow: var(--shadow-lift);
+}
+
+.mapFrame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  border: 0;
+}
+
+/* ——— Areas we serve (inside the directions section) ——— */
+.areas {
+  display: grid;
+  gap: var(--space-s);
+  width: 100%;
+  margin-top: var(--space-2xs);
+  padding: var(--space-m);
+  border: 1px solid var(--white);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 90% at 100% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.areasHead {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.areasIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.areasTitle {
+  font-size: var(--step-h4);
+  line-height: 1.25;
+}
+
+.areasText {
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.towns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.towns a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-s);
+  background: var(--ice-50);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    border-color var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.towns a svg {
+  color: var(--blue-500);
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+/* Bensalem: the practice's own town, highlighted */
+.towns a.townHome {
+  border-color: transparent;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.towns a.townHome svg {
+  color: var(--ice-300);
+}
+
+.towns a:hover {
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: var(--white);
+}
+
+.towns a:hover svg {
+  color: var(--ice-300);
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 1199px) {
+  .reachGrid,
+  .findGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l);
+  }
+
+  .card {
+    justify-self: start;
+  }
+
+  .map {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 767px) {
+  .reachCard,
+  .hoursCard,
+  .card,
+  .areas {
+    padding: var(--space-m);
+  }
+
+  .ways {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .map {
+    aspect-ratio: 4 / 5;
+  }
+
+}
+
+@media (max-width: 575px) {
+  .towns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 389px) {
+  .hours tbody th,
+  .hours tbody td {
+    padding: 0.6rem 0.55rem;
+    font-size: 0.8125rem;
+  }
+
+  .hoursCard {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,547 @@
+/* ——— Shared ——— */
+.headCenter {
+  --eyebrow-align: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.intro {
+  max-width: 58ch;
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.copy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-m);
+}
+
+.lead {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+/* ——— At a glance: bento <dl> ——— */
+.glance {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(35% 45% at 0% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-s);
+  margin-top: var(--space-l);
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  padding: var(--space-m);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background: linear-gradient(160deg, var(--white) 0%, var(--ice-50) 100%);
+}
+
+/* Degree and Clinical focus take two columns; Practice runs the full width */
+.fact:nth-child(1),
+.fact:nth-child(4) {
+  grid-column: span 2;
+}
+
+.fact:nth-child(7) {
+  grid-column: 1 / -1;
+  border-color: transparent;
+  background:
+    radial-gradient(70% 140% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+}
+
+.factIcon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.fact:nth-child(7) .factIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.fact dt {
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.fact dd {
+  color: var(--navy-800);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.fact:nth-child(7) dt {
+  color: var(--ice-300);
+}
+
+.fact:nth-child(7) dd {
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+}
+
+/* ——— Education & background ——— */
+.education {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 55% at 100% 100%, var(--ice-300) 0%, transparent 70%),
+    linear-gradient(180deg, var(--porcelain) 0%, var(--ice-100) 100%);
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Connecting line behind the step icons */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: calc(var(--space-m) + 1.5rem - 1px);
+  width: 2px;
+  background: linear-gradient(var(--ice-300), var(--blue-500));
+}
+
+.step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem var(--space-m);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.stepIcon {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.step:last-child .stepIcon {
+  background: var(--blue-700);
+}
+
+.stepText {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.stepIndex {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--blue-500);
+}
+
+.stepLabel {
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stepValue {
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ——— Clinical focus ——— */
+.focus {
+  padding-block: var(--space-section);
+  background: var(--white);
+}
+
+.focusCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+
+.focusCard {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-m);
+  padding: var(--space-l);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 80% at 100% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.focusNavy {
+  border-color: transparent;
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
+    radial-gradient(70% 90% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.focusIcon {
+  display: grid;
+  place-items: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 18px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.focusNavy .focusIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.focusText {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.focusNavy .focusText {
+  color: var(--slate-on-navy);
+}
+
+.focusText strong {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-family: var(--font-serif);
+  font-size: var(--step-h3);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--navy-800);
+}
+
+.focusNavy .focusText strong {
+  color: var(--white);
+}
+
+.focusText a {
+  color: var(--blue-700);
+  font-weight: 600;
+  text-underline-offset: 0.2em;
+}
+
+.also {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 52rem;
+  margin: var(--space-m) auto 0;
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-m);
+  background: var(--ice-50);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.also svg {
+  flex: none;
+  margin-top: 0.25rem;
+  color: var(--blue-700);
+}
+
+.also a {
+  color: var(--blue-700);
+  font-weight: 600;
+  text-underline-offset: 0.2em;
+}
+
+/* ——— Training / Giving back / Outside: bento ——— */
+.highlights {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 50% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
+}
+
+/* Training across the top; Giving back and Outside the office side by side below */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-m);
+}
+
+.training {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-l);
+  align-items: center;
+  padding: var(--space-l);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(50% 90% at 100% 0%, var(--ice-200) 0%, transparent 70%),
+    var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.trainingCopy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+}
+
+.trainingLead {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.systems {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.system {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-m);
+  background: linear-gradient(160deg, var(--ice-50), var(--white));
+}
+
+.system:first-child {
+  border-color: transparent;
+  background:
+    radial-gradient(80% 140% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+}
+
+.systemIndex {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--blue-500);
+}
+
+.systemIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.system:first-child .systemIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.systemText {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.systemName {
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.systemDetail {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.system:first-child .systemName {
+  color: var(--white);
+}
+
+.system:first-child .systemDetail,
+.system:first-child .systemIndex {
+  color: var(--ice-300);
+}
+
+.tile {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.tileGiving {
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
+    radial-gradient(70% 90% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.tileIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.tileGiving .tileIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.tileTitle {
+  font-size: var(--step-h3);
+}
+
+.tileGiving .tileTitle {
+  color: var(--white);
+}
+
+.tileText {
+  line-height: 1.75;
+  color: var(--color-muted);
+}
+
+.tileGiving .tileText {
+  color: var(--slate-on-navy);
+}
+
+.hobbies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hobbies li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.hobbies svg {
+  color: var(--blue-700);
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 1199px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l);
+  }
+
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .training {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .focusCards,
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .focusCard,
+  .tile,
+  .training {
+    padding: var(--space-m);
+  }
+}
+
+@media (max-width: 575px) {
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fact:nth-child(1),
+  .fact:nth-child(4) {
+    grid-column: auto;
+  }
+
+  .fact {
+    padding: 1.125rem;
+  }
+}

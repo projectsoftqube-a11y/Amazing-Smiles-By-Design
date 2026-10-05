@@ -32,9 +32,9 @@ Use each secondary keyword at least once, naturally. Don't force them all into h
 
 ## On-page
 
-- **H1:** No Insurance? No Problem. Membership Plans & Specials
-- **Title tag (49 chars):** Dental Membership Plans & Specials | Bensalem, PA
-- **Meta description (130 chars):** Uninsured? Our in-office membership plans cover cleanings, exams and X-rays. Plus a $59 new-patient emergency visit. Bensalem, PA.
+- **H1:** Affordable Dental Membership Plans in Bensalem
+- **Title tag (60 chars):** Affordable Dentist in Bensalem | Membership Plans & Specials
+- **Meta description (153 chars):** No insurance? Our Bensalem membership plans cover cleanings, exams and X-rays from $212 a year, plus 20% off most other dental care. Call (215) 639-5331.
 
 ## H2 outline
 

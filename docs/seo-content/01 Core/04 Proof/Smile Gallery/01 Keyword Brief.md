@@ -30,9 +30,9 @@ Use each secondary keyword at least once, naturally. Don't force them all into h
 
 ## On-page
 
-- **H1:** Smile Gallery: Real Patient Results
-- **Title tag (57 chars):** Smile Gallery | Before & After | Amazing Smiles By Design
-- **Meta description (92 chars):** See real before-and-after results from patients of Amazing Smiles By Design in Bensalem, PA.
+- **H1:** Smile Makeover Before and After Gallery
+- **Title tag (58 chars):** Smile Makeover Before and After | Smile Gallery | Bensalem
+- **Meta description (145 chars):** See before-and-after smile makeover photos from Amazing Smiles By Design in Bensalem, PA, and learn which treatments can help improve your smile.
 
 ## H2 outline
 
