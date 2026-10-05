@@ -1,0 +1,296 @@
+.stage {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 32rem;
+  justify-self: end;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+}
+
+/* Tilted navy plate behind the card */
+.plate {
+  position: absolute;
+  inset: 0 0 2.5rem 3rem;
+  z-index: -1;
+  border-radius: 36px;
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.05) 0 1px, transparent 1px 14px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-600) 0%, transparent 60%),
+    var(--navy-800);
+  box-shadow: var(--shadow-lift);
+  transform: rotate(4deg);
+  animation: plate-in 1s var(--ease-out) 300ms both;
+}
+
+@keyframes plate-in {
+  from {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+}
+
+.card {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 32px;
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgb(217 234 244 / 0.9) 0%, transparent 70%),
+    rgb(255 255 255 / 0.92);
+  box-shadow:
+    0 2px 4px rgb(14 24 56 / 0.04),
+    0 40px 80px -32px rgb(14 24 56 / 0.4);
+  backdrop-filter: blur(14px);
+  animation: rise 1s var(--ease-out) 450ms both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+  color: var(--white);
+  box-shadow: var(--shadow-lift);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.liveDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: live 2.4s var(--ease-out) infinite;
+}
+
+@keyframes live {
+  0% {
+    box-shadow: 0 0 0 0 rgb(34 197 94 / 0.5);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 8px rgb(34 197 94 / 0);
+  }
+}
+
+.phoneBlock {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.phone {
+  justify-self: start;
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.phone:hover {
+  color: var(--blue-700);
+}
+
+.chips {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding-inline: 1.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--navy-800);
+  color: var(--white);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.chip:hover {
+  background: var(--blue-700);
+}
+
+.facts {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--ice-200);
+  border-radius: 18px;
+  background: var(--white);
+  animation: fact-in 600ms var(--ease-out) both;
+}
+
+@keyframes fact-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+}
+
+.factIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--ice-100);
+  color: var(--blue-700);
+}
+
+.fact:first-child .factIcon {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.factText {
+  display: grid;
+  gap: 0.0625rem;
+}
+
+.factTitle {
+  color: var(--navy-800);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.factSub {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.related {
+  display: grid;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line-strong);
+}
+
+.relatedLabel {
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.relatedList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.relatedLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-pill);
+  background: var(--ice-50);
+  color: var(--navy-800);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    border-color var(--dur-ui) var(--ease-out),
+    background var(--dur-ui) var(--ease-out);
+}
+
+.relatedLink:hover {
+  border-color: var(--navy-800);
+  background: var(--white);
+}
+
+.relatedLink svg {
+  color: var(--blue-500);
+}
+
+@media (max-width: 1199px) {
+  .stage {
+    justify-self: stretch;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .stage {
+    padding: 1rem 0.75rem 1.25rem 0;
+  }
+
+  .plate {
+    inset: 0 0 1.5rem 1.5rem;
+    transform: rotate(3deg);
+  }
+
+  .card {
+    padding: 1.25rem;
+    border-radius: 26px;
+  }
+
+  .icon {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 389px) {
+  .fact {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate,
+  .card,
+  .fact,
+  .liveDot {
+    animation: none;
+  }
+}

@@ -57,17 +57,17 @@ export const routes: RouteEntry[] = [
   r("/patient-information/patient-education/", "Patient Education", "patient-info", true),
 
   // General dentistry
-  r("/general-dentistry/", "General Dentistry", "general"),
-  r("/general-dentistry/dental-checkups-x-rays/", "Dental Checkups & X-Rays", "general"),
-  r("/general-dentistry/child-dentistry/", "Child Dentistry", "general"),
-  r("/general-dentistry/dental-sealants/", "Dental Sealants", "general"),
-  r("/general-dentistry/scaling-and-root-planing/", "Scaling & Root Planing", "general"),
-  r("/general-dentistry/periodontal-maintenance/", "Periodontal Maintenance", "general"),
-  r("/general-dentistry/arestin/", "Arestin", "general"),
-  r("/general-dentistry/oral-cancer-screening/", "Oral Cancer Screening", "general"),
-  r("/general-dentistry/tooth-extraction/", "Tooth Extraction", "general"),
-  r("/general-dentistry/emergency-dentistry/", "Emergency Dentistry", "general"),
-  r("/general-dentistry/oral-hygiene/", "Oral Hygiene", "general"),
+  r("/general-dentistry/", "General Dentistry", "general", true),
+  r("/general-dentistry/dental-checkups-x-rays/", "Dental Checkups & X-Rays", "general", true),
+  r("/general-dentistry/child-dentistry/", "Child Dentistry", "general", true),
+  r("/general-dentistry/dental-sealants/", "Dental Sealants", "general", true),
+  r("/general-dentistry/scaling-and-root-planing/", "Scaling & Root Planing", "general", true),
+  r("/general-dentistry/periodontal-maintenance/", "Periodontal Maintenance", "general", true),
+  r("/general-dentistry/arestin/", "Arestin", "general", true),
+  r("/general-dentistry/oral-cancer-screening/", "Oral Cancer Screening", "general", true),
+  r("/general-dentistry/tooth-extraction/", "Tooth Extraction", "general", true),
+  r("/general-dentistry/emergency-dentistry/", "Emergency Dentistry", "general", true),
+  r("/general-dentistry/oral-hygiene/", "Oral Hygiene", "general", true),
 
   // Restorative
   r("/restorative-dentistry/", "Restorative Dentistry", "restorative"),

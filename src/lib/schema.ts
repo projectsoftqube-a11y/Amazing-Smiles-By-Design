@@ -174,6 +174,86 @@ export function infoPageSchema({
   );
 }
 
+/**
+ * Treatment page graph (General Dentistry handoffs, 3a): MedicalWebPage about the
+ * procedure and the dentist, provided by the dentist; BreadcrumbList; MedicalProcedure
+ * (name and description verbatim from the handoff); the short Dentist node.
+ */
+export function servicePageSchema({
+  meta,
+  breadcrumb,
+  procedure,
+  withHours = false,
+}: {
+  meta: { path: string; title: string; description: string };
+  breadcrumb: { name: string; path: string }[];
+  procedure: { name: string; description: string } | null;
+  withHours?: boolean;
+}): Json {
+  const procedureId = `${absoluteUrl(meta.path)}#procedure`;
+  return graph(
+    {
+      "@type": "MedicalWebPage",
+      "@id": ids.webpage(meta.path),
+      url: absoluteUrl(meta.path),
+      name: meta.title,
+      description: meta.description,
+      inLanguage: "en-US",
+      isPartOf: { "@id": ids.website },
+      breadcrumb: { "@id": ids.breadcrumb(meta.path) },
+      about: [...(procedure ? [{ "@id": procedureId }] : []), { "@id": ids.dentist }],
+      provider: { "@id": ids.dentist },
+    },
+    breadcrumbList(meta.path, breadcrumb),
+    ...(procedure ? [{ "@type": "MedicalProcedure", "@id": procedureId, ...procedure }] : []),
+    dentistSummary({ withHours }),
+    websiteEntity(),
+  );
+}
+
+/** Service hub graph: CollectionPage whose main entity is the ItemList of its treatments */
+export function serviceHubSchema({
+  meta,
+  breadcrumb,
+  listName,
+  services,
+}: {
+  meta: { path: string; title: string; description: string };
+  breadcrumb: { name: string; path: string }[];
+  listName: string;
+  services: { name: string; path: string }[];
+}): Json {
+  const listId = `${absoluteUrl(meta.path)}#services`;
+  return graph(
+    {
+      "@type": "CollectionPage",
+      "@id": ids.webpage(meta.path),
+      url: absoluteUrl(meta.path),
+      name: meta.title,
+      description: meta.description,
+      inLanguage: "en-US",
+      isPartOf: { "@id": ids.website },
+      breadcrumb: { "@id": ids.breadcrumb(meta.path) },
+      about: [{ "@id": ids.dentist }],
+      mainEntity: { "@id": listId },
+    },
+    breadcrumbList(meta.path, breadcrumb),
+    dentistSummary(),
+    {
+      "@type": "ItemList",
+      "@id": listId,
+      name: listName,
+      itemListElement: services.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: service.name,
+        url: absoluteUrl(service.path),
+      })),
+    },
+    websiteEntity(),
+  );
+}
+
 export function dentistPerson({
   description,
   image,

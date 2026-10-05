@@ -9,16 +9,25 @@ import styles from "./HubSections.module.css";
 
 const THEMES = [styles.themeLight, styles.themeNavy, styles.themeIce];
 
+export type StackGroup = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  /** Paragraph under the H2 (service hubs) */
+  intro?: string;
+  links: { label: string; text?: string; href: string; icon: string }[];
+};
+
 /**
- * "Visiting Us", "Paying for Your Care" and "Our Technology & Resources" as stacking
- * cards: each group card pins below the header and the next slides up over it while
- * it eases back (StackCards). Every child page is a crawlable link (Developer Handoff).
+ * Link groups as stacking cards: each group card pins below the header and the
+ * next slides up over it while it eases back (StackCards). Every link is a
+ * crawlable <a>. Used by the Patient Information and General Dentistry hubs.
  */
-export function HubGroups() {
+export function StackGroups({ groups, countLabel = "page" }: { groups: StackGroup[]; countLabel?: string }) {
   return (
     <div className={styles.groups}>
       <StackCards className={`container ${styles.stack}`}>
-        {hubGroups.map((group, index) => (
+        {groups.map((group, index) => (
           <section
             key={group.id}
             className={`${styles.card} ${THEMES[index % THEMES.length]}`}
@@ -30,17 +39,22 @@ export function HubGroups() {
               <div className={styles.cardHead}>
                 <span className={styles.cardIndex} aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
-                  <span className={styles.cardTotal}>/{String(hubGroups.length).padStart(2, "0")}</span>
+                  <span className={styles.cardTotal}>/{String(groups.length).padStart(2, "0")}</span>
                 </span>
-                <p className={`eyebrow ${index === 1 ? "eyebrow-inverse" : ""}`} data-reveal="">
+                <p className={`eyebrow ${index % THEMES.length === 1 ? "eyebrow-inverse" : ""}`} data-reveal="">
                   {group.eyebrow}
                 </p>
                 <h2 id={group.id} className={styles.cardTitle} data-reveal="">
                   {group.title}
                 </h2>
+                {group.intro ? (
+                  <p className={styles.cardIntro} data-reveal="">
+                    {group.intro}
+                  </p>
+                ) : null}
                 <p className={styles.cardCount} aria-hidden="true">
                   <Icon name="book" size={16} />
-                  {group.links.length} {group.links.length === 1 ? "page" : "pages"}
+                  {group.links.length} {group.links.length === 1 ? countLabel : `${countLabel}s`}
                 </p>
               </div>
 
@@ -53,7 +67,7 @@ export function HubGroups() {
                       </span>
                       <span className={styles.rowText}>
                         <span className={styles.rowLabel}>{link.label}</span>
-                        <span className={styles.rowSub}>{link.text}</span>
+                        {link.text ? <span className={styles.rowSub}>{link.text}</span> : null}
                       </span>
                       <span className={styles.rowArrow} aria-hidden="true">
                         <Icon name="arrowUpRight" size={18} />
@@ -69,6 +83,11 @@ export function HubGroups() {
       </StackCards>
     </div>
   );
+}
+
+/** Patient Information: "Visiting Us", "Paying for Your Care" and "Our Technology & Resources" */
+export function HubGroups() {
+  return <StackGroups groups={hubGroups} />;
 }
 
 /** "Bensalem Dental Office Details": the content file's two-column table as a definition list */

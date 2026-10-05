@@ -118,6 +118,16 @@
   color: var(--white);
 }
 
+.cardIntro {
+  max-width: 34ch;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.themeNavy .cardIntro {
+  color: var(--slate-on-navy);
+}
+
 .cardCount {
   display: inline-flex;
   align-items: center;
