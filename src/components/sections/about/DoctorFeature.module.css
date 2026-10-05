@@ -1,0 +1,187 @@
+.section {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 55% at 100% 100%, var(--ice-300) 0%, transparent 70%),
+    linear-gradient(180deg, var(--porcelain) 0%, var(--ice-100) 100%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+/* ——— Portrait ——— */
+.visual {
+  position: relative;
+  max-width: 30rem;
+}
+
+/* Mirror of the hero frame: large corners top-right and bottom-left */
+.frame {
+  padding: 10px;
+  border: 1px solid var(--white);
+  border-radius: 24px 120px 24px 120px;
+  background: var(--white);
+  box-shadow: var(--shadow-lift);
+}
+
+.media {
+  --frame-radius: 14px 110px 14px 110px;
+}
+
+.badge {
+  position: absolute;
+  right: -2rem;
+  bottom: 3rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem 0.875rem 0.875rem;
+  border-radius: 18px;
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+  box-shadow: var(--shadow-lift);
+}
+
+.badgeIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.badgeText {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.badgeTitle {
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.25;
+}
+
+.badgeSub {
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ——— Copy ——— */
+.copy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-m);
+}
+
+.titleName {
+  white-space: nowrap;
+}
+
+.lead {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.text {
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+.credentials {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.credential {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  padding: 1rem;
+  border: 1px solid var(--white);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.credentialIcon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 0.375rem;
+  border-radius: 10px;
+  background: var(--ice-100);
+  color: var(--blue-700);
+}
+
+.credential dt {
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.credential dd {
+  color: var(--navy-800);
+  font-size: var(--step-small);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l);
+  }
+
+  .visual {
+    width: 100%;
+    max-width: 26rem;
+  }
+
+  .badge {
+    right: -1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .credentials {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .frame {
+    border-radius: 18px 72px 18px 72px;
+  }
+
+  .media {
+    --frame-radius: 8px 62px 8px 62px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titleName {
+    white-space: normal;
+  }
+
+  .badge {
+    right: 0.75rem;
+    left: 0.75rem;
+    bottom: 1rem;
+  }
+}

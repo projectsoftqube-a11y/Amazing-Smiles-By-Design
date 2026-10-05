@@ -1,0 +1,37 @@
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.breadcrumb a {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.breadcrumb a:hover {
+  color: var(--navy-800);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--navy-800);
+  font-weight: 600;
+}
+
+/* Chevron pointing right */
+.separator {
+  color: var(--blue-500);
+  transform: rotate(-90deg);
+}

@@ -23,6 +23,7 @@ export const ids = {
   person: absoluteUrl(`${practice.dentist.bioPath}#person`),
   webpage: (path: string) => `${absoluteUrl(path)}#webpage`,
   faq: (path: string) => `${absoluteUrl(path)}#faq`,
+  breadcrumb: (path: string) => `${absoluteUrl(path)}#breadcrumb`,
 };
 
 const logoUrl = absoluteUrl("/images/amazing-smiles-by-design-logo.png");
@@ -136,17 +137,46 @@ export function websiteEntity(): Json {
   };
 }
 
-export function webPageEntity({ path, name, description }: { path: string; name: string; description: string }): Json {
+export function webPageEntity({
+  path,
+  name,
+  description,
+  type = "WebPage",
+  breadcrumb = false,
+}: {
+  path: string;
+  name: string;
+  description: string;
+  /** e.g. "AboutPage" for /about-us/ (its Developer Handoff) */
+  type?: string;
+  /** Link to this page's BreadcrumbList node */
+  breadcrumb?: boolean;
+}): Json {
   return {
-    "@type": "WebPage",
+    "@type": type,
     "@id": ids.webpage(path),
     url: absoluteUrl(path),
     name,
     description,
+    inLanguage: "en-US",
     isPartOf: { "@id": ids.website },
     about: { "@id": ids.dentist },
     mainEntity: { "@id": ids.dentist },
-    inLanguage: "en-US",
+    ...(breadcrumb ? { breadcrumb: { "@id": ids.breadcrumb(path) } } : {}),
+  };
+}
+
+/** BreadcrumbList matching the visible breadcrumb on the page */
+export function breadcrumbList(path: string, items: { name: string; path: string }[]): Json {
+  return {
+    "@type": "BreadcrumbList",
+    "@id": ids.breadcrumb(path),
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
   };
 }
 

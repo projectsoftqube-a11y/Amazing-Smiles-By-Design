@@ -38,7 +38,7 @@ const r = (path: string, label: string, group: RouteGroup, published = false, no
 export const routes: RouteEntry[] = [
   // Core
   r("/", "Home", "core", true),
-  r("/about-us/", "About Us", "core"),
+  r("/about-us/", "About Us", "core", true),
   r("/about-us/dr-keyur-dudhat/", "Dr. Keyur Dudhat", "core"),
   r("/about-us/patient-reviews/", "Patient Reviews", "core"),
   r("/smile-gallery/", "Smile Gallery", "core"),

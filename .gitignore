@@ -49,5 +49,5 @@ desktop.ini
 # Local Claude Code settings
 .claude/settings.local.json
 
-# SEO source workbooks and raw exports stay local
-/*.xlsx
+# SEO source workbooks and raw exports stay local (docs/seo-sheets and anywhere else)
+*.xlsx

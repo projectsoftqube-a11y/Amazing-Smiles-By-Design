@@ -1,0 +1,124 @@
+.section {
+  padding-block: var(--space-section);
+  background: var(--white);
+}
+
+/* One card: copy on white, the patient's words on navy */
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-lift);
+}
+
+.copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-m);
+  padding: var(--space-xl) var(--space-l);
+  background:
+    radial-gradient(60% 70% at 0% 100%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+}
+
+.body {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.quoteCard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-m);
+  padding: var(--space-xl) var(--space-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
+    radial-gradient(70% 90% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+}
+
+/* Large serif quote mark behind the text */
+.glyph {
+  position: absolute;
+  top: -1.5rem;
+  right: 1.5rem;
+  z-index: -1;
+  font-family: var(--font-serif);
+  font-size: clamp(9rem, 7rem + 6vw, 14rem);
+  line-height: 1;
+  color: rgb(193 222 238 / 0.12);
+  pointer-events: none;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 0.25rem;
+  color: #f4c15d;
+}
+
+.stars svg {
+  fill: currentColor;
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--white);
+}
+
+.caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line-on-navy);
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--ice-300);
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--blue-500);
+}
+
+.date {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1199px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .copy,
+  .quoteCard {
+    padding: var(--space-l);
+  }
+}
+
+@media (max-width: 575px) {
+  .copy,
+  .quoteCard {
+    padding: var(--space-m);
+  }
+}

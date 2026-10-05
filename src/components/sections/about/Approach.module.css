@@ -1,0 +1,117 @@
+.section {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(35% 45% at 0% 0%, var(--ice-100) 0%, transparent 70%),
+    var(--white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* Heading stays in view while the staggered cards scroll past (desktop) */
+.head {
+  position: sticky;
+  top: 8rem;
+  display: grid;
+  justify-items: start;
+  gap: var(--space-m);
+}
+
+.intro {
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+/* ——— Four points, 2 × 2 ——— */
+.points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-s);
+}
+
+.point {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-l);
+  background: linear-gradient(160deg, var(--white) 0%, var(--ice-50) 100%);
+  transition:
+    border-color var(--dur-ui) var(--ease-out),
+    box-shadow 500ms var(--ease-expo);
+}
+
+/* Colour and depth only on hover; nothing moves */
+.point:hover {
+  border-color: var(--ice-300);
+  box-shadow: var(--shadow-soft);
+}
+
+/* The second and fourth cards sit a step lower for a staggered rhythm */
+.point:nth-child(even) {
+  margin-top: var(--space-l);
+}
+
+.pointIndex {
+  position: absolute;
+  top: 1.125rem;
+  right: 1.375rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--ice-300);
+}
+
+.pointIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.pointText {
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.pointText strong {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-family: var(--font-serif);
+  font-size: var(--step-h4);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--navy-800);
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l);
+  }
+
+  .head {
+    position: static;
+  }
+}
+
+@media (max-width: 575px) {
+  .points {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .point:nth-child(even) {
+    margin-top: 0;
+  }
+}

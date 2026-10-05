@@ -1,0 +1,392 @@
+/* Same ice-blue background as the home Visit us section and the footer */
+.section {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 50% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
+}
+
+.head {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-m);
+  align-items: stretch;
+  margin-top: var(--space-l);
+}
+
+/* ——— Address, hours and areas ——— */
+/* Two rows: address + hours, then the areas line pinned to the bottom edge */
+.info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  gap: var(--space-m) var(--space-l);
+  padding: var(--space-l);
+  border: 1px solid var(--white);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.infoHead {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+}
+
+.infoIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.address {
+  display: grid;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.address > span {
+  display: block;
+}
+
+.name {
+  color: var(--navy-800);
+  font-weight: 700;
+}
+
+.phoneLine {
+  display: grid;
+  justify-self: start;
+  margin-top: var(--space-s);
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 1.3rem + 0.9vw, 2.125rem);
+  line-height: 1.1;
+  text-decoration: none;
+  font-variant-numeric: lining-nums;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.phoneLine::before {
+  content: "Phone (call or text)";
+  margin-bottom: 0.375rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.phoneLine:hover {
+  color: var(--blue-700);
+}
+
+.blockTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.blockTitle svg {
+  color: var(--blue-700);
+}
+
+.hours {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.hours th,
+.hours td {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--line);
+  text-align: left;
+  font-size: var(--step-small);
+}
+
+.hours tr:last-child th,
+.hours tr:last-child td {
+  border-bottom: 0;
+}
+
+.hours th {
+  color: var(--navy-800);
+  font-weight: 600;
+}
+
+.hours td {
+  text-align: right;
+  white-space: nowrap;
+  color: var(--color-muted);
+}
+
+.hours tr[data-closed] td {
+  color: var(--blue-700);
+  font-weight: 600;
+}
+
+/* Today's row, marked by HoursToday after load */
+.hours tr[data-today] th,
+.hours tr[data-today] td {
+  color: var(--blue-700);
+}
+
+.hours tr[data-today] th::after {
+  content: "Today";
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-pill);
+  background: var(--navy-800);
+  color: var(--white);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 0.05em;
+}
+
+/* Areas we serve, pinned to the bottom of the card */
+.areas {
+  grid-column: 1 / -1;
+  align-self: end;
+  display: grid;
+  gap: 0.75rem;
+  padding: var(--space-m);
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-m);
+  background: var(--ice-50);
+}
+
+.areasHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--ice-200);
+}
+
+.areasHead .blockTitle {
+  margin-bottom: 0;
+}
+
+.areasAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--blue-700);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.areasAll:hover {
+  color: var(--navy-800);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.areasLine {
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* Town chips: links, as in the footer */
+.towns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.towns a {
+  display: grid;
+  place-items: center;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-s);
+  background: var(--white);
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    border-color var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.towns a:hover {
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: var(--white);
+}
+
+/* ——— New patients CTA (navy) ——— */
+.cta {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-m);
+  padding: var(--space-l);
+  border-radius: var(--radius-l);
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 14px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.ctaIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.ctaText {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--white);
+}
+
+.links {
+  display: grid;
+  width: 100%;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line-on-navy);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--line-on-navy);
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.links li:last-child .link {
+  border-bottom: 0;
+}
+
+.linkIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 10px;
+  background: rgb(193 222 238 / 0.14);
+  color: var(--ice-300);
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.linkLabel {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.linkArrow {
+  flex: none;
+  color: var(--ice-300);
+}
+
+/* Colour only on hover; nothing moves */
+.link:hover {
+  color: var(--ice-300);
+}
+
+.link:hover .linkIcon {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* 768–1199: the card spans the full width, so all seven towns fit one row */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .towns {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .info {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-m);
+  }
+
+  .cta {
+    padding: var(--space-m);
+  }
+}
+
+/* ≤389: the one-line link labels must fit inside the card at 320px */
+@media (max-width: 575px) {
+  .towns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 389px) {
+  .areas {
+    padding: 0.875rem;
+  }
+
+  .towns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cta {
+    min-width: 0;
+    padding: 1.25rem 1rem;
+  }
+
+  .link {
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .linkIcon {
+    width: 2rem;
+    height: 2rem;
+  }
+}

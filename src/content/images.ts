@@ -5,6 +5,8 @@ import galleryCase2BeforeImg from "@/assets/images/gallery-case-2-before.jpg";
 import galleryCase2AfterImg from "@/assets/images/gallery-case-2-after.jpg";
 import galleryCase3BeforeImg from "@/assets/images/gallery-case-3-before.jpg";
 import galleryCase3AfterImg from "@/assets/images/gallery-case-3-after.jpg";
+import aboutHeroImg from "@/assets/images/about-hero-dentist-exam.jpg";
+import aboutTechnologyImg from "@/assets/images/about-technology-dental-microscope.jpg";
 import doctorPortraitImg from "@/assets/images/dr-keyur-dudhat-portrait.jpg";
 import homeBannerImg from "@/assets/images/home-hero-banner.jpg";
 import homeBannerMobileImg from "@/assets/images/home-hero-banner-mobile.jpg";
@@ -188,6 +190,38 @@ export const images = {
       provider: "practice",
       licence: "Supplied by the client",
       downloaded: "2026-10-02",
+    },
+  },
+  /**
+   * About Us hero. Supplied by the client (downloaded file
+   * "middle-eastern-male-dentist-examining-patient-dental-office.jpg", 6720×4480,
+   * 16.5 MB); web master resized to 2400px wide (0.5 MB).
+   */
+  aboutHero: {
+    src: aboutHeroImg,
+    alt: "A dentist in blue scrubs examining a patient in a bright dental treatment room",
+    brief: "Dentist examining a patient in a bright treatment room",
+    position: "64% 45%",
+    source: {
+      provider: "practice",
+      licence: "Supplied by the client",
+      downloaded: "2026-10-05",
+    },
+  },
+  /**
+   * About Us "Technology We Use". Supplied by the client (downloaded file
+   * "dentist-doctor-treating-root-canals-using-microscope-dentistry-office.jpg",
+   * 2832×4256, 5.8 MB); web master resized to 1800px wide (0.7 MB).
+   */
+  aboutTechnology: {
+    src: aboutTechnologyImg,
+    alt: "A dentist looking through a dental microscope while treating a patient",
+    brief: "Dentist using a dental microscope",
+    position: "50% 35%",
+    source: {
+      provider: "practice",
+      licence: "Supplied by the client",
+      downloaded: "2026-10-05",
     },
   },
 } satisfies Record<string, SiteImage>;
