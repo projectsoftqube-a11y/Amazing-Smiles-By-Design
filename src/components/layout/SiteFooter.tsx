@@ -36,6 +36,12 @@ export function SiteFooter() {
 
           <ul role="list" className={styles.quick}>
             <li>
+              <a href={contactLinks.email} data-track="email_click">
+                <Icon name="mail" size={16} />
+                <span className={styles.email}>{practice.email}</span>
+              </a>
+            </li>
+            <li>
               <span>
                 <Icon name="phone" size={16} />
                 Fax {practice.fax.display}

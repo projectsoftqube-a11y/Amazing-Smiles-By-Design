@@ -91,6 +91,12 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* The email address may break on the narrowest phones rather than overflow */
+.quick .email {
+  display: inline;
+  overflow-wrap: anywhere;
+}
+
 .quick svg {
   flex: none;
   color: var(--blue-700);

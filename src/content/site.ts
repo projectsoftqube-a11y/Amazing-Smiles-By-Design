@@ -36,6 +36,7 @@ export const practice = {
     display: "(215) 639-1921",
     schema: "+1-215-639-1921",
   },
+  email: "info@amazingsmilesbydesign.com",
   googlePlaceId: "ChIJzZkTohhNwYkRwJ2tUx9cZ98",
 } as const;
 
@@ -45,6 +46,7 @@ export const napLine = `${practice.name}, ${practice.address.street}, ${practice
 export const contactLinks = {
   call: `tel:${practice.phone.e164}`,
   text: `sms:${practice.phone.e164}`,
+  email: `mailto:${practice.email}`,
   directions:
     "https://www.google.com/maps/dir/?api=1&destination=3101+Bristol+Road+Suite+1+Bensalem+PA+19020",
   map: `https://www.google.com/maps/place/?q=place_id:${practice.googlePlaceId}`,

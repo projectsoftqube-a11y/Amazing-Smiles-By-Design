@@ -9,6 +9,7 @@ const paths = {
   phone: (
     <path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3L20 15.5V19a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z" />
   ),
+  mail: <path d="M4 6h16v12H4V6Zm0 1 8 6 8-6" />,
   message: <path d="M4 5h16v11H9l-5 4V5Zm4 5h8M8 13h5" />,
   calendar: <path d="M4 6h16v14H4V6Zm0 4h16M8 3v4m8-4v4" />,
   arrowRight: <path d="M4 12h15m-6-6 6 6-6 6" />,
