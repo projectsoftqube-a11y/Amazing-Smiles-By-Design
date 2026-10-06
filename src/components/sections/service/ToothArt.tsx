@@ -99,3 +99,21 @@ export function ImplantView() {
     </svg>
   );
 }
+
+/** Gum health check: a probe measuring the pocket between gum and tooth, with depth marks */
+export function GumProbeView() {
+  return (
+    <svg viewBox="0 0 110 110" width="176" height="176" aria-hidden="true" focusable="false">
+      <rect x="4" y="56" width="102" height="54" rx="10" fill="#f3d3cf" />
+      <rect x="4" y="70" width="102" height="40" rx="8" fill="#ead9c0" />
+      <path d={SIDE_TOOTH} transform="translate(22 0)" fill="#ffffff" stroke="#9fb3c6" strokeWidth="1.5" />
+      {/* The pocket beside the tooth, below the gum line */}
+      <path d="M41 57c-3 6-3 13-1 19" stroke="#e57368" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.7" />
+      <path d="M8 58c14 0 22-2 34-2M74 56c12 0 18 2 30 2" stroke="#e57368" strokeWidth="1.5" fill="none" />
+      {/* Probe: handle, then the tip down into the pocket with depth marks */}
+      <path d="M14 10 34 46" stroke="#7d8a97" strokeWidth="4" strokeLinecap="round" />
+      <path d="M34 46 39 74" stroke="#5f6c79" strokeWidth="2" strokeLinecap="round" />
+      <path d="M34.6 52.5h3M35.6 58.5h3M36.6 64.5h3" stroke="#182752" strokeWidth="1.2" />
+    </svg>
+  );
+}

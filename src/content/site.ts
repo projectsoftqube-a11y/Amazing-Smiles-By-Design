@@ -55,6 +55,9 @@ export const contactLinks = {
     "https://maps.google.com/maps?q=Amazing+Smiles+By+Design,+3101+Bristol+Road+Suite+1,+Bensalem,+PA+19020&z=15&output=embed",
 } as const;
 
+/** Google Maps directions to the office starting from a town ("Langhorne, PA") */
+export const directionsFrom = (origin: string) => `${contactLinks.directions}&origin=${encodeURIComponent(origin)}`;
+
 export type DayHours = {
   day: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
   /** 24h "HH:MM", or null when closed */

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Link from "@/components/ui/SiteLink";
-import { linkTo } from "@/content/routes";
+import { getRoute, linkTo } from "@/content/routes";
 
 const TOKEN = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
 
@@ -32,6 +32,9 @@ function renderLinks(text: string) {
 
 function anchor(label: string, href: string) {
   if (/^(tel:|sms:|mailto:|https?:)/.test(href)) return <a href={href}>{label}</a>;
+  // Location handoffs: service + location pages that aren't live yet stay unlinked text
+  const route = getRoute(href);
+  if (route?.group === "service-location" && !route.published) return label;
   return <Link href={linkTo(href)}>{label}</Link>;
 }
 

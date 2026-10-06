@@ -254,6 +254,66 @@ export function serviceHubSchema({
   );
 }
 
+/**
+ * Town page (06 Locations, each 03 Developer Handoff.md, 3a): WebPage about the dentist,
+ * its BreadcrumbList and the Dentist node with hours and this page's areaServed only.
+ */
+export function locationPageSchema({
+  meta,
+  breadcrumb,
+  areaServed,
+}: {
+  meta: { path: string; title: string; description: string };
+  breadcrumb: { name: string; path: string }[];
+  areaServed: Json[];
+}): Json {
+  return graph(
+    webPageEntity({ path: meta.path, name: meta.title, description: meta.description, breadcrumb: true, mainEntity: null }),
+    breadcrumbList(meta.path, breadcrumb),
+    { ...dentistSummary({ withHours: true }), areaServed },
+    websiteEntity(),
+  );
+}
+
+/** Areas We Serve hub (3a): CollectionPage whose main entity is the ItemList of town pages; the Dentist lists every area */
+export function locationsHubSchema({
+  meta,
+  breadcrumb,
+  towns,
+  areaServed,
+}: {
+  meta: { path: string; title: string; description: string };
+  breadcrumb: { name: string; path: string }[];
+  towns: { name: string; path: string }[];
+  areaServed: Json[];
+}): Json {
+  const listId = `${absoluteUrl(meta.path)}#areas`;
+  return graph(
+    webPageEntity({
+      path: meta.path,
+      name: meta.title,
+      description: meta.description,
+      type: "CollectionPage",
+      breadcrumb: true,
+      mainEntity: listId,
+    }),
+    breadcrumbList(meta.path, breadcrumb),
+    {
+      "@type": "ItemList",
+      "@id": listId,
+      name: `Areas served by ${practice.name}`,
+      itemListElement: towns.map((town, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: town.name,
+        url: absoluteUrl(town.path),
+      })),
+    },
+    { ...dentistSummary({ withHours: true }), areaServed },
+    websiteEntity(),
+  );
+}
+
 export function dentistPerson({
   description,
   image,
