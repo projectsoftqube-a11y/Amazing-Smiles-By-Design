@@ -135,6 +135,8 @@ export const routes: RouteEntry[] = [
   r("/hipaa-notice-of-privacy-practices/", "HIPAA Notice of Privacy Practices", "legal", true),
   r("/accessibility/", "Accessibility", "legal", true),
   r("/sitemap/", "Sitemap", "utility", true),
+  // After a form is sent: noindex, so it stays out of sitemap.xml and the HTML sitemap
+  r("/thank-you/", "Thank You", "utility", true, true),
 
   // Paid traffic (noindex)
   r("/lp/dental-implants/", "Dental Implants (paid)", "paid", false, true),

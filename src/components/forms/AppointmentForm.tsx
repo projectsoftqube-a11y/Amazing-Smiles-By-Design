@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, useTransition, type FormEvent } from "react";
 import Link from "@/components/ui/SiteLink";
 import buttonStyles from "@/components/ui/Button.module.css";
@@ -33,9 +34,10 @@ type AppointmentFormProps = {
  * Submitted with a transition rather than `<form action>`, so a validation error
  * keeps everything the visitor typed. Errors are announced, linked to their fields
  * and cleared as the field is edited. A successful request pushes a conversion
- * event to the dataLayer (Scheduling handoff: track submissions).
+ * event to the dataLayer (Scheduling handoff: track submissions), then opens /thank-you/.
  */
 export function AppointmentForm({ variant = "appointment", defaultInterest, note, submitLabel }: AppointmentFormProps) {
+  const router = useRouter();
   const [state, setState] = useState<AppointmentState>({ status: "idle" });
   const [pending, startTransition] = useTransition();
   const [interest, setInterest] = useState<string>(defaultInterest ?? "");
@@ -55,13 +57,15 @@ export function AppointmentForm({ variant = "appointment", defaultInterest, note
         event: variant === "emergency" ? "emergency_request" : "appointment_request",
         page_path: window.location.pathname,
       });
+      // Then the thank-you page (the inline message below stays as a fallback while it loads)
+      router.push(`/thank-you/?type=${variant}`);
     }
     if (state.status === "invalid" && focusAfterSubmit.current) {
       focusAfterSubmit.current = false;
       // First invalid field in page order, not in the order the rules run
       formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
     }
-  }, [state, variant]);
+  }, [state, variant, router]);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -1,22 +1,202 @@
 .section {
   position: relative;
-  padding-block: var(--space-section);
   overflow: clip;
+  padding-block: var(--space-xl) var(--space-section);
+  background:
+    radial-gradient(45% 55% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(35% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
 }
 
 .inner {
-  position: relative;
   display: grid;
-  gap: var(--space-m);
-  justify-items: start;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+  gap: var(--space-l);
 }
 
-.inner p {
-  max-width: 52ch;
+/* ===== Main card ===== */
+.card {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  border: 1px solid var(--white);
+  border-radius: 40px;
+  background:
+    radial-gradient(70% 60% at 100% 0%, rgb(217 234 244 / 0.9) 0%, transparent 70%),
+    rgb(255 255 255 / 0.95);
+  box-shadow:
+    0 2px 4px rgb(14 24 56 / 0.04),
+    0 40px 80px -32px rgb(14 24 56 / 0.35);
+}
+
+/* Teeth with one missing, over a large 404 */
+.art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin-bottom: var(--space-2xs);
+  padding: var(--space-m) var(--space-m) var(--space-s);
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(60% 80% at 50% 30%, var(--white) 0%, transparent 75%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--ice-300) 100%);
+}
+
+.art svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 16rem;
+  height: auto;
+}
+
+.code {
+  margin-top: -0.25rem;
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: clamp(4.5rem, 3.5rem + 5vw, 8rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  opacity: 0.12;
+}
+
+.title {
+  font-size: var(--step-h1);
+  line-height: 1.1;
+}
+
+.title em {
+  color: var(--blue-700);
+  font-style: italic;
+}
+
+.lead {
+  max-width: 34rem;
+  color: var(--ink);
+  font-size: var(--step-lead);
+  line-height: 1.6;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--blue-700);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* ===== Popular pages ===== */
+.popular {
+  display: grid;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  border-radius: 32px;
+  background:
+    radial-gradient(70% 60% at 100% 0%, rgb(44 106 154 / 0.7) 0%, transparent 70%),
+    var(--navy-900);
+  box-shadow: var(--shadow-lift);
+}
+
+.popularLabel {
+  color: var(--ice-300);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.popular ul {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.popular li a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid rgb(193 222 238 / 0.16);
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.05);
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    border-color var(--dur-ui) var(--ease-out);
+}
+
+.popular li a:hover {
+  border-color: var(--ice-300);
+  background: rgb(255 255 255 / 0.12);
+}
+
+.popular li a > svg {
+  color: var(--ice-300);
+}
+
+.popularIcon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 10px;
+  background: rgb(193 222 238 / 0.16);
+  color: var(--ice-300);
+}
+
+.sitemap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ice-300);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sitemap:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 991px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .card {
+    padding: var(--space-m);
+    border-radius: 30px;
+  }
+
+  .actions {
+    display: grid;
+    width: 100%;
+  }
 }

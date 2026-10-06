@@ -124,7 +124,7 @@ export function SiteFooter() {
           </ul>
           <p className={styles.credit}>
             Design and Developed By{" "}
-            <a href="https://www.softqubes.com/" target="_blank" rel="noopener">
+            <a href="https://softqubes.com/" target="_blank" rel="noopener">
               Softqube Technologies LLC<span className="visually-hidden"> (opens in a new tab)</span>
             </a>
           </p>
