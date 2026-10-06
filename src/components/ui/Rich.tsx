@@ -2,10 +2,10 @@ import { Fragment } from "react";
 import Link from "@/components/ui/SiteLink";
 import { getRoute, linkTo } from "@/content/routes";
 
-const TOKEN = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
+const TOKEN = /(\*\*[^*]+\*\*|\*[^*\s][^*]*\*|\[[^\]]+\]\([^)]+\))/g;
 
 /**
- * Renders content-file text with its inline **bold** and [label](/path) markup, so
+ * Renders content-file text with its inline **bold**, *italic* and [label](/path) markup, so
  * copy stays verbatim in src/content. Internal links go through SiteLink (no
  * prefetch for unbuilt pages); tel:/sms: links are plain anchors.
  */
@@ -16,6 +16,10 @@ export function Rich({ text }: { text: string }) {
       {parts.map((part, index) => {
         if (part.startsWith("**") && part.endsWith("**")) {
           return <strong key={index}>{renderLinks(part.slice(2, -2))}</strong>;
+        }
+        // *Italic* notes inside a paragraph ("*This page is for Parkland in Bucks County …*")
+        if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
+          return <em key={index}>{part.slice(1, -1)}</em>;
         }
         const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
         if (link) return <Fragment key={index}>{anchor(link[1], link[2])}</Fragment>;

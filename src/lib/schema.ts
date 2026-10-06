@@ -211,6 +211,32 @@ export function servicePageSchema({
   );
 }
 
+/**
+ * Service + location page (07, each 03 Developer Handoff.md, 3a): MedicalWebPage (or WebPage)
+ * about the dentist, its BreadcrumbList and the Dentist with this page's areaServed
+ * (plus opening hours on the emergency pages).
+ */
+export function serviceLocationSchema({
+  meta,
+  breadcrumb,
+  type,
+  areaServed,
+  withHours = false,
+}: {
+  meta: { path: string; title: string; description: string };
+  breadcrumb: { name: string; path: string }[];
+  type: string;
+  areaServed: Json[];
+  withHours?: boolean;
+}): Json {
+  return graph(
+    webPageEntity({ path: meta.path, name: meta.title, description: meta.description, type, breadcrumb: true, mainEntity: null }),
+    breadcrumbList(meta.path, breadcrumb),
+    { ...dentistSummary({ withHours }), areaServed },
+    websiteEntity(),
+  );
+}
+
 /** Service hub graph: CollectionPage whose main entity is the ItemList of its treatments */
 export function serviceHubSchema({
   meta,

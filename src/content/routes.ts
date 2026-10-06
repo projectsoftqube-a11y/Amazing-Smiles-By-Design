@@ -115,13 +115,15 @@ export const routes: RouteEntry[] = [
   r("/dentist-holmesburg-philadelphia/", "Holmesburg", "location", true),
   r("/dentist-fox-chase-philadelphia/", "Fox Chase", "location", true),
 
-  // Service + location (/clear-aligners-langhorne-pa/ is on hold until Invisalign status is confirmed)
-  r("/dental-implants-bucks-county/", "Dental Implants, Bucks County", "service-location"),
-  r("/dental-implants-feasterville-pa/", "Dental Implants, Feasterville", "service-location"),
-  r("/dental-implants-langhorne-pa/", "Dental Implants, Langhorne", "service-location"),
-  r("/cosmetic-dentist-bucks-county/", "Cosmetic Dentist, Bucks County", "service-location"),
-  r("/emergency-dentist-bucks-county/", "Emergency Dentist, Bucks County", "service-location"),
-  r("/emergency-dentist-langhorne-pa/", "Emergency Dentist, Langhorne", "service-location"),
+  // Service + location. The Invisalign page is built but stays unpublished until the
+  // practice confirms it still offers Invisalign (handoff: conditional page).
+  r("/dental-implants-bucks-county/", "Dental Implants, Bucks County", "service-location", true),
+  r("/dental-implants-feasterville-pa/", "Dental Implants, Feasterville", "service-location", true),
+  r("/dental-implants-langhorne-pa/", "Dental Implants, Langhorne", "service-location", true),
+  r("/cosmetic-dentist-bucks-county/", "Cosmetic Dentist, Bucks County", "service-location", true),
+  r("/emergency-dentist-bucks-county/", "Emergency Dentist, Bucks County", "service-location", true),
+  r("/emergency-dentist-langhorne-pa/", "Emergency Dentist, Langhorne", "service-location", true),
+  r("/clear-aligners-langhorne-pa/", "Clear Aligners, Langhorne", "service-location"),
 
   // Content, legal, utility
   r("/blog/", "Blog", "content"),

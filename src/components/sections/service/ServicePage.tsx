@@ -6,7 +6,7 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import type { Cta, ServiceExtras, ServicePageContent } from "@/content/service-page";
 import { practice } from "@/content/site";
-import { faqPage, graph, servicePageSchema } from "@/lib/schema";
+import { faqPage, graph, serviceLocationSchema, servicePageSchema } from "@/lib/schema";
 import { ServiceHeroCard } from "./ServiceHeroCard";
 import { ServiceSections } from "./ServiceSections";
 import styles from "./ServicePage.module.css";
@@ -21,7 +21,16 @@ export function ServicePage({ content, extras }: { content: ServicePageContent; 
   const { meta, breadcrumb, hero, procedure, withHours, sections, faqs, finalCta } = content;
   const emergency = Boolean(hero.safety);
   const callTrack = emergency ? "emergency_click" : "call_click";
-  const coreSchema = servicePageSchema({ meta, breadcrumb, procedure, withHours });
+  // Service + location pages carry their own page type and areaServed (07 handoffs)
+  const coreSchema = content.areaServed
+    ? serviceLocationSchema({
+        meta,
+        breadcrumb,
+        type: content.pageType ?? "MedicalWebPage",
+        areaServed: content.areaServed,
+        withHours,
+      })
+    : servicePageSchema({ meta, breadcrumb, procedure, withHours });
   const faqSchema = graph(faqPage({ path: meta.path, items: faqs.items }));
   const slug = meta.path.split("/").filter(Boolean).pop();
 

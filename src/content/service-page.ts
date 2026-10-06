@@ -37,6 +37,9 @@ export type ServicePageContent = {
   sections: ServiceSection[];
   faqs: { title: string; items: { question: string; answer: string }[] };
   finalCta: { title: { lead: string; accent: string }; body: string; buttons: Cta[]; links: Cta[] };
+  /** Service + location pages (07): the handoff's page type and the Dentist areaServed */
+  pageType?: "MedicalWebPage" | "WebPage";
+  areaServed?: Record<string, unknown>[];
 };
 
 /** Hero side card: page icon, three key facts and the related pages (design only, from the copy) */
@@ -134,4 +137,33 @@ export type SectionDesignName =
   | "force-compare"
   | "night-signs"
   | "guard-compare"
-  | "guard-making";
+  | "guard-making"
+  // Service + location (ServiceLocationDesigns.tsx)
+  | "option-ladder"
+  | "angle-depth"
+  | "phase-track"
+  | "town-times"
+  | "road-strip"
+  | "consult-agenda"
+  | "criteria-toggles"
+  | "insurance-card"
+  | "two-routes"
+  | "ripple-effects"
+  | "three-way"
+  | "fee-tags"
+  | "consult-chat"
+  | "option-swatches"
+  | "makeover-pairs"
+  | "time-ruler"
+  | "hours-board"
+  | "first-aid"
+  | "eta-board"
+  | "same-day"
+  | "price-spot"
+  | "open-days"
+  | "do-dont"
+  | "symptom-flags"
+  | "visit-steps"
+  | "checkup-cadence"
+  | "timeline-table"
+  | "aligner-day";

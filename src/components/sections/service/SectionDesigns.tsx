@@ -6,6 +6,7 @@ import { carrierLogos } from "@/content/insurance";
 import type { SectionDesignName } from "@/content/service-page";
 import { membershipPlans } from "@/content/site";
 import { COSMETIC_DESIGNS } from "./CosmeticDesigns";
+import { SERVICE_LOCATION_DESIGNS } from "./ServiceLocationDesigns";
 import { RESTORATIVE_DESIGNS } from "./RestorativeDesigns";
 import { aroundList, firstList, Lead, P, paragraphs, Shell, subs, type DesignProps } from "./DesignKit";
 import styles from "./SectionDesigns.module.css";
@@ -1098,6 +1099,7 @@ function BudgetCards({ section, eyebrow }: DesignProps) {
 const DESIGNS: Record<DesignName, (props: DesignProps) => ReactNode> = {
   ...RESTORATIVE_DESIGNS,
   ...COSMETIC_DESIGNS,
+  ...SERVICE_LOCATION_DESIGNS,
   "exam-bento": ExamBento,
   "signs-grid": SignsGrid,
   "scan-panel": ScanPanel,
