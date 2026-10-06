@@ -115,25 +115,25 @@ export const routes: RouteEntry[] = [
   r("/dentist-holmesburg-philadelphia/", "Holmesburg", "location", true),
   r("/dentist-fox-chase-philadelphia/", "Fox Chase", "location", true),
 
-  // Service + location. The Invisalign page is built but stays unpublished until the
-  // practice confirms it still offers Invisalign (handoff: conditional page).
+  // Service + location. The Invisalign page is conditional (handoff): live on staging; the
+  // practice should confirm it still offers Invisalign before the real domain points here.
   r("/dental-implants-bucks-county/", "Dental Implants, Bucks County", "service-location", true),
   r("/dental-implants-feasterville-pa/", "Dental Implants, Feasterville", "service-location", true),
   r("/dental-implants-langhorne-pa/", "Dental Implants, Langhorne", "service-location", true),
   r("/cosmetic-dentist-bucks-county/", "Cosmetic Dentist, Bucks County", "service-location", true),
   r("/emergency-dentist-bucks-county/", "Emergency Dentist, Bucks County", "service-location", true),
   r("/emergency-dentist-langhorne-pa/", "Emergency Dentist, Langhorne", "service-location", true),
-  r("/clear-aligners-langhorne-pa/", "Clear Aligners, Langhorne", "service-location"),
+  r("/clear-aligners-langhorne-pa/", "Clear Aligners, Langhorne", "service-location", true),
 
   // Content, legal, utility
   // Live but noindex (and out of sitemap.xml) until the first 3 posts are published
   r("/blog/", "Blog", "content", true, true),
-  // Legal (09). Built; each goes live once the practice fills in its [CONFIRM] items and
-  // approves it (handoff: "don't publish with placeholders"). The disclaimer has none.
+  // Legal (09). Live on staging; the [CONFIRM] items show as "to confirm" boxes and must be
+  // filled in and approved by the practice before the real domain points here (handoff).
   r("/disclaimer/", "Disclaimer", "legal", true),
-  r("/privacy-policy/", "Privacy Policy", "legal"),
-  r("/hipaa-notice-of-privacy-practices/", "HIPAA Notice of Privacy Practices", "legal"),
-  r("/accessibility/", "Accessibility", "legal"),
+  r("/privacy-policy/", "Privacy Policy", "legal", true),
+  r("/hipaa-notice-of-privacy-practices/", "HIPAA Notice of Privacy Practices", "legal", true),
+  r("/accessibility/", "Accessibility", "legal", true),
   r("/sitemap/", "Sitemap", "utility"),
 
   // Paid traffic (noindex)

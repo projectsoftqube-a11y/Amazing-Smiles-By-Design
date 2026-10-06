@@ -8,18 +8,18 @@ import { privacyPolicy } from "./privacy-policy";
 const all: LegalPageContent[] = [privacyPolicy, hipaaNoticeOfPrivacyPractices, accessibility, disclaimer];
 
 /**
- * Legal pages that can be served. Handoff: "don't publish with placeholders", so a page
- * goes live only when its route is published AND every [CONFIRM] item has been filled in.
- * In development every page renders, with its placeholders marked, for review.
+ * Legal pages served when their route is published. On staging all four are live and any
+ * "[CONFIRM: …]" item shows as a marked box (hasPlaceholders lists what's still open);
+ * the practice must fill them in before the real domain points at this site (handoff).
  */
 export const legalPages: Record<string, LegalPageContent> = Object.fromEntries(
   all
-    .filter(
-      (page) =>
-        process.env.NODE_ENV !== "production" || (getRoute(page.meta.path)?.published && !hasPlaceholders(page)),
-    )
+    .filter((page) => process.env.NODE_ENV !== "production" || getRoute(page.meta.path)?.published)
     .map((page) => [page.meta.path.replaceAll("/", ""), page]),
 );
+
+/** Paths that still contain [CONFIRM] items */
+export const legalPagesWithPlaceholders = all.filter(hasPlaceholders).map((page) => page.meta.path);
 
 export const legalSlugs = Object.keys(legalPages);
 
