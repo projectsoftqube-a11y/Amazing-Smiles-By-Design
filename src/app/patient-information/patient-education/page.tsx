@@ -1,13 +1,16 @@
+import { LatestArticles } from "@/components/sections/blog/BlogSections";
 import { FinalCta } from "@/components/sections/home/FinalCta";
 import { HeroPanel } from "@/components/sections/patient/PatientShared";
 import { EducationTopics } from "@/components/sections/patient/ResourceSections";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { blogPosts } from "@/content/pages/blog";
 import {
   educationBreadcrumb,
   educationFinalCta,
   educationHero,
+  educationLatest,
   educationMeta,
   educationTopics,
 } from "@/content/pages/patient-education";
@@ -20,10 +23,7 @@ export const metadata = buildMetadata(educationMeta);
 /** CollectionPage + BreadcrumbList + Dentist (03 Developer Handoff.md, 3a) */
 const schema = infoPageSchema({ meta: educationMeta, breadcrumb: educationBreadcrumb, type: "CollectionPage" });
 
-/**
- * "Latest Articles" (the 6 newest /blog/ posts) is left out until the blog has posts;
- * the handoff says to hide the block until then (copy is kept in patient-education.ts).
- */
+/** "Latest Articles" lists the 6 newest /blog/ posts (handoff: hidden while the blog has none) */
 export default function PatientEducationPage() {
   return (
     <>
@@ -60,6 +60,12 @@ export default function PatientEducationPage() {
       />
 
       <EducationTopics />
+      <LatestArticles
+        id="latest-articles-title"
+        title={educationLatest.title}
+        posts={blogPosts}
+        link={educationLatest.link}
+      />
       <FinalCta
         id="education-book-title"
         title={educationFinalCta.title}

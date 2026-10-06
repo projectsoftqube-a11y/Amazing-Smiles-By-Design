@@ -102,16 +102,60 @@
   color: var(--blue-700);
 }
 
-/* ===== Post feed (shown once posts exist) ===== */
+/* Newest guide at the top of the hero card */
+.latest {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem 1.125rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(80% 100% at 100% 0%, rgb(44 106 154 / 0.7) 0%, transparent 70%),
+    var(--navy-900);
+  text-decoration: none;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.latest .soon {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.latestTitle {
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.latest:hover .latestTitle {
+  text-decoration: underline;
+  text-decoration-color: var(--ice-300);
+  text-underline-offset: 0.2em;
+}
+
+.latestMeta {
+  color: var(--slate-on-navy);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* ===== Post feed and post cards ===== */
 .feed {
   padding-block: var(--space-section);
   background: var(--white);
 }
 
-.feedTitle {
+.feedHead {
+  --eyebrow-align: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
   margin-bottom: var(--space-l);
-  font-size: var(--step-h2);
   text-align: center;
+}
+
+.feedTitle {
+  font-size: var(--step-h2);
 }
 
 .posts {
@@ -120,16 +164,112 @@
   gap: var(--space-s);
 }
 
+.feedLink {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-l);
+}
+
+.feedLink a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: 1.5px solid var(--navy-800);
+  border-radius: var(--radius-pill);
+  color: var(--navy-800);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.feedLink a:hover {
+  background: var(--navy-800);
+  color: var(--white);
+}
+
 .post {
   position: relative;
   display: grid;
-  align-content: start;
-  gap: 0.75rem;
-  padding: var(--space-m);
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 26px;
+  border-radius: 28px;
   background: var(--white);
   box-shadow: var(--shadow-soft);
+  transition:
+    box-shadow var(--dur-ui) var(--ease-out),
+    border-color var(--dur-ui) var(--ease-out);
+}
+
+.post:hover {
+  border-color: var(--ice-300);
+  box-shadow: var(--shadow-lift);
+}
+
+.postCover {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  padding: 1rem 1.5rem;
+  background:
+    radial-gradient(70% 70% at 30% 20%, var(--white) 0%, transparent 70%),
+    linear-gradient(160deg, var(--ice-100) 0%, var(--ice-300) 100%);
+}
+
+/* Cover photo from the post document: its 3:2 banner has the title built in, so the
+   slot keeps that ratio and never crops the text */
+.postPhoto {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  padding: 0;
+}
+
+.postPhoto img {
+  transition: transform 600ms var(--ease-out);
+}
+
+.post:hover .postPhoto img {
+  transform: scale(1.04);
+}
+
+.postCover svg {
+  width: 100%;
+  max-width: 22rem;
+  height: auto;
+  transition: transform 600ms var(--ease-out);
+}
+
+.post:hover .postCover svg {
+  transform: scale(1.04);
+}
+
+.postCover_implant {
+  background:
+    radial-gradient(70% 70% at 70% 20%, var(--white) 0%, transparent 70%),
+    linear-gradient(200deg, var(--ice-50) 0%, var(--ice-200) 100%);
+}
+
+.postCover_emergency {
+  background:
+    radial-gradient(60% 60% at 20% 80%, var(--white) 0%, transparent 70%),
+    linear-gradient(160deg, var(--ice-200) 0%, var(--ice-100) 100%);
+}
+
+.postCover_membership {
+  background:
+    radial-gradient(70% 70% at 80% 80%, var(--white) 0%, transparent 70%),
+    linear-gradient(140deg, var(--ice-300) 0%, var(--ice-50) 100%);
+}
+
+.postBody {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.75rem;
+  padding: var(--space-m);
 }
 
 .postMeta {
@@ -167,9 +307,35 @@
   border-radius: inherit;
 }
 
+.postTitle:focus-visible {
+  outline: none;
+}
+
+.postTitle:focus-visible::after {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
 .postExcerpt {
   color: var(--slate-600);
   line-height: 1.6;
+}
+
+.postMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--blue-700);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.postMore svg {
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.post:hover .postMore svg {
+  transform: translateX(3px);
 }
 
 /* ===== Browse by Topic ===== */
@@ -321,6 +487,37 @@
   color: var(--white);
 }
 
+/* The topic's published guides, above its treatment links */
+.topicGuides {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.topicGuides a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 14px;
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.topicGuides a:hover {
+  background: var(--ice-200);
+}
+
+.topicGuides svg {
+  margin-top: calc((1lh - 16px) / 2);
+  color: var(--blue-700);
+}
+
 /* ===== More Patient Resources ===== */
 .resources {
   padding-block: var(--space-xl);
@@ -397,6 +594,42 @@
 
 .resourceLink:hover .resourceArrow {
   transform: translateX(3px);
+}
+
+/* Featured first card (4 or 7 posts): full width, cover beside the text, the cover's
+   full 3:2 artwork shown uncropped */
+@media (min-width: 992px) {
+  /* Three across under the featured card, also on small laptops */
+  .posts.featured {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .featured > li:first-child {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    grid-template-rows: none;
+  }
+
+  /* Keeps the banner's 3:2 shape even when the text column is taller, so it never crops */
+  .featured > li:first-child .postCover {
+    align-self: center;
+    aspect-ratio: 3 / 2;
+  }
+
+  .featured > li:first-child .postBody {
+    align-content: center;
+    grid-template-rows: none;
+    gap: 1rem;
+    padding: var(--space-l);
+  }
+
+  .featured > li:first-child .postTitle {
+    font-size: var(--step-h3);
+  }
+
+  .featured > li:first-child .postExcerpt {
+    font-size: var(--step-lead);
+  }
 }
 
 /* ===== Responsive ===== */

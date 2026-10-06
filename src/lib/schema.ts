@@ -425,6 +425,58 @@ export function webPageEntity({
   };
 }
 
+/**
+ * Blog post graph (Blog hub handoff: Article schema, author Dr. Keyur Dudhat when he
+ * reviews it; every post carries his byline): WebPage, BlogPosting with the dated byline,
+ * its BreadcrumbList, the FAQPage for the visible FAQs, the Person and the short Dentist node.
+ */
+export function blogPostSchema({
+  meta,
+  headline,
+  breadcrumb,
+  published,
+  updated,
+  section,
+  faqs,
+  image,
+}: {
+  meta: { path: string; title: string; description: string };
+  headline: string;
+  /** Absolute URL of the cover photo, when the post has one */
+  image?: string;
+  breadcrumb: { name: string; path: string }[];
+  published: string;
+  updated: string;
+  section: string;
+  faqs: { question: string; answer: string }[];
+}): Json {
+  const url = absoluteUrl(meta.path);
+  return graph(
+    webPageEntity({ path: meta.path, name: meta.title, description: meta.description, breadcrumb: true, mainEntity: `${url}#article` }),
+    {
+      "@type": "BlogPosting",
+      "@id": `${url}#article`,
+      headline,
+      description: meta.description,
+      url,
+      mainEntityOfPage: { "@id": ids.webpage(meta.path) },
+      datePublished: published,
+      dateModified: updated,
+      articleSection: section,
+      ...(image ? { image } : {}),
+      inLanguage: "en-US",
+      author: { "@id": ids.person },
+      publisher: { "@id": ids.dentist },
+      isPartOf: { "@id": ids.website },
+    },
+    breadcrumbList(meta.path, breadcrumb),
+    faqPage({ path: meta.path, items: faqs }),
+    dentistPerson(),
+    dentistSummary(),
+    websiteEntity(),
+  );
+}
+
 /** BreadcrumbList matching the visible breadcrumb on the page */
 export function breadcrumbList(path: string, items: { name: string; path: string }[]): Json {
   return {

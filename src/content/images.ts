@@ -16,6 +16,10 @@ import homeBannerMobileImg from "@/assets/images/home-hero-banner-mobile.jpg";
 import homeCareImg from "@/assets/images/home-welcome-team.jpg";
 import homeHeroImg from "@/assets/images/home-hero-dental-consultation.jpg";
 import homeTechnologyImg from "@/assets/images/home-technology-cbct-patient.jpg";
+import blogVeneersCoverImg from "@/assets/images/blog-porcelain-veneers-last-cover.jpg";
+import blogImplantCostCoverImg from "@/assets/images/blog-dental-implant-cost-cover.jpg";
+import blogEmergenciesCoverImg from "@/assets/images/blog-dental-emergencies-cover.jpg";
+import blogNoInsuranceCoverImg from "@/assets/images/blog-no-dental-insurance-cover.jpg";
 
 /**
  * Image registry. Every photo on the site is listed here with its source and licence,
@@ -41,7 +45,8 @@ export type SiteImage = {
   /** CSS object-position for art-directed crops */
   position?: string;
   source: {
-    provider: "magnific" | "unsplash" | "pexels" | "practice";
+    /** "content-team": supplied inside the SEO team's content documents */
+    provider: "magnific" | "unsplash" | "pexels" | "practice" | "content-team";
     id?: string;
     url?: string;
     author?: string;
@@ -111,6 +116,55 @@ export const images = {
       provider: "practice",
       licence: "Supplied by the client",
       downloaded: "2026-10-02",
+    },
+  },
+  /*
+   * Blog covers: the banners embedded in the SEO team's post documents (1536×1024, title and
+   * logo built into the artwork). The docs' brief says covers are made in GPT, so these are
+   * likely AI-generated; used at the user's request (6 Oct 2026) as the team supplied them.
+   */
+  blogVeneersCover: {
+    src: blogVeneersCoverImg,
+    alt: "Smiling woman with natural-looking white teeth beside the title How Long Do Porcelain Veneers Last?",
+    brief: "Cover banner: How Long Do Porcelain Veneers Last?",
+    position: "50% 50%",
+    source: {
+      provider: "content-team",
+      licence: "Supplied by the SEO team in docs/seo-content/08 Blog/01 Posts/01 - How Long Do Porcelain Veneers Last.docx",
+      downloaded: "2026-10-06",
+    },
+  },
+  blogImplantCostCover: {
+    src: blogImplantCostCoverImg,
+    alt: "Model of a dental implant between natural teeth, beside the title How Much Do Dental Implants Cost in Bensalem, PA?",
+    brief: "Cover banner: How Much Do Dental Implants Cost in Bensalem, PA?",
+    position: "50% 50%",
+    source: {
+      provider: "content-team",
+      licence: "Supplied by the SEO team in docs/seo-content/08 Blog/01 Posts/02 - Dental Implant Cost in Bensalem.docx",
+      downloaded: "2026-10-06",
+    },
+  },
+  blogEmergenciesCover: {
+    src: blogEmergenciesCoverImg,
+    alt: "Woman holding an ice pack to her cheek with her phone nearby, beside the title Dental Emergencies: What Counts and What to Do First",
+    brief: "Cover banner: Dental Emergencies: What Counts and What to Do First",
+    position: "50% 50%",
+    source: {
+      provider: "content-team",
+      licence: "Supplied by the SEO team in docs/seo-content/08 Blog/01 Posts/03 - Dental Emergencies What to Do First.docx",
+      downloaded: "2026-10-06",
+    },
+  },
+  blogNoInsuranceCover: {
+    src: blogNoInsuranceCoverImg,
+    alt: "Smiling patient reading a plan with a dental team member, beside the title No Dental Insurance in Bensalem? How to Afford Care",
+    brief: "Cover banner: No Dental Insurance in Bensalem? How to Afford Care",
+    position: "50% 50%",
+    source: {
+      provider: "content-team",
+      licence: "Supplied by the SEO team in docs/seo-content/08 Blog/01 Posts/04 - No Dental Insurance in Bensalem.docx",
+      downloaded: "2026-10-06",
     },
   },
   /*

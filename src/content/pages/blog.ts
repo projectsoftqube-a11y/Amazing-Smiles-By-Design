@@ -1,18 +1,21 @@
+import { formatPostDate, readingMinutes, type PostArt } from "@/content/blog-post";
+import type { SiteImage } from "@/content/images";
 import { appointmentHref } from "@/content/navigation";
+import { postCovers, posts } from "./blog/posts";
 
 /**
  * Blog hub copy, verbatim from docs/seo-content/08 Blog/00 Blog Hub/Blog hub/02 Content.md (Final v1).
  * Headings and link labels use "&" (client rule); paragraphs keep "and".
- * Handoff: noindex, follow (and out of sitemap.xml) until the first 3 posts are published;
- * the post feed stays hidden until the first post exists.
+ * Handoff: noindex, follow until the first 3 posts are published, then index it, add it to
+ * sitemap.xml and update the hero text. The first 4 posts arrived 6 Oct 2026, so the page is
+ * indexed and the "coming soon" wording in the hero and meta description was updated.
  */
 
 export const blogMeta = {
   path: "/blog/",
   title: "Dental Tips & Patient Guides | Amazing Smiles By Design Blog",
   description:
-    "Patient guides from Amazing Smiles By Design in Bensalem, PA, coming soon. Learn about prevention, gum health, implants, cosmetic care and costs.",
-  noindex: true,
+    "Patient guides from Amazing Smiles By Design in Bensalem, PA. Learn about prevention, gum health, implants, cosmetic care and costs.",
 };
 
 export const blogBreadcrumb = [
@@ -23,7 +26,7 @@ export const blogBreadcrumb = [
 export const blogHero = {
   title: { lead: "Dental Tips &", accent: "Patient Guides" },
   intro:
-    "Patient guides from Amazing Smiles By Design in Bensalem, PA are coming soon. In the meantime, learn about our treatments below, or book a visit if you have a question.",
+    "Patient guides from Amazing Smiles By Design in Bensalem, PA. Read our latest articles below, learn about our treatments by topic, or book a visit if you have a question.",
   cta: { label: "Request an Appointment", href: appointmentHref },
 };
 
@@ -31,14 +34,18 @@ export type BlogPost = {
   title: string;
   /** ISO date, shown as the dated byline */
   date: string;
+  dateLabel: string;
   category: string;
-  /** One or two lines */
+  /** id of the topic card the post belongs to */
+  topic: string;
+  /** One or two lines: the post's meta description */
   excerpt: string;
   href: string;
+  art: PostArt;
+  /** Cover photo from the post document, when it has one */
+  cover?: SiteImage;
+  minutes: number;
 };
-
-/** Newest first. The feed shows the 9 most recent and stays hidden while this is empty. */
-export const blogPosts: BlogPost[] = [];
 
 export type BlogTopic = { id: string; title: string; text: string; links: { label: string; href: string }[] };
 
@@ -113,3 +120,17 @@ export const blogFinalCta = {
   body: "Call or text (215) 639-5331. Amazing Smiles By Design, 3101 Bristol Road, Suite 1, Bensalem, PA 19020.",
   button: { label: "Request an Appointment", href: appointmentHref },
 };
+
+/** Newest first. The hub shows the 9 most recent, Patient Education the 6 most recent. */
+export const blogPosts: BlogPost[] = posts.map((post) => ({
+  title: `${post.title.lead} ${post.title.accent}`,
+  date: post.published,
+  dateLabel: formatPostDate(post.published),
+  category: blogTopics.items.find((topic) => topic.id === post.topic)?.title ?? "Patient Guides",
+  topic: post.topic,
+  excerpt: post.meta.description,
+  href: post.meta.path,
+  art: post.art,
+  cover: postCovers[post.slug],
+  minutes: readingMinutes(post),
+}));

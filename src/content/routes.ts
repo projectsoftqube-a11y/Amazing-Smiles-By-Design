@@ -126,10 +126,14 @@ export const routes: RouteEntry[] = [
   r("/clear-aligners-langhorne-pa/", "Clear Aligners, Langhorne", "service-location", true),
 
   // Content, legal, utility
-  // Live but noindex (and out of sitemap.xml) until the first 3 posts are published
-  r("/blog/", "Blog", "content", true, true),
-  // Legal (09). Live on staging; the [CONFIRM] items show as "to confirm" boxes and must be
-  // filled in and approved by the practice before the real domain points here (handoff).
+  // Blog (08): indexed now that the first posts are live (handoff: index once 3 exist)
+  r("/blog/", "Blog", "content", true),
+  r("/blog/how-long-do-porcelain-veneers-last/", "How Long Do Porcelain Veneers Last?", "content", true),
+  r("/blog/dental-implant-cost-bensalem/", "How Much Do Dental Implants Cost?", "content", true),
+  r("/blog/dental-emergencies-what-to-do-first/", "Dental Emergencies: What to Do First", "content", true),
+  r("/blog/no-dental-insurance-bensalem/", "No Dental Insurance? How to Afford Care", "content", true),
+  // Legal (09). Every practice item is filled in (6 Oct 2026); the HIPAA notice PDF button
+  // comes back when the practice sends its notice.
   r("/disclaimer/", "Disclaimer", "legal", true),
   r("/privacy-policy/", "Privacy Policy", "legal", true),
   r("/hipaa-notice-of-privacy-practices/", "HIPAA Notice of Privacy Practices", "legal", true),

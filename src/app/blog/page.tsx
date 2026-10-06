@@ -16,7 +16,7 @@ import { practice } from "@/content/site";
 import { infoPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
-/** noindex, follow until the first 3 posts are published (handoff); routes.ts keeps it out of sitemap.xml */
+/** Indexed since the first posts went live (handoff: noindex only until 3 posts exist) */
 export const metadata = buildMetadata(blogMeta);
 
 /** CollectionPage + BreadcrumbList + Dentist (3a) */
@@ -33,7 +33,7 @@ export default function BlogPage() {
         eyebrow={`Patient guides · ${practice.address.city}`}
         title={blogHero.title}
         intro={blogHero.intro}
-        aside={<BlogHeroCard topics={blogTopics.items} />}
+        aside={<BlogHeroCard topics={blogTopics.items} latest={blogPosts[0]} />}
         actions={
           <Button href={blogHero.cta.href} icon="calendar" track="appointment_click">
             {blogHero.cta.label}
@@ -42,7 +42,7 @@ export default function BlogPage() {
       />
 
       <PostFeed posts={blogPosts} />
-      <TopicShelf id={blogTopics.id} title={blogTopics.title} topics={blogTopics.items} />
+      <TopicShelf id={blogTopics.id} title={blogTopics.title} topics={blogTopics.items} posts={blogPosts} />
       <Resources id={blogResources.id} title={blogResources.title} links={blogResources.links} />
       <FinalCta
         id="blog-book-title"

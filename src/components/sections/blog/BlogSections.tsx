@@ -1,22 +1,32 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "@/components/ui/SiteLink";
 import { TitleText } from "@/components/sections/service/DesignKit";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import type { BlogPost, BlogTopic } from "@/content/pages/blog";
+import { PostArt } from "./PostArt";
 import s from "./Blog.module.css";
 
 const TOPIC_ICONS: IconName[] = ["sparkle", "shield", "tooth", "smile", "alert", "wallet"];
 
-/** Hero side card: guides are coming soon; meanwhile the six topics jump to their cards below */
-export function BlogHeroCard({ topics }: { topics: BlogTopic[] }) {
+/** Hero side card: the newest guide, then the six topics jumping to their cards below */
+export function BlogHeroCard({ topics, latest }: { topics: BlogTopic[]; latest?: BlogPost }) {
   return (
     <div className={s.stage}>
       <span className={s.plate} aria-hidden="true" />
       <div className={s.card}>
-        <p className={s.soon}>
-          <span className={s.soonDot} aria-hidden="true" />
-          Patient guides coming soon
-        </p>
+        {latest ? (
+          <Link href={latest.href} className={s.latest}>
+            <span className={s.soon}>
+              <span className={s.soonDot} aria-hidden="true" />
+              Latest guide
+            </span>
+            <span className={s.latestTitle}>{latest.title}</span>
+            <span className={s.latestMeta}>
+              {latest.dateLabel} · {latest.minutes} min read
+            </span>
+          </Link>
+        ) : null}
         <p className={s.cardLabel}>Browse by topic</p>
         <ul role="list" className={s.jumps}>
           {topics.map((topic, i) => (
@@ -35,8 +45,53 @@ export function BlogHeroCard({ topics }: { topics: BlogTopic[] }) {
   );
 }
 
-const formatDate = (iso: string) =>
-  new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+/**
+ * Post cards (cover art, category, date, title, excerpt): the /blog/ feed, Patient
+ * Education's "Latest Articles" and "More patient guides" under each post. Titles are
+ * links, not headings (heading levels follow the content files).
+ */
+export function PostCards({ posts }: { posts: BlogPost[] }) {
+  // 4 or 7 posts: the newest runs full width as a featured card, the rest fill rows of three
+  const featured = posts.length > 3 && posts.length % 3 === 1;
+  return (
+    <ul role="list" className={`${s.posts} ${featured ? s.featured : ""}`}>
+      {posts.map((post, i) => (
+        <li key={post.href} className={s.post} data-reveal="" style={{ "--i": i } as CSSProperties}>
+          {post.cover?.src ? (
+            <div className={`${s.postCover} ${s.postPhoto}`}>
+              <Image
+                src={post.cover.src}
+                alt={post.cover.alt}
+                fill
+                sizes={featured && i === 0 ? "(min-width: 992px) 55vw, 100vw" : "(min-width: 1200px) 30vw, (min-width: 768px) 50vw, 100vw"}
+                placeholder="blur"
+                style={{ objectFit: "cover", objectPosition: post.cover.position ?? "center" }}
+              />
+            </div>
+          ) : (
+            <div className={`${s.postCover} ${s[`postCover_${post.art}`]}`} aria-hidden="true">
+              <PostArt name={post.art} />
+            </div>
+          )}
+          <div className={s.postBody}>
+            <p className={s.postMeta}>
+              <span className={s.postCategory}>{post.category}</span>
+              <time dateTime={post.date}>{post.dateLabel}</time>
+            </p>
+            <Link href={post.href} className={s.postTitle}>
+              {post.title}
+            </Link>
+            <p className={s.postExcerpt}>{post.excerpt}</p>
+            <p className={s.postMore} aria-hidden="true">
+              {post.minutes} min read
+              <Icon name="arrowRight" size={16} />
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 /** The 9 most recent posts (title, date, category, excerpt). Renders nothing until a post exists. */
 export function PostFeed({ posts }: { posts: BlogPost[] }) {
@@ -44,30 +99,68 @@ export function PostFeed({ posts }: { posts: BlogPost[] }) {
   return (
     <section className={s.feed} aria-labelledby="latest-posts-title">
       <div className="container">
-        <h2 id="latest-posts-title" className={s.feedTitle}>
-          Latest Posts
-        </h2>
-        <ul role="list" className={s.posts}>
-          {posts.slice(0, 9).map((post) => (
-            <li key={post.href} className={s.post}>
-              <p className={s.postMeta}>
-                <span className={s.postCategory}>{post.category}</span>
-                <time dateTime={post.date}>{formatDate(post.date)}</time>
-              </p>
-              <Link href={post.href} className={s.postTitle}>
-                {post.title}
-              </Link>
-              <p className={s.postExcerpt}>{post.excerpt}</p>
-            </li>
-          ))}
-        </ul>
+        <div className={s.feedHead}>
+          <p className="eyebrow" data-reveal="">
+            New on the blog
+          </p>
+          <h2 id="latest-posts-title" className={s.feedTitle} data-reveal="">
+            Latest Posts
+          </h2>
+        </div>
+        <PostCards posts={posts.slice(0, 9)} />
       </div>
     </section>
   );
 }
 
-/** "Browse by Topic": six editorial cards, each with a coloured cover, its H3 and the links */
-export function TopicShelf({ id, title, topics }: { id: string; title: string; topics: BlogTopic[] }) {
+/** Patient Education's "Latest Articles": the 6 newest posts and a link to the blog (its handoff) */
+export function LatestArticles({
+  id,
+  title,
+  posts,
+  link,
+}: {
+  id: string;
+  title: string;
+  posts: BlogPost[];
+  link: { label: string; href: string };
+}) {
+  if (!posts.length) return null;
+  return (
+    <section className={s.feed} aria-labelledby={id}>
+      <div className="container">
+        <div className={s.feedHead}>
+          <p className="eyebrow" data-reveal="">
+            From the blog
+          </p>
+          <h2 id={id} className={s.feedTitle} data-reveal="">
+            {title}
+          </h2>
+        </div>
+        <PostCards posts={posts.slice(0, 6)} />
+        <p className={s.feedLink}>
+          <Link href={link.href}>
+            {link.label}
+            <Icon name="arrowRight" size={16} />
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/** "Browse by Topic": six editorial cards, each with a colored cover, its H3, its guides and the links */
+export function TopicShelf({
+  id,
+  title,
+  topics,
+  posts = [],
+}: {
+  id: string;
+  title: string;
+  topics: BlogTopic[];
+  posts?: BlogPost[];
+}) {
   return (
     <section className={s.shelf} aria-labelledby={id}>
       <div className="container">
@@ -103,6 +196,20 @@ export function TopicShelf({ id, title, topics }: { id: string; title: string; t
                   {topic.title}
                 </h3>
                 <p className={s.topicText}>{topic.text}</p>
+                {posts.some((post) => post.topic === topic.id) ? (
+                  <ul role="list" className={s.topicGuides}>
+                    {posts
+                      .filter((post) => post.topic === topic.id)
+                      .map((post) => (
+                        <li key={post.href}>
+                          <Link href={post.href}>
+                            <Icon name="book" size={16} />
+                            <span>{post.title}</span>
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                ) : null}
                 <ul role="list" className={s.topicLinks}>
                   {topic.links.map((link) => (
                     <li key={link.href}>

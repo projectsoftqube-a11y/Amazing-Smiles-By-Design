@@ -4,7 +4,7 @@ import { patientInfoCrumb } from "./patient-information";
 /**
  * Patient Education copy, verbatim from
  * docs/seo-content/02 Patient Info/03 Resource/Patient Education/02 Content.md (Final v1).
- * The "Latest Articles" blog feed stays hidden until /blog/ has posts (Developer Handoff).
+ * "Latest Articles" shows the 6 newest /blog/ posts (Developer Handoff).
  */
 
 export const educationMeta = {
