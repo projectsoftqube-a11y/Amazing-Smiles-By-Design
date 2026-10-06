@@ -12,7 +12,9 @@ export type ContentBlock =
   | { kind: "ol"; items: RichText[] }
   | { kind: "h3"; title: string; blocks: ContentBlock[] }
   | { kind: "link"; label: string; href: string }
-  | { kind: "note"; text: RichText };
+  | { kind: "note"; text: RichText }
+  /** A real HTML table (handoffs: comparison tables); head[0] is usually empty */
+  | { kind: "table"; head: string[]; rows: RichText[][] };
 
 export type ServiceSection = { id: string; title: string; blocks: ContentBlock[] };
 
@@ -48,7 +50,7 @@ export type ServiceExtras = {
   designs?: Record<string, { design: SectionDesignName; eyebrow?: string }>;
 };
 
-/** Mirrors DesignName in SectionDesigns.tsx */
+/** Every bespoke design (SectionDesigns.tsx and RestorativeDesigns.tsx); each is used on one page only */
 export type SectionDesignName =
   | "exam-bento"
   | "signs-grid"
@@ -72,4 +74,36 @@ export type SectionDesignName =
   | "tip-tiles"
   | "clipboard"
   | "cause-chain"
-  | "budget-cards";
+  | "budget-cards"
+  // Restorative Dentistry (RestorativeDesigns.tsx)
+  | "implant-anatomy"
+  | "option-duo"
+  | "candidate-check"
+  | "cbct-viewfinder"
+  | "surgery-stepper"
+  | "recovery-timeline"
+  | "compare-matrix"
+  | "reason-mosaic"
+  | "material-swatches"
+  | "lab-journey"
+  | "coverage-scale"
+  | "layer-build"
+  | "composite-vs-amalgam"
+  | "habit-tracker"
+  | "coverage-table"
+  | "material-chips"
+  | "benefit-ribbon"
+  | "tooth-section"
+  | "staircase"
+  | "reassure"
+  | "keep-or-extract"
+  | "gap-diagram"
+  | "bridge-schematics"
+  | "visit-track"
+  | "denture-full"
+  | "denture-partial"
+  | "denture-immediate"
+  | "attachment-options"
+  | "reline-guide"
+  | "situation-table"
+  | "imaging-band";

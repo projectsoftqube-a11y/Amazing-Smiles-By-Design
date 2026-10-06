@@ -213,8 +213,41 @@ function Prose({ blocks, lead = false }: { blocks: ContentBlock[]; lead?: boolea
           );
         }
         if (block.kind === "ul" || block.kind === "ol") return <BlockList key={i} block={block} />;
+        if (block.kind === "table") return <DataTable key={i} block={block} />;
         return null;
       })}
+    </div>
+  );
+}
+
+/** A content table as a real <table> (row headers in the first column) */
+export function DataTable({ block, className }: { block: Extract<ContentBlock, { kind: "table" }>; className?: string }) {
+  return (
+    <div className={`${styles.tableWrap} ${className ?? ""}`} data-reveal="">
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            {block.head.map((cell, i) => (i === 0 && !cell ? <td key={i} /> : <th key={i} scope="col">{cell}</th>))}
+          </tr>
+        </thead>
+        <tbody>
+          {block.rows.map((row) => (
+            <tr key={row[0]}>
+              {row.map((cell, i) =>
+                i === 0 ? (
+                  <th key={i} scope="row">
+                    <Rich text={cell} />
+                  </th>
+                ) : (
+                  <td key={i}>
+                    <Rich text={cell} />
+                  </td>
+                ),
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

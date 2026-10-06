@@ -70,14 +70,14 @@ export const routes: RouteEntry[] = [
   r("/general-dentistry/oral-hygiene/", "Oral Hygiene", "general", true),
 
   // Restorative
-  r("/restorative-dentistry/", "Restorative Dentistry", "restorative"),
-  r("/restorative-dentistry/dental-implants/", "Dental Implants", "restorative"),
-  r("/restorative-dentistry/dental-crowns/", "Dental Crowns", "restorative"),
-  r("/restorative-dentistry/dental-bridges/", "Dental Bridges", "restorative"),
-  r("/restorative-dentistry/dental-fillings/", "Dental Fillings", "restorative"),
-  r("/restorative-dentistry/non-surgical-root-canal/", "Non-Surgical Root Canal", "restorative"),
-  r("/restorative-dentistry/inlays-onlays/", "Inlays & Onlays", "restorative"),
-  r("/restorative-dentistry/dentures/", "Dentures", "restorative"),
+  r("/restorative-dentistry/", "Restorative Dentistry", "restorative", true),
+  r("/restorative-dentistry/dental-implants/", "Dental Implants", "restorative", true),
+  r("/restorative-dentistry/dental-crowns/", "Dental Crowns", "restorative", true),
+  r("/restorative-dentistry/dental-bridges/", "Dental Bridges", "restorative", true),
+  r("/restorative-dentistry/dental-fillings/", "Dental Fillings", "restorative", true),
+  r("/restorative-dentistry/non-surgical-root-canal/", "Non-Surgical Root Canal", "restorative", true),
+  r("/restorative-dentistry/inlays-onlays/", "Inlays & Onlays", "restorative", true),
+  r("/restorative-dentistry/dentures/", "Dentures", "restorative", true),
 
   // Cosmetic
   r("/cosmetic-dentistry/", "Cosmetic Dentistry", "cosmetic"),

@@ -3,8 +3,10 @@ import Image from "next/image";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Rich, splitLead } from "@/components/ui/Rich";
 import { carrierLogos } from "@/content/insurance";
-import type { ContentBlock, SectionDesignName, ServiceSection } from "@/content/service-page";
+import type { SectionDesignName } from "@/content/service-page";
 import { membershipPlans } from "@/content/site";
+import { RESTORATIVE_DESIGNS } from "./RestorativeDesigns";
+import { aroundList, firstList, Lead, P, paragraphs, Shell, subs, type DesignProps } from "./DesignKit";
 import styles from "./SectionDesigns.module.css";
 
 /**
@@ -15,69 +17,6 @@ import styles from "./SectionDesigns.module.css";
  */
 
 export type DesignName = SectionDesignName;
-
-type H3Block = Extract<ContentBlock, { kind: "h3" }>;
-type ListBlock = Extract<ContentBlock, { kind: "ul" | "ol" }>;
-
-const paragraphs = (blocks: ContentBlock[]) =>
-  blocks.filter((block): block is Extract<ContentBlock, { kind: "p" }> => block.kind === "p");
-const firstList = (blocks: ContentBlock[]) =>
-  blocks.find((block): block is ListBlock => block.kind === "ul" || block.kind === "ol");
-const subs = (blocks: ContentBlock[]) => blocks.filter((block): block is H3Block => block.kind === "h3");
-/** Paragraphs before and after the first list */
-function aroundList(blocks: ContentBlock[]) {
-  const index = blocks.findIndex((block) => block.kind === "ul" || block.kind === "ol");
-  const own = blocks.filter((block) => block.kind !== "h3");
-  if (index === -1) return { before: paragraphs(own), after: [] as ReturnType<typeof paragraphs> };
-  return { before: paragraphs(blocks.slice(0, index)), after: paragraphs(blocks.slice(index + 1)) };
-}
-
-/** Bold lead-in ("Insurance:") with its trailing colon kept in the text but hidden visually */
-function Lead({ text, className }: { text: string; className?: string }) {
-  const punct = /[:.]$/.test(text);
-  return (
-    <strong className={className}>
-      {punct ? text.slice(0, -1) : text}
-      {punct ? <span className={styles.punct}>{text.slice(-1)}</span> : null}
-    </strong>
-  );
-}
-
-const P = ({ text, className }: { text: string; className?: string }) => (
-  <p className={className ?? styles.text} data-reveal="">
-    <Rich text={text} />
-  </p>
-);
-
-function Shell({
-  section,
-  eyebrow,
-  tone = "white",
-  children,
-}: {
-  section: ServiceSection;
-  eyebrow?: string;
-  tone?: "white" | "ice" | "navy";
-  children: (head: ReactNode) => ReactNode;
-}) {
-  const head = (
-    <div className={styles.head}>
-      {eyebrow ? (
-        <p className={`eyebrow ${tone === "navy" ? "eyebrow-inverse" : ""}`} data-reveal="">
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 id={section.id} className={styles.title} data-reveal="">
-        {section.title}
-      </h2>
-    </div>
-  );
-  return (
-    <section className={`${styles.section} ${styles[`tone-${tone}`]}`} aria-labelledby={section.id}>
-      <div className="container">{children(head)}</div>
-    </section>
-  );
-}
 
 /* ——— Dental Checkups: "What Happens at a Dental Exam & Cleaning" ——— */
 function ExamBento({ section, eyebrow }: DesignProps) {
@@ -1155,9 +1094,8 @@ function BudgetCards({ section, eyebrow }: DesignProps) {
   );
 }
 
-type DesignProps = { section: ServiceSection; eyebrow?: string };
-
 const DESIGNS: Record<DesignName, (props: DesignProps) => ReactNode> = {
+  ...RESTORATIVE_DESIGNS,
   "exam-bento": ExamBento,
   "signs-grid": SignsGrid,
   "scan-panel": ScanPanel,
