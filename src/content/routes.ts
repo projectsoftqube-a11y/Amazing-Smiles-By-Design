@@ -134,7 +134,7 @@ export const routes: RouteEntry[] = [
   r("/privacy-policy/", "Privacy Policy", "legal", true),
   r("/hipaa-notice-of-privacy-practices/", "HIPAA Notice of Privacy Practices", "legal", true),
   r("/accessibility/", "Accessibility", "legal", true),
-  r("/sitemap/", "Sitemap", "utility"),
+  r("/sitemap/", "Sitemap", "utility", true),
 
   // Paid traffic (noindex)
   r("/lp/dental-implants/", "Dental Implants (paid)", "paid", false, true),

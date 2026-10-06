@@ -1,0 +1,317 @@
+/* ===== Hero index card ===== */
+.stage {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 28rem;
+  justify-self: end;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+}
+
+.plate {
+  position: absolute;
+  inset: 0 0 2.5rem 3rem;
+  z-index: -1;
+  border-radius: 36px;
+  background:
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.05) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.05) 0 1px, transparent 1px 22px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-600) 0%, transparent 60%),
+    var(--navy-800);
+  box-shadow: var(--shadow-lift);
+  transform: rotate(4deg);
+}
+
+.index {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 30px;
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgb(217 234 244 / 0.9) 0%, transparent 70%),
+    rgb(255 255 255 / 0.95);
+  box-shadow:
+    0 2px 4px rgb(14 24 56 / 0.04),
+    0 40px 80px -32px rgb(14 24 56 / 0.4);
+  backdrop-filter: blur(14px);
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: var(--slate-600);
+  font-weight: 700;
+}
+
+.total strong {
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.indexList {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.indexList a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  color: var(--navy-800);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.indexList a:hover {
+  background: var(--ice-100);
+}
+
+.indexList svg {
+  color: var(--blue-700);
+}
+
+.indexList em {
+  min-width: 1.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ===== Groups ===== */
+.body {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(45% 55% at 100% 0%, var(--ice-300) 0%, transparent 70%),
+    radial-gradient(35% 45% at 0% 100%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
+}
+
+/* Three fixed columns of cards */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-s);
+}
+
+.column {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.group {
+  display: grid;
+  gap: 1rem;
+  padding: var(--space-m);
+  border: 1px solid var(--white);
+  border-radius: 28px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+.groupHead {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.groupIcon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 14px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.groupTitle {
+  font-size: var(--step-h4);
+  line-height: 1.25;
+}
+
+.count {
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-pill);
+  background: var(--ice-100);
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.links {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 10px;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.links a svg {
+  flex: none;
+  color: var(--blue-500);
+  opacity: 0;
+  transition: opacity var(--dur-ui) var(--ease-out);
+}
+
+.links a:hover {
+  background: var(--ice-50);
+  color: var(--blue-700);
+}
+
+.links a:hover svg,
+.links a:focus-visible svg {
+  opacity: 1;
+}
+
+/* ===== Address strip ===== */
+.nap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: var(--space-m);
+  padding: 1.25rem 1.5rem;
+  border-radius: 24px;
+  background:
+    radial-gradient(70% 120% at 100% 0%, rgb(44 106 154 / 0.7) 0%, transparent 70%),
+    var(--navy-900);
+  box-shadow: var(--shadow-lift);
+}
+
+.napText {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  color: var(--white);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.napText svg {
+  flex: none;
+  margin-top: calc((1lh - 18px) / 2);
+  color: var(--ice-300);
+}
+
+.napActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.napCall,
+.napText2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.napCall {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.napCall:hover {
+  background: var(--white);
+}
+
+.napText2 {
+  border: 1px solid rgb(193 222 238 / 0.4);
+  color: var(--white);
+}
+
+.napText2:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+/* ===== Responsive ===== */
+/* Tablet: columns 1 and 2 side by side, column 3 below with its cards in two columns */
+@media (max-width: 1199px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .column:nth-child(3) {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media (max-width: 991px) {
+  .stage {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .columns,
+  .column:nth-child(3) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .links a svg {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 575px) {
+  .stage {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  .index {
+    padding: 1.25rem;
+    border-radius: 26px;
+  }
+
+  .napActions {
+    width: 100%;
+  }
+
+  .napCall,
+  .napText2 {
+    flex: 1;
+    justify-content: center;
+  }
+}
