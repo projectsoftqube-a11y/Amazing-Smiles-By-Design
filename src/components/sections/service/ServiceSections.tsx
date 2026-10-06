@@ -3,6 +3,7 @@ import { TextLink } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Rich, splitLead } from "@/components/ui/Rich";
 import type { ContentBlock, ServiceSection } from "@/content/service-page";
+import { TitleText } from "./DesignKit";
 import { DesignedSection, type DesignName } from "./SectionDesigns";
 import styles from "./ServiceSections.module.css";
 
@@ -71,7 +72,7 @@ function Section({ section, index }: { section: ServiceSection; index: number })
   const head = (
     <div className={styles.head}>
       <h2 id={section.id} className={styles.title} data-reveal="">
-        {section.title}
+        <TitleText text={section.title} />
       </h2>
     </div>
   );

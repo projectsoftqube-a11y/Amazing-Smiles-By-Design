@@ -50,7 +50,7 @@ export type ServiceExtras = {
   designs?: Record<string, { design: SectionDesignName; eyebrow?: string }>;
 };
 
-/** Every bespoke design (SectionDesigns.tsx and RestorativeDesigns.tsx); each is used on one page only */
+/** Every bespoke design (SectionDesigns, RestorativeDesigns and CosmeticDesigns); each is used on one page only */
 export type SectionDesignName =
   | "exam-bento"
   | "signs-grid"
@@ -106,4 +106,32 @@ export type SectionDesignName =
   | "attachment-options"
   | "reline-guide"
   | "situation-table"
-  | "imaging-band";
+  | "imaging-band"
+  // Cosmetic Dentistry (CosmeticDesigns.tsx)
+  | "artistry-grid"
+  | "treatment-bento"
+  | "makeover-matrix"
+  | "scan-layers"
+  | "gallery-invite"
+  | "plan-receipt"
+  | "tooth-tiles"
+  | "veneer-light"
+  | "material-duel"
+  | "shell-stages"
+  | "decade-meter"
+  | "stain-sources"
+  | "whitening-options"
+  | "shade-tabs"
+  | "chip-repair"
+  | "benefit-quad"
+  | "bond-steps"
+  | "mirror-table"
+  | "tray-series"
+  | "alignment-cases"
+  | "clear-table"
+  | "aligner-roadmap"
+  | "range-stats"
+  | "force-compare"
+  | "night-signs"
+  | "guard-compare"
+  | "guard-making";

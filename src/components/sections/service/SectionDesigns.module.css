@@ -70,6 +70,10 @@
   color: var(--color-muted);
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 /* Trailing colon of a bold lead-in: in the text, not shown */
 .punct {
   display: inline-block;

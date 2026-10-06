@@ -80,12 +80,12 @@ export const routes: RouteEntry[] = [
   r("/restorative-dentistry/dentures/", "Dentures", "restorative", true),
 
   // Cosmetic
-  r("/cosmetic-dentistry/", "Cosmetic Dentistry", "cosmetic"),
-  r("/cosmetic-dentistry/porcelain-veneers/", "Porcelain Veneers", "cosmetic"),
-  r("/cosmetic-dentistry/clear-aligners/", "Clear Aligners", "cosmetic"),
-  r("/cosmetic-dentistry/teeth-whitening/", "Teeth Whitening", "cosmetic"),
-  r("/cosmetic-dentistry/dental-bonding/", "Dental Bonding", "cosmetic"),
-  r("/cosmetic-dentistry/night-guards/", "Night Guards", "cosmetic"),
+  r("/cosmetic-dentistry/", "Cosmetic Dentistry", "cosmetic", true),
+  r("/cosmetic-dentistry/porcelain-veneers/", "Porcelain Veneers", "cosmetic", true),
+  r("/cosmetic-dentistry/clear-aligners/", "Clear Aligners", "cosmetic", true),
+  r("/cosmetic-dentistry/teeth-whitening/", "Teeth Whitening", "cosmetic", true),
+  r("/cosmetic-dentistry/dental-bonding/", "Dental Bonding", "cosmetic", true),
+  r("/cosmetic-dentistry/night-guards/", "Night Guards", "cosmetic", true),
 
   // Locations
   r("/areas-we-serve/", "Areas We Serve", "location"),

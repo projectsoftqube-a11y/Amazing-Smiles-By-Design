@@ -37,6 +37,23 @@ export function Lead({ text, className }: { text: string; className?: string }) 
   );
 }
 
+/** A heading's text with hyphenated words ("In-Office", "Store-Bought") kept on one line */
+export function TitleText({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\S+-\S+)/).map((part, i) =>
+        i % 2 ? (
+          <span key={i} className={styles.nowrap}>
+            {part}
+          </span>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
 export const P = ({ text, className }: { text: string; className?: string }) => (
   <p className={className ?? styles.text} data-reveal="">
     <Rich text={text} />
@@ -62,7 +79,7 @@ export function Shell({
         </p>
       ) : null}
       <h2 id={section.id} className={styles.title} data-reveal="">
-        {section.title}
+        <TitleText text={section.title} />
       </h2>
     </div>
   );
