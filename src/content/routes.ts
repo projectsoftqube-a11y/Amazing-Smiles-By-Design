@@ -126,7 +126,8 @@ export const routes: RouteEntry[] = [
   r("/clear-aligners-langhorne-pa/", "Clear Aligners, Langhorne", "service-location"),
 
   // Content, legal, utility
-  r("/blog/", "Blog", "content"),
+  // Live but noindex (and out of sitemap.xml) until the first 3 posts are published
+  r("/blog/", "Blog", "content", true, true),
   r("/disclaimer/", "Disclaimer", "legal"),
   r("/privacy-policy/", "Privacy Policy", "legal"),
   r("/hipaa-notice-of-privacy-practices/", "HIPAA Notice of Privacy Practices", "legal"),
