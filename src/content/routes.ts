@@ -128,7 +128,9 @@ export const routes: RouteEntry[] = [
   // Content, legal, utility
   // Live but noindex (and out of sitemap.xml) until the first 3 posts are published
   r("/blog/", "Blog", "content", true, true),
-  r("/disclaimer/", "Disclaimer", "legal"),
+  // Legal (09). Built; each goes live once the practice fills in its [CONFIRM] items and
+  // approves it (handoff: "don't publish with placeholders"). The disclaimer has none.
+  r("/disclaimer/", "Disclaimer", "legal", true),
   r("/privacy-policy/", "Privacy Policy", "legal"),
   r("/hipaa-notice-of-privacy-practices/", "HIPAA Notice of Privacy Practices", "legal"),
   r("/accessibility/", "Accessibility", "legal"),

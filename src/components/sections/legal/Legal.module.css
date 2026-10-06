@@ -1,0 +1,466 @@
+/* ===== Hero ===== */
+.heroLines {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.dateLine {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--navy-800);
+  font-weight: 600;
+}
+
+.dateLine svg {
+  flex: none;
+  margin-top: calc((1lh - 16px) / 2);
+  color: var(--blue-700);
+}
+
+.pendingButton {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px dashed #e0a43a;
+  border-radius: 20px;
+  background: #fff8e8;
+  color: var(--navy-800);
+  font-weight: 700;
+}
+
+/* "On this page" card */
+.stage {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 28rem;
+  justify-self: end;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+}
+
+.plate {
+  position: absolute;
+  inset: 0 0 2.5rem 3rem;
+  z-index: -1;
+  border-radius: 36px;
+  background:
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.05) 0 1px, transparent 1px 20px),
+    radial-gradient(80% 70% at 100% 0%, var(--blue-600) 0%, transparent 60%),
+    var(--navy-800);
+  box-shadow: var(--shadow-lift);
+  transform: rotate(4deg);
+}
+
+.toc {
+  display: grid;
+  gap: 0.875rem;
+  padding: 1.5rem;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 30px;
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgb(217 234 244 / 0.9) 0%, transparent 70%),
+    rgb(255 255 255 / 0.95);
+  box-shadow:
+    0 2px 4px rgb(14 24 56 / 0.04),
+    0 40px 80px -32px rgb(14 24 56 / 0.4);
+  backdrop-filter: blur(14px);
+}
+
+.tocLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--navy-800);
+  color: var(--white);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.tocList {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tocList a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.875rem;
+  border-radius: 12px;
+  color: var(--navy-800);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.tocList a:hover {
+  background: var(--ice-100);
+}
+
+.tocList svg {
+  flex: none;
+  color: var(--blue-700);
+}
+
+/* ===== Document ===== */
+.body {
+  padding-block: var(--space-section);
+  background:
+    radial-gradient(40% 50% at 100% 0%, var(--ice-200) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ice-50) 0%, var(--porcelain) 100%);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  align-items: start;
+  gap: var(--space-l);
+}
+
+.doc {
+  padding: var(--space-l) var(--space-xl);
+  border: 1px solid var(--white);
+  border-radius: 32px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.section {
+  display: grid;
+  gap: 1rem;
+  padding-block: var(--space-m);
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
+}
+
+.section:first-child {
+  padding-top: 0;
+}
+
+.section:last-of-type {
+  border-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: var(--step-h3);
+  line-height: 1.25;
+}
+
+.text {
+  max-width: 46rem;
+  color: var(--slate-600);
+  line-height: 1.8;
+}
+
+.text a,
+.callout a,
+.cardText a,
+.goals a {
+  color: var(--blue-700);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.text a:hover,
+.callout a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: var(--ice-100);
+  color: var(--navy-800);
+  line-height: 1.65;
+}
+
+.callout svg {
+  flex: none;
+  margin-top: calc((1lh - 18px) / 2);
+  color: var(--blue-700);
+}
+
+.inlineLink {
+  margin-top: 0.25rem;
+}
+
+.endLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--line);
+}
+
+/* Placeholder the practice still has to supply (development only) */
+.confirm {
+  display: inline;
+  padding: 0.125rem 0.5rem;
+  border: 1px dashed #e0a43a;
+  border-radius: 6px;
+  background: #fff8e8;
+  color: #7a5212;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.9;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.confirm strong {
+  font-weight: 700;
+}
+
+/* Rights (HIPAA): icon cards in two columns */
+.rights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.rights li,
+.contactCards li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.875rem;
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(170deg, var(--white) 0%, var(--ice-50) 100%);
+  color: var(--slate-600);
+  line-height: 1.55;
+}
+
+.cardIcon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: var(--navy-800);
+  color: var(--white);
+}
+
+.cardLead {
+  color: var(--navy-800);
+}
+
+/* Ways to contact us (accessibility) */
+.contactCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.contactCards .cardText {
+  font-size: 1.0625rem;
+}
+
+.cardActions {
+  grid-column: 2;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cardActions a {
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--navy-800);
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cardActions a + a {
+  background: var(--ice-200);
+  color: var(--navy-800);
+}
+
+/* Goals (accessibility): icon tiles */
+.goals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.goals li {
+  display: grid;
+  align-content: start;
+  gap: 0.625rem;
+  padding: 1.125rem;
+  border-radius: 18px;
+  background: var(--ice-50);
+  box-shadow: inset 0 0 0 1px var(--ice-200);
+  color: var(--navy-800);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.goalIcon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--blue-700);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ===== Side panel ===== */
+.side {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  display: grid;
+  gap: var(--space-s);
+}
+
+.sideCard {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-radius: 26px;
+  background:
+    radial-gradient(70% 80% at 100% 0%, rgb(44 106 154 / 0.75) 0%, transparent 70%),
+    var(--navy-900);
+  color: var(--slate-on-navy);
+  box-shadow: var(--shadow-lift);
+}
+
+.sideLabel {
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sideCard .sideLabel {
+  color: var(--ice-300);
+}
+
+.sideText {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.sideActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.sideCall,
+.sideText2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--dur-ui) var(--ease-out);
+}
+
+.sideCall {
+  background: var(--ice-300);
+  color: var(--navy-900);
+}
+
+.sideCall:hover {
+  background: var(--white);
+}
+
+.sideText2 {
+  border: 1px solid rgb(193 222 238 / 0.4);
+  color: var(--white);
+}
+
+.sideText2:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+.sideNav {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid var(--white);
+  border-radius: 26px;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.sideNav ul {
+  display: grid;
+  gap: 0.625rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1199px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .side {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .goals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991px) {
+  .stage {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .doc {
+    padding: var(--space-m);
+    border-radius: 26px;
+  }
+
+  .rights,
+  .contactCards,
+  .goals,
+  .side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .stage {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  .toc {
+    padding: 1.25rem;
+    border-radius: 26px;
+  }
+}
