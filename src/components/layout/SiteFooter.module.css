@@ -305,6 +305,51 @@
   color: var(--white);
 }
 
+/* Service + location pages, under the towns */
+.nearby {
+  display: grid;
+  gap: 0.625rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--line);
+}
+
+.nearbyTitle {
+  color: var(--navy-800);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nearbyLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nearbyLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.875rem;
+  border: 1px solid var(--ice-200);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--blue-700);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out);
+}
+
+.nearbyLinks a:hover {
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: var(--white);
+}
+
 /* ——— Base: copyright, legal links and credit on one line ——— */
 .base {
   margin-top: var(--space-l);

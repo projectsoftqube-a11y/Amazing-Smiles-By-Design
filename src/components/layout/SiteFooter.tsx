@@ -1,5 +1,5 @@
 import Link from "@/components/ui/SiteLink";
-import { footerNav, legalNav } from "@/content/navigation";
+import { footerNav, legalNav, nearbyServices } from "@/content/navigation";
 import { homeAreas } from "@/content/pages/home";
 import { linkTo } from "@/content/routes";
 import { contactLinks, hoursTable, practice } from "@/content/site";
@@ -106,6 +106,18 @@ export function SiteFooter() {
                 </li>
               ))}
             </ul>
+            {nearbyServices.length ? (
+              <div className={styles.nearby}>
+                <p className={styles.nearbyTitle}>Services near you</p>
+                <ul role="list" className={styles.nearbyLinks}>
+                  {nearbyServices.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href}>{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

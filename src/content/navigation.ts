@@ -1,3 +1,4 @@
+import { routes } from "./routes";
 import { serviceHubs } from "./services";
 
 export type NavLink = { label: string; href: string };
@@ -15,6 +16,8 @@ export const mainNav: NavItem[] = [
     label: "Patient Info",
     href: "/patient-information/",
     links: [
+      // The hub itself first (the top-level label only opens the dropdown), as About does
+      { label: "Patient Information", href: "/patient-information/" },
       { label: "New Patients", href: "/patient-information/new-patients/" },
       { label: "Scheduling", href: "/patient-information/scheduling/" },
       { label: "Emergency Scheduling", href: "/patient-information/emergency-scheduling/" },
@@ -23,6 +26,7 @@ export const mainNav: NavItem[] = [
       { label: "Advanced Technology", href: "/patient-information/advanced-technology/" },
       { label: "Why Choose Us", href: "/patient-information/why-choose-us/" },
       { label: "Patient Education", href: "/patient-information/patient-education/" },
+      { label: "Blog", href: "/blog/" },
     ],
   },
   {
@@ -62,9 +66,15 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: "Patient Reviews", href: "/about-us/patient-reviews/" },
       { label: "Smile Gallery", href: "/smile-gallery/" },
       { label: "Areas We Serve", href: "/areas-we-serve/" },
+      { label: "Blog", href: "/blog/" },
     ],
   },
 ];
+
+/** Footer "Services near you": every published service + location page, read from routes.ts */
+export const nearbyServices: NavLink[] = routes
+  .filter((route) => route.group === "service-location" && route.published && !route.noindex)
+  .map((route) => ({ label: route.label, href: route.path }));
 
 export const legalNav: NavLink[] = [
   { label: "Privacy Policy", href: "/privacy-policy/" },
