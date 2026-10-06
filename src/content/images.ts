@@ -278,8 +278,17 @@ export const images = {
 } satisfies Record<string, SiteImage>;
 
 /** Before/after pairs shown in the smile gallery slider, in order */
+/**
+ * Before/after photos are shown only once the practice confirms the patients' written
+ * consent covers the new site (Developer Questions, 6 Oct 2026, item B6). Until then each
+ * slot shows its "photo pending" placeholder. Set to true once consent is confirmed.
+ */
+export const galleryConsentConfirmed = false;
+
+const withConsent = (image: SiteImage): SiteImage => (galleryConsentConfirmed ? image : { ...image, src: null });
+
 export const galleryCases = [
-  { label: "Case 1", before: images.galleryCase1Before, after: images.galleryCase1After },
-  { label: "Case 2", before: images.galleryCase2Before, after: images.galleryCase2After },
-  { label: "Case 3", before: images.galleryCase3Before, after: images.galleryCase3After },
+  { label: "Case 1", before: withConsent(images.galleryCase1Before), after: withConsent(images.galleryCase1After) },
+  { label: "Case 2", before: withConsent(images.galleryCase2Before), after: withConsent(images.galleryCase2After) },
+  { label: "Case 3", before: withConsent(images.galleryCase3Before), after: withConsent(images.galleryCase3After) },
 ];

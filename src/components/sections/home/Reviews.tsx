@@ -5,9 +5,9 @@ import { ReviewsSlider } from "./ReviewsSlider";
 import styles from "./Reviews.module.css";
 
 /**
- * Reviews are the ones on the practice's current site, with name, date and the
- * star rating shown there. No Review or AggregateRating markup: self-serving reviews
- * are not eligible for review rich results (SEO handoff).
+ * Reviews are the ones on the practice's current site, with name and date. No star
+ * ratings and no Review or AggregateRating markup: ratings that can't be verified are
+ * not shown (reviews handoff; Developer Questions, 6 Oct 2026).
  */
 export function Reviews() {
   return (

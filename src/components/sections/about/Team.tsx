@@ -1,12 +1,11 @@
 import { aboutTeam } from "@/content/pages/about";
 import { TextLink } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
 import styles from "./Team.module.css";
 
 /**
  * "Our Bensalem Dental Team": copy beside one patient's words. The excerpt is plain
  * text (a <blockquote> with a <figcaption>), with no Review markup, per the
- * Developer Handoff. The five stars match the rating shown on the live site.
+ * Developer Handoff. No star rating: unverifiable ratings are not shown (reviews handoff).
  */
 export function Team() {
   const { quote } = aboutTeam;
@@ -34,11 +33,6 @@ export function Team() {
             <span className={styles.glyph} aria-hidden="true">
               “
             </span>
-            <p className={styles.stars} role="img" aria-label="Rated 5 out of 5">
-              {Array.from({ length: 5 }, (_, star) => (
-                <Icon key={star} name="star" size={18} />
-              ))}
-            </p>
             <blockquote className={styles.quote}>
               <p>{quote.text}</p>
             </blockquote>

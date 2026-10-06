@@ -115,8 +115,8 @@ export const routes: RouteEntry[] = [
   r("/dentist-holmesburg-philadelphia/", "Holmesburg", "location", true),
   r("/dentist-fox-chase-philadelphia/", "Fox Chase", "location", true),
 
-  // Service + location. The Invisalign page is conditional (handoff): live on staging; the
-  // practice should confirm it still offers Invisalign before the real domain points here.
+  // Service + location. The Invisalign page was conditional (handoff); the practice confirmed
+  // it offers Invisalign (6 Oct 2026).
   r("/dental-implants-bucks-county/", "Dental Implants, Bucks County", "service-location", true),
   r("/dental-implants-feasterville-pa/", "Dental Implants, Feasterville", "service-location", true),
   r("/dental-implants-langhorne-pa/", "Dental Implants, Langhorne", "service-location", true),

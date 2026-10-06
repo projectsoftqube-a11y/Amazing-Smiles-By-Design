@@ -87,16 +87,6 @@
   justify-items: center;
 }
 
-.stars {
-  display: inline-flex;
-  gap: 0.25rem;
-  color: #f4c15d;
-}
-
-.stars svg {
-  fill: currentColor;
-}
-
 .quote {
   font-size: clamp(1.125rem, 0.95rem + 0.85vw, 1.625rem);
   line-height: 1.6;

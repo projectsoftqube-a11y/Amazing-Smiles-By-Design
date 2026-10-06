@@ -60,15 +60,7 @@
   pointer-events: none;
 }
 
-.stars {
-  display: inline-flex;
-  gap: 0.25rem;
-  color: #f4c15d;
-}
 
-.stars svg {
-  fill: currentColor;
-}
 
 .quote {
   font-family: var(--font-serif);

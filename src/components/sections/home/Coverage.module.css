@@ -70,6 +70,7 @@
 
 .logoWall {
   display: grid;
+  place-content: center;
   gap: var(--space-s);
   padding: var(--space-l);
   background:
@@ -77,49 +78,30 @@
     var(--white);
 }
 
-.logoLabel {
-  justify-self: center;
-  color: var(--blue-700);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+/* PPO statement in place of the carrier logos */
+.ppo {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
+  color: var(--navy-800);
+  font-family: var(--font-serif);
+  font-size: var(--step-h3);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
 }
 
-/* Six tiles per row on desktop; the last row stays centred */
-.logos {
-  --cols: 6;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-.logos li {
+.ppoIcon {
   display: grid;
   place-items: center;
-  flex: 0 0 calc((100% - (var(--cols) - 1) * 0.75rem) / var(--cols));
-  height: 5.5rem;
-  padding: 0.875rem 1.125rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-  background: var(--white);
-  transition:
-    border-color var(--dur-ui) var(--ease-out),
-    box-shadow 500ms var(--ease-expo);
-}
-
-.logos li:hover {
-  border-color: var(--ice-300);
-  box-shadow: var(--shadow-soft);
-}
-
-.logo {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 3.25rem;
-  object-fit: contain;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--blue-700) 0%, transparent 60%),
+    var(--navy-800);
+  color: var(--white);
+  box-shadow: var(--shadow-lift);
 }
 
 /* ——— Membership ——— */
@@ -372,9 +354,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .logos {
-    --cols: 4;
-  }
 
 }
 
@@ -404,28 +383,7 @@
   }
 }
 
-@media (max-width: 767px) {
-  .logos {
-    --cols: 2;
-  }
-}
-
 @media (max-width: 575px) {
-  .logos {
-    --cols: 2;
-    gap: 0.5rem;
-  }
-
-  .logos li {
-    height: 4.75rem;
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-m);
-  }
-
-  .logo {
-    max-height: 2.75rem;
-  }
-
   .insuranceCopy,
   .logoWall {
     padding: var(--space-m);

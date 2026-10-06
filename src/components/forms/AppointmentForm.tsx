@@ -10,13 +10,13 @@ import {
   fieldLimits,
   formNotes,
   interestOptions,
+  LEAD_FLAG,
   timeOptions,
   type FormVariant,
 } from "@/content/appointment-form";
 import { contactLinks, practice } from "@/content/site";
 import { submitAppointment } from "@/lib/appointment";
-import { validateAppointment, type AppointmentState, type FieldErrors, type FieldName } from "@/lib/appointment-validation";
-import styles from "./AppointmentForm.module.css";
+import { validateAppointment, type AppointmentState, type FieldErrors, type FieldName } from "@/lib/appointment-validation";import styles from "./AppointmentForm.module.css";
 
 type AppointmentFormProps = {
   variant?: FormVariant;
@@ -33,8 +33,8 @@ type AppointmentFormProps = {
  *
  * Submitted with a transition rather than `<form action>`, so a validation error
  * keeps everything the visitor typed. Errors are announced, linked to their fields
- * and cleared as the field is edited. A successful request pushes a conversion
- * event to the dataLayer (Scheduling handoff: track submissions), then opens /thank-you/.
+ * and cleared as the field is edited. A successful request opens /thank-you/, which
+ * pushes the conversion event to the dataLayer on arrival (Developer Questions, section C).
  */
 export function AppointmentForm({ variant = "appointment", defaultInterest, note, submitLabel }: AppointmentFormProps) {
   const router = useRouter();
@@ -52,13 +52,14 @@ export function AppointmentForm({ variant = "appointment", defaultInterest, note
   useEffect(() => {
     if (state.status === "sent") {
       doneRef.current?.focus();
-      window.dataLayer = window.dataLayer ?? [];
-      window.dataLayer.push({
-        event: variant === "emergency" ? "emergency_request" : "appointment_request",
-        page_path: window.location.pathname,
-      });
-      // Then the thank-you page (the inline message below stays as a fallback while it loads)
-      router.push(`/thank-you/?type=${variant}`);
+      // The conversion event fires on arrival at /thank-you/, from this one-time flag
+      try {
+        sessionStorage.setItem(LEAD_FLAG, JSON.stringify({ variant, from: window.location.pathname }));
+      } catch {
+        // Storage blocked: the thank-you page still opens, without the event
+      }
+      // The inline message below stays as a fallback while the thank-you page loads
+      router.push("/thank-you/");
     }
     if (state.status === "invalid" && focusAfterSubmit.current) {
       focusAfterSubmit.current = false;

@@ -49,11 +49,6 @@ export function ReviewsSlider() {
               inert={!current}
             >
               <figure className={styles.review}>
-                <p className={styles.stars} role="img" aria-label={`Rated ${review.rating} out of 5`}>
-                  {Array.from({ length: review.rating }, (_, star) => (
-                    <Icon key={star} name="star" size={18} />
-                  ))}
-                </p>
                 <blockquote className={styles.quote}>
                   <p>{review.quote}</p>
                 </blockquote>

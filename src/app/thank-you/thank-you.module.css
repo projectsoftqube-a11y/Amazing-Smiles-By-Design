@@ -87,25 +87,32 @@
   line-height: 1.6;
 }
 
-.safety {
+/* Call/text line: a soft panel, phone number bold */
+.sooner {
   display: flex;
   align-items: flex-start;
   gap: 0.625rem;
   max-width: 38rem;
   padding: 1rem 1.25rem;
-  border-left: 4px solid var(--error);
-  border-radius: 14px;
-  background: #fff6f5;
-  color: #7f1d16;
+  border: 1px solid var(--ice-300);
+  border-radius: 18px;
+  background: var(--ice-50);
+  color: var(--navy-800);
   font-weight: 600;
   line-height: 1.55;
   text-align: left;
 }
 
-.safety svg {
+.sooner svg {
   flex: none;
   margin-top: calc((1lh - 20px) / 2);
-  color: var(--error);
+  color: var(--blue-700);
+}
+
+.sooner a {
+  color: var(--blue-700);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .actions {
@@ -116,170 +123,18 @@
   margin-top: var(--space-2xs);
 }
 
-/* ===== What happens next ===== */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-s);
-  max-width: 64rem;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.steps li {
-  display: grid;
-  align-content: start;
-  gap: 0.5rem;
-  padding: var(--space-m);
-  border: 1px solid var(--white);
-  border-radius: 26px;
-  background: var(--white);
+/* Practice line under the button */
+.nap {
+  max-width: 36rem;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--line);
   color: var(--slate-600);
-  line-height: 1.55;
-  box-shadow: var(--shadow-soft);
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
-.steps strong {
-  color: var(--navy-800);
-  font-family: var(--font-serif);
-  font-size: 1.1875rem;
-  font-weight: 600;
-}
-
-.stepIcon {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-bottom: 0.25rem;
-  border-radius: 14px;
-  background: var(--ice-200);
-  color: var(--navy-800);
-}
-
-/* ===== Hours + links ===== */
-.extras {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: var(--space-s);
-  max-width: 64rem;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.hours,
-.more {
-  display: grid;
-  align-content: start;
-  gap: var(--space-s);
-  padding: var(--space-m);
-  border-radius: 26px;
-}
-
-.hours {
-  background:
-    radial-gradient(70% 80% at 100% 0%, rgb(44 106 154 / 0.7) 0%, transparent 70%),
-    var(--navy-900);
-  color: var(--slate-on-navy);
-  box-shadow: var(--shadow-lift);
-}
-
-.hours a {
-  color: var(--ice-300);
-}
-
-.more {
-  border: 1px solid var(--white);
-  background: var(--white);
-  box-shadow: var(--shadow-soft);
-}
-
-.label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--blue-700);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.hours .label {
-  color: var(--ice-300);
-}
-
-.hours dl {
-  display: grid;
-  gap: 0.5rem;
-  margin: 0;
-}
-
-.hours dl > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--line-on-navy);
-}
-
-.hours dt {
-  color: var(--white);
-  font-weight: 600;
-}
-
-.hours dd {
-  margin: 0;
-  white-space: nowrap;
-}
-
-.more ul {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.more a {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 0.75rem 0.875rem;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  color: var(--navy-800);
-  font-weight: 600;
-  text-decoration: none;
-  transition:
-    background var(--dur-ui) var(--ease-out),
-    border-color var(--dur-ui) var(--ease-out);
-}
-
-.more a:hover {
-  border-color: var(--ice-300);
-  background: var(--ice-50);
-}
-
-.more a > svg {
-  color: var(--blue-700);
-}
-
-.moreIcon {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 10px;
-  background: var(--ice-100);
-  color: var(--navy-800);
-}
-
-@media (max-width: 991px) {
-  .steps,
-  .extras {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.nap span {
+  display: inline-block;
 }
 
 @media (max-width: 575px) {
@@ -296,13 +151,6 @@
   .actions > * {
     width: 100%;
     justify-content: center;
-  }
-}
-
-/* Phones: "Call (215) 639-5331" only, so the button stays on one line */
-@media (max-width: 575px) {
-  .sooner {
-    display: none;
   }
 }
 

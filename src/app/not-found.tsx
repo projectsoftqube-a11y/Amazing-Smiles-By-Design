@@ -2,22 +2,20 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import Link from "@/components/ui/SiteLink";
-import { appointmentHref } from "@/content/navigation";
 import { contactLinks, practice } from "@/content/site";
 import styles from "./not-found.module.css";
 
 export const metadata: Metadata = {
   title: { absolute: `Page Not Found | ${practice.name}` },
+  description: "The page you're looking for may have moved or no longer exists. Let's get you back on track.",
   robots: { index: false },
 };
 
-const POPULAR: { label: string; href: string; icon: IconName }[] = [
-  { label: "General Dentistry", href: "/general-dentistry/", icon: "tooth" },
-  { label: "Restorative Dentistry", href: "/restorative-dentistry/", icon: "shield" },
-  { label: "Cosmetic Dentistry", href: "/cosmetic-dentistry/", icon: "sparkle" },
-  { label: "Emergency Dentistry", href: "/general-dentistry/emergency-dentistry/", icon: "alert" },
-  { label: "Patient Information", href: "/patient-information/", icon: "clipboard" },
-  { label: "Areas We Serve", href: "/areas-we-serve/", icon: "map" },
+// Wording approved as-is in "Developer Questions - Answered" (section C)
+const LINKS: { label: string; href: string; icon: IconName }[] = [
+  { label: "Find a service", href: "/general-dentistry/", icon: "tooth" },
+  { label: "New patients", href: "/patient-information/new-patients/", icon: "family" },
+  { label: "Book an appointment", href: "/patient-information/scheduling/", icon: "calendar" },
 ];
 
 // Upper front teeth, one missing (drawn as a dashed outline)
@@ -57,41 +55,36 @@ export default function NotFound() {
             <span className={styles.code}>404</span>
           </div>
 
-          <p className="eyebrow">Error 404</p>
           <h1 id="not-found-title" className={styles.title}>
-            We couldn&rsquo;t find <em>that page</em>
+            That Page <em>Couldn&rsquo;t Be Found</em>
           </h1>
           <p className={styles.lead}>
-            The page may have moved. You can head back to the home page, or call or text us at {practice.phone.display}.
+            The page you&rsquo;re looking for may have moved or no longer exists. Let&rsquo;s get you back on track.
+          </p>
+          <p className={styles.contact}>
+            <Icon name="phone" size={18} />
+            <span>
+              Or call or text{" "}
+              <a href={contactLinks.call} data-track="call_click">
+                {practice.phone.display}
+              </a>{" "}
+              and we&rsquo;ll help.
+            </span>
           </p>
           <div className={styles.actions}>
             <Button href="/" icon="home">
-              Back to the home page
+              Back to Home
             </Button>
-            <Button href={appointmentHref} variant="secondary" icon="calendar" track="appointment_click">
-              Request an Appointment
-            </Button>
-          </div>
-          <div className={styles.contact}>
-            <a href={contactLinks.call} data-track="call_click">
-              <Icon name="phone" size={16} />
-              Call {practice.phone.display}
-            </a>
-            <a href={contactLinks.text} data-track="call_click">
-              <Icon name="message" size={16} />
-              Text us
-            </a>
           </div>
         </div>
 
-        <nav className={styles.popular} aria-label="Popular pages">
-          <p className={styles.popularLabel}>Popular pages</p>
+        <nav className={styles.popular} aria-label="Helpful pages">
           <ul role="list">
-            {POPULAR.map((page) => (
+            {LINKS.map((page) => (
               <li key={page.href}>
                 <Link href={page.href}>
                   <span className={styles.popularIcon} aria-hidden="true">
-                    <Icon name={page.icon} size={18} />
+                    <Icon name={page.icon} size={20} />
                   </span>
                   <span>{page.label}</span>
                   <Icon name="arrowRight" size={16} />
@@ -99,10 +92,6 @@ export default function NotFound() {
               </li>
             ))}
           </ul>
-          <Link href="/sitemap/" className={styles.sitemap}>
-            See every page in the sitemap
-            <Icon name="arrowRight" size={16} />
-          </Link>
         </nav>
       </div>
     </section>

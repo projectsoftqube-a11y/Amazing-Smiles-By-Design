@@ -178,9 +178,8 @@ const all: Record<string, { content: ServicePageContent; extras: ServiceExtras }
 };
 
 /**
- * Pages whose route is published (routes.ts). The conditional Invisalign page stays
- * unpublished until the practice confirms it still offers Invisalign (handoff); it can
- * still be previewed in development.
+ * Pages whose route is published (routes.ts). An unpublished page can still be
+ * previewed in development.
  */
 export const serviceLocationPages = Object.fromEntries(
   Object.entries(all).filter(
