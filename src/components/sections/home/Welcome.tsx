@@ -69,8 +69,10 @@ export function Welcome() {
           <p className="eyebrow" data-reveal="">
             Welcome
           </p>
+          {/* One H2; the welcome phrase sits on a smaller first line (client edits, 16 Oct 2026) */}
           <h2 id="care-title" data-reveal="">
-            {homeCare.title}
+            <span className={styles.titleLead}>{homeCare.titleSplit}</span>
+            {homeCare.title.slice(homeCare.titleSplit.length)}
           </h2>
           <p className={styles.lead} data-reveal="">
             {homeHero.intro}

@@ -147,14 +147,37 @@ export const emergencySpecial = {
   schemaDescription: "One-time fee for new patients. Includes the necessary exam and X-rays.",
 } as const;
 
+/**
+ * Carriers named wherever accepted insurance comes up (client edits, 16 Oct 2026: "include
+ * all insurances listed… look at list from amazingsmilesbydesign.com", plus Dominion and
+ * Independence Blue Cross Blue Shield). These are the carriers in the practice's logo strip
+ * (content/insurance.ts) and the Insurance page's featured list. Edit here only.
+ */
 export const insuranceCarriers = [
   "Aetna",
   "Anthem",
+  "BlueCross BlueShield",
+  "Careington",
   "Cigna",
   "Delta Dental",
+  "Dominion",
+  "Fidelio",
+  "GEHA",
+  "Guardian",
   "Humana",
+  "Independence Blue Cross Blue Shield",
+  "Kaiser Permanente",
+  "LEHB",
+  "ManhattanLife",
   "MetLife",
+  "Principal",
+  "Teamsters Care",
+  "Unitas",
+  "United Concordia",
   "UnitedHealthcare",
 ] as const;
+
+/** "Aetna, Anthem, … and UnitedHealthcare", for sentences that name the carriers */
+export const carrierSentence = `${insuranceCarriers.slice(0, -1).join(", ")} and ${insuranceCarriers[insuranceCarriers.length - 1]}`;
 
 export const financingPartners = ["CareCredit", "Cherry"] as const;

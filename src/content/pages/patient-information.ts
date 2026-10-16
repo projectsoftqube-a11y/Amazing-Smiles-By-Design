@@ -111,7 +111,8 @@ export const hubGroups: { id: string; title: string; eyebrow: string; links: Hub
 ];
 
 export const hubDetails = {
-  title: "Bensalem Dental Office Details",
+  // Client edits (16 Oct 2026); the content file had "Bensalem Dental Office Details"
+  title: "Amazing Smiles By Design in Bensalem",
   hours:
     "Monday 8 am – 6 pm, Tuesday 8 am – 5 pm, Wednesday 8 am – 6 pm, Thursday 8 am – 2 pm. Closed Friday to Sunday.",
   payment: "Payment is due at the time of service. We bill your insurance company and track your claim.",

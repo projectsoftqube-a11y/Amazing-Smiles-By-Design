@@ -70,19 +70,19 @@
 
 .logoWall {
   display: grid;
-  place-content: center;
-  gap: var(--space-s);
+  gap: var(--space-m);
   padding: var(--space-l);
   background:
     radial-gradient(60% 80% at 100% 100%, var(--ice-100) 0%, transparent 70%),
     var(--white);
 }
 
-/* PPO statement in place of the carrier logos */
+/* PPO statement over the carrier logos */
 .ppo {
-  display: grid;
-  justify-items: center;
-  gap: var(--space-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
   color: var(--navy-800);
   font-family: var(--font-serif);
   font-size: var(--step-h3);
@@ -93,15 +93,52 @@
 
 .ppoIcon {
   display: grid;
+  flex: none;
   place-items: center;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 20px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
   background:
     radial-gradient(90% 120% at 100% 0%, var(--blue-700) 0%, transparent 60%),
     var(--navy-800);
   color: var(--white);
   box-shadow: var(--shadow-lift);
+}
+
+/* The practice's carrier logos: six tiles per row on desktop; the last row stays centred */
+.logos {
+  --cols: 6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.logos li {
+  display: grid;
+  place-items: center;
+  flex: 0 0 calc((100% - (var(--cols) - 1) * 0.75rem) / var(--cols));
+  height: 5.5rem;
+  padding: 0.875rem 1.125rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  transition:
+    border-color var(--dur-ui) var(--ease-out),
+    box-shadow 500ms var(--ease-expo);
+}
+
+.logos li:hover {
+  border-color: var(--ice-300);
+  box-shadow: var(--shadow-soft);
+}
+
+.logo {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 3.25rem;
+  object-fit: contain;
 }
 
 /* ——— Membership ——— */
@@ -397,5 +434,32 @@
     border-radius: var(--radius-s);
     letter-spacing: 0.08em;
     line-height: 1.4;
+  }
+}
+
+/* Carrier logo tiles: fewer per row on smaller screens */
+@media (max-width: 991px) {
+  .logos {
+    --cols: 4;
+  }
+}
+
+@media (max-width: 575px) {
+  .logos {
+    --cols: 3;
+    gap: 0.5rem;
+  }
+
+  .logos li {
+    height: 4.25rem;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .logo {
+    max-height: 2.5rem;
+  }
+
+  .ppo {
+    font-size: 1.25rem;
   }
 }

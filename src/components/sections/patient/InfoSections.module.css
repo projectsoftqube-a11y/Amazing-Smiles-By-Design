@@ -5,16 +5,19 @@
 }
 
 /* ——— Insurance hero panel ——— */
+/* Three per row; the last row stays centred */
 .logoWall {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
 }
 
 .logoWall li {
   display: grid;
+  flex: 0 0 calc((100% - 1rem) / 3);
   place-items: center;
-  height: 4.25rem;
+  height: 3.5rem;
   padding: 0.75rem;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -35,7 +38,7 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 2.25rem;
+  max-height: 1.9rem;
   object-fit: contain;
 }
 

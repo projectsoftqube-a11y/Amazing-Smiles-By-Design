@@ -23,12 +23,12 @@ import styles from "./InfoSections.module.css";
 
 /* ——— Insurance & Payment ——— */
 
-// Logos only for carriers the copy names (no general "Blue Cross Blue Shield" claim)
-const NAMED_LOGOS = ["Aetna", "Anthem", "Cigna", "Delta Dental", "Humana", "MetLife", "UnitedHealthcare", "United Concordia", "Principal"];
-
-/** Hero panel: "PPO insurance accepted" over a wall of the named carriers' logos */
+/**
+ * Hero panel: "PPO insurance accepted" over every carrier logo the practice supplied (client
+ * edits, 16 Oct 2026: "include the pictures of insurance I provided"), all 17 tiles.
+ */
 export function InsurancePanel() {
-  const logos = carrierLogos.filter((carrier) => NAMED_LOGOS.includes(carrier.name));
+  const logos = carrierLogos;
   return (
     <HeroPanel
       tone="light"

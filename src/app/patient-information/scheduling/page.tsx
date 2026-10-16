@@ -29,8 +29,12 @@ export default function SchedulingPage() {
       <JsonLd data={coreSchema} />
       <JsonLd data={faqSchema} />
 
+      {/* Client edits (16 Oct 2026): the form comes first; the intro section follows it */}
+      <SchedulingForm first />
+
       <PageHero
         id="scheduling-title"
+        scrollReveal
         breadcrumb={schedulingBreadcrumb}
         eyebrow={`Book an appointment · ${practice.address.city}`}
         title={schedulingHero.title}
@@ -58,7 +62,6 @@ export default function SchedulingPage() {
         }
       />
 
-      <SchedulingForm />
       <SchedulingNotes />
       <Faq id="scheduling-faq-title" title={schedulingFaqs.title} items={schedulingFaqs.items} />
       <FinalCta

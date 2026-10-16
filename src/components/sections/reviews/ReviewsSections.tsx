@@ -1,6 +1,5 @@
-import type { CSSProperties } from "react";
 import Link from "@/components/ui/SiteLink";
-import { patientReviews, reviewsListTitle, reviewsNext, reviewsShare, reviewsThemes } from "@/content/pages/reviews";
+import { patientReviews, reviewsListTitle, reviewsNext, reviewsShare } from "@/content/pages/reviews";
 import { contactLinks, practice } from "@/content/site";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import styles from "./ReviewsSections.module.css";
@@ -11,57 +10,6 @@ const initials = (name: string) =>
     .map((part) => part[0])
     .join("")
     .replace(/[^A-Z]/g, "");
-
-/**
- * "What Patients Mention Most": the content file's list, each item with its
- * count as text ("4 of 6 reviews") plus a decorative bar. Counts must match the
- * reviews below (Developer Handoff).
- */
-export function Themes() {
-  return (
-    <section className={styles.themes} aria-labelledby="themes-title">
-      <div className="container">
-        <div className={styles.headCenter}>
-          <p className="eyebrow" data-reveal="">
-            In their words
-          </p>
-          <h2 id="themes-title" data-reveal="">
-            {reviewsThemes.title}
-          </h2>
-          <p className={styles.intro} data-reveal="">
-            {reviewsThemes.intro}
-          </p>
-        </div>
-
-        <ul role="list" className={styles.themeList}>
-          {reviewsThemes.items.map((item) => (
-            <li
-              key={item.label}
-              className={styles.theme}
-              style={{ "--share": item.count / reviewsThemes.total } as CSSProperties}
-              data-reveal=""
-            >
-              <span className={styles.themeIcon} aria-hidden="true">
-                <Icon name={item.icon as IconName} size={22} />
-              </span>
-              <span className={styles.themeCount} aria-hidden="true">
-                <span data-count={item.count}>{item.count}</span>
-                <span className={styles.themeOf}>/{reviewsThemes.total}</span>
-              </span>
-              <p className={styles.themeText}>
-                <strong>{item.label}:</strong>{" "}
-                {item.count === 1 ? "1 review" : `${item.count} of ${reviewsThemes.total} reviews`}
-              </p>
-              <span className={styles.themeBar} aria-hidden="true">
-                <span />
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
 
 /**
  * "What Our Patients Say": all six reviews, each once and in full, as plain HTML

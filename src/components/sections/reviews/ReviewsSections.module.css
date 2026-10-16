@@ -15,86 +15,8 @@
   color: var(--color-muted);
 }
 
-/* ——— What patients mention most ——— */
-.themes {
-  padding-block: var(--space-section);
-  background:
-    radial-gradient(35% 45% at 0% 0%, var(--ice-100) 0%, transparent 70%),
-    var(--white);
-}
-
-.themeList {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-s);
-  margin-top: var(--space-l);
-}
-
-.theme {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: var(--space-s);
-  padding: var(--space-m);
-  border: 1px solid var(--ice-200);
-  border-radius: var(--radius-l);
-  background: linear-gradient(160deg, var(--white) 0%, var(--ice-50) 100%);
-}
-
-.themeIcon {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 14px;
-  background: var(--navy-800);
-  color: var(--white);
-}
-
-.themeCount {
-  font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 2.2rem + 2vw, 4rem);
-  font-weight: 600;
-  line-height: 1;
-  color: var(--navy-800);
-  font-variant-numeric: lining-nums;
-}
-
-.themeOf {
-  margin-left: 0.125rem;
-  font-size: 0.4em;
-  color: var(--blue-500);
-}
-
-.themeText {
-  color: var(--color-muted);
-  line-height: 1.6;
-}
-
-.themeText strong {
-  display: block;
-  margin-bottom: 0.25rem;
-  color: var(--navy-800);
-  font-weight: 700;
-}
-
-/* Bar filled to the share of reviews (count / total) */
-.themeBar {
-  display: block;
-  height: 6px;
-  border-radius: 3px;
-  background: var(--ice-200);
-  overflow: hidden;
-}
-
-.themeBar span {
-  display: block;
-  width: calc(var(--share) * 100%);
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--navy-800), var(--blue-500));
-}
-
-/* ——— Review wall (masonry columns) ——— */
+/* ——— Review wall: the featured review spans two rows on the left, the rest two by two
+   beside it (a grid, so five reviews leave no empty column) ——— */
 .wall {
   padding-block: var(--space-section);
   background:
@@ -104,14 +26,18 @@
 }
 
 .reviews {
-  columns: 3;
-  column-gap: var(--space-m);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-m);
   margin-top: var(--space-l);
 }
 
 .review {
-  break-inside: avoid;
-  margin-bottom: var(--space-m);
+  display: grid;
+}
+
+.reviewFeatured {
+  grid-row: span 2;
 }
 
 .review figure {
@@ -127,6 +53,8 @@
 }
 
 .reviewFeatured figure {
+  /* Taller than its text when it spans two rows: keep the quote centred */
+  align-content: center;
   background:
     repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 16px),
     radial-gradient(70% 90% at 100% 0%, var(--blue-700) 0%, transparent 60%),
@@ -410,12 +338,13 @@
 
 /* ——— Responsive ——— */
 @media (max-width: 1199px) {
-  .themeList {
+  .reviews {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .reviews {
-    columns: 2;
+  .reviewFeatured {
+    grid-row: auto;
+    grid-column: 1 / -1;
   }
 
   .nextGrid {
@@ -425,7 +354,7 @@
 
 @media (max-width: 767px) {
   .reviews {
-    columns: 1;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .share,
@@ -434,8 +363,3 @@
   }
 }
 
-@media (max-width: 575px) {
-  .themeList {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}

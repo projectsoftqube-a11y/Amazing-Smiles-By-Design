@@ -17,7 +17,7 @@ export const schedulingBreadcrumb = patientInfoCrumb("Scheduling", schedulingMet
 export const schedulingHero = {
   title: { lead: "Book a Dentist Appointment", accent: "in Bensalem" },
   intro:
-    "The first step toward a beautiful, healthy smile is to schedule an appointment. Text or call Amazing Smiles By Design at (215) 639-5331, or complete the appointment request form below. Our scheduling coordinator will contact you to confirm your appointment.",
+    "The first step toward a beautiful, healthy smile is to schedule an appointment. Text or call Amazing Smiles By Design at (215) 639-5331, or complete the appointment request form above. Our scheduling coordinator will contact you to confirm your appointment.",
   cta: { label: "Request Online", href: "#appointment-form" },
 };
 

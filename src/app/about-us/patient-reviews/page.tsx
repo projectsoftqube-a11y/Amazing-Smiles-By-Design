@@ -1,18 +1,16 @@
 import { FinalCta } from "@/components/sections/home/FinalCta";
 import { HeroCard, PageHero } from "@/components/sections/PageHero";
-import { ReviewWall, ShareAndNext, Themes } from "@/components/sections/reviews/ReviewsSections";
+import { ReviewWall, ShareAndNext } from "@/components/sections/reviews/ReviewsSections";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { images } from "@/content/images";
 import { homeAreas } from "@/content/pages/home";
 import {
-  patientReviews,
   reviewsBreadcrumb,
   reviewsFinalCta,
   reviewsHero,
   reviewsMeta,
-  reviewsThemes,
 } from "@/content/pages/reviews";
 import { contactLinks, practice } from "@/content/site";
 import { breadcrumbList, dentistEntity, graph, webPageEntity, websiteEntity } from "@/lib/schema";
@@ -37,7 +35,6 @@ const schema = graph(
   websiteEntity(),
 );
 
-const friendly = reviewsThemes.items[0];
 
 export default function PatientReviewsPage() {
   return (
@@ -63,23 +60,24 @@ export default function PatientReviewsPage() {
         }
         cards={
           <>
+            {/* No review counts (client edits, 16 Oct 2026: the practice has many more
+                reviews than the ones shown here) */}
             <HeroCard
               position="top"
               icon={<Icon name="quote" size={20} />}
-              title={`${patientReviews.length} patient reviews`}
+              title="Real patient reviews"
               text="Shared in their own words"
             />
             <HeroCard
               position="bottom"
               icon={<Icon name="smile" size={20} />}
-              title={friendly.label}
-              text={`Mentioned in ${friendly.count} of ${reviewsThemes.total} reviews`}
+              title="Friendly, welcoming staff"
+              text="What patients tell us most"
             />
           </>
         }
       />
 
-      <Themes />
       <ReviewWall />
       <ShareAndNext />
       <FinalCta

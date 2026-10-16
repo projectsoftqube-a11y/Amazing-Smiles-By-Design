@@ -5,6 +5,7 @@
  */
 
 import { appointmentHref, emergencyHref } from "../navigation";
+import { carrierSentence } from "../site";
 
 export const homeMeta = {
   path: "/",
@@ -42,7 +43,11 @@ export const homeHero = {
 } as const;
 
 export const homeCare = {
-  title: "Gentle, Personal Dental Care in Bensalem, PA",
+  // Client edits (16 Oct 2026): "add 'Welcome to Amazing Smiles By Design where we provide'
+  // before that statement" (the content file had "Gentle, Personal Dental Care in Bensalem, PA")
+  title: "Welcome to Amazing Smiles By Design, Where We Provide Gentle, Personal Dental Care in Bensalem, PA",
+  /** Where the H2 splits: the welcome phrase shows as a smaller first line (same heading) */
+  titleSplit: "Welcome to Amazing Smiles By Design, Where We Provide ",
   paragraphs: [
     "At Amazing Smiles By Design, we treat you like family. Dr. Dudhat is committed to personalized care in a supportive environment, and our team takes pride in building lasting relationships and keeping every visit relaxed and stress-free. If dental visits make you nervous, tell us. You're welcome to bring headphones and music, and you can ask us about dental sedation options.",
     "Whether you need a routine cleaning, a crown, veneers or whitening, your care is planned around your needs and goals.",
@@ -89,7 +94,7 @@ export const homeCoverage = {
   title: "Insurance, Membership Plans & Financing",
   insurance: {
     title: "Dental insurance",
-    body: "Your PPO insurance is accepted here. We are in-network with a variety of insurance plans and work with carriers including Aetna, Anthem, Cigna, Delta Dental, Humana, MetLife and UnitedHealthcare. Coverage depends on your plan, so call us to confirm your plan before your visit. We bill your insurance company and track your claim. Payment for your share is due at the time of service.",
+    body: `Your PPO insurance is accepted here. We are in-network with a variety of insurance plans and work with carriers including ${carrierSentence}. Coverage depends on your plan, so call us to confirm your plan before your visit. We bill your insurance company and track your claim. Payment for your share is due at the time of service.`,
     link: { label: "Insurance & payment details", href: "/patient-information/insurance-payment-options/" },
   },
   membership: {
@@ -104,6 +109,7 @@ export const homeCoverage = {
   },
 };
 
+/** Not on the homepage since the client's edits (16 Oct 2026); kept as the content file's copy */
 export const homeEmergency = {
   title: "Dental Emergency? Call Us First",
   body: {
@@ -117,37 +123,7 @@ export const homeEmergency = {
 
 export const homeReviews = {
   title: "What Our Patients Say",
-  /** All reviews from the practice's current site, in its order; each shows 5 stars there */
-  reviews: [
-    {
-      quote:
-        "All of my visits to Amazing Smiles by Design have been great! Erin is quick, efficient, careful and friendly as a hygienist. Dr. Jenish is thorough, kind and friendly. Colleen, at the front desk is also always friendly and upbeat.",
-      name: "John C.",
-      date: "January 2026",
-      rating: 5,
-    },
-    {
-      quote:
-        "I had an absolutely good experience at this dental office. The staff were incredibly welcoming, the environment was comfortable and modern, and everything about the visit was just top-notch. Highly recommend.",
-      name: "Renee V.",
-      date: "February 2026",
-      rating: 5,
-    },
-    {
-      quote:
-        "I just recently had some visits to Amazing Smiles. They took Xrays and cleaned my teeth. I returned to get an impression for a nightguard and then to actually get the nightguard. The dentist and staff are friendly, polite, and professional.",
-      name: "Louis F.",
-      date: "December 2025",
-      rating: 5,
-    },
-    {
-      quote:
-        "I had a filling and a root canal at Amazing Smiles by Design and the experience was amazing-completely pain-free! The dentist was gentle, professional, and made me feel comfortable throughout the entire process.",
-      name: "Anton A.",
-      date: "August 2025",
-      rating: 5,
-    },
-  ],
+  // The reviews themselves come from content/pages/reviews.ts (patientReviews)
   link: { label: "Read more patient reviews", href: "/about-us/patient-reviews/" },
 };
 
@@ -200,7 +176,7 @@ export const homeFaqs = {
     {
       question: "Do you accept my dental insurance?",
       answer:
-        "We accept PPO dental insurance and work with carriers including Aetna, Anthem, Cigna, Delta Dental, Humana, MetLife and UnitedHealthcare. Coverage depends on your specific plan, so call (215) 639-5331 to confirm your plan before your visit.",
+        `We accept PPO dental insurance and work with carriers including ${carrierSentence}. Coverage depends on your specific plan, so call (215) 639-5331 to confirm your plan before your visit.`,
     },
     {
       question: "What if I don't have dental insurance?",

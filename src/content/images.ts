@@ -11,8 +11,8 @@ import galleryHeroImg from "@/assets/images/gallery-hero-smile-mirror.jpg";
 import reviewsHeroImg from "@/assets/images/reviews-hero-happy-patient.jpg";
 import specialsHeroImg from "@/assets/images/specials-hero-family-visit.jpg";
 import doctorPortraitImg from "@/assets/images/dr-keyur-dudhat-portrait.jpg";
-import homeBannerImg from "@/assets/images/home-hero-banner.jpg";
-import homeBannerMobileImg from "@/assets/images/home-hero-banner-mobile.jpg";
+import homeBannerImg from "@/assets/images/home-hero-family-banner.jpg";
+import homeBannerMobileImg from "@/assets/images/home-hero-family-banner-mobile.jpg";
 import homeCareImg from "@/assets/images/home-welcome-team.jpg";
 import homeHeroImg from "@/assets/images/home-hero-dental-consultation.jpg";
 import homeTechnologyImg from "@/assets/images/home-technology-cbct-patient.jpg";
@@ -60,24 +60,29 @@ export type SiteImage = {
 };
 
 export const images = {
-  /** Home hero background: 7920×3360 original; web master 3200px + a 5:6 phone crop */
+  /*
+   * Home hero background (client edits, 16 Oct 2026: "Put a picture of a family - no false
+   * advertising of office"; it was a dentist and patient in a treatment room that isn't
+   * theirs). Free Pexels photo, mirrored so the family sits on the right; the wide master
+   * (3200×1358) extends its bright window edge into a soft light area for the headline
+   * (composited in code, no AI); the phone master is a 5:6 crop around the family.
+   */
   homeBanner: {
     src: homeBannerImg,
     srcMobile: homeBannerMobileImg,
-    alt: "A smiling patient talking with her dentist in a bright, modern dental treatment room",
-    brief: "Wide banner: dentist and smiling patient, bright modern room, clear space on the left",
-    position: "62% 50%",
+    alt: "Three generations of a smiling family together at home",
+    brief: "Wide banner: smiling multi-generation family at home, clear light space on the left",
+    position: "72% 40%",
     source: {
-      provider: "magnific",
-      id: "432172742",
-      url: "https://www.magnific.com/premium-photo/dentist-consulting-patient-modern-dental-office-examination-room_432172742.htm",
-      author: "yzfboy01",
-      licence: "Freepik Premium",
-      listedCredits: 150,
-      creditsCharged: 0,
-      downloaded: "2026-10-02",
+      provider: "pexels",
+      id: "7551583",
+      url: "https://www.pexels.com/photo/people-smiling-together-7551583/",
+      author: "Kampus Production",
+      licence: "Pexels licence (free for commercial use)",
+      downloaded: "2026-10-16",
     },
   },
+
   homeHero: {
     src: homeHeroImg,
     alt: "A dentist in blue scrubs talking with a patient in a bright, modern dental office",
@@ -333,11 +338,13 @@ export const images = {
 
 /** Before/after pairs shown in the smile gallery slider, in order */
 /**
- * Before/after photos are shown only once the practice confirms the patients' written
- * consent covers the new site (Developer Questions, 6 Oct 2026, item B6). Until then each
- * slot shows its "photo pending" placeholder. Set to true once consent is confirmed.
+ * Before/after photos (the practice's own cases from its current website). Hidden on 6 Oct
+ * until consent for the new site was confirmed; switched on 16 Oct 2026 because the client
+ * asked for "filler pics for now" in the gallery. Still to confirm with the practice before
+ * the real domain launch: that the patients' consent covers the new site. Set to false to
+ * show the "photo pending" placeholders again.
  */
-export const galleryConsentConfirmed = false;
+export const galleryConsentConfirmed = true;
 
 const withConsent = (image: SiteImage): SiteImage => (galleryConsentConfirmed ? image : { ...image, src: null });
 

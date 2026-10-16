@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { carrierLogos } from "@/content/insurance";
 import { homeCoverage } from "@/content/pages/home";
 import {
   contactLinks,
@@ -32,8 +34,8 @@ export function Coverage() {
           </h2>
         </div>
 
-        {/* Insurance: navy copy band beside the PPO statement (carrier logos removed until the
-            practice supplies its accepted-plan list: Developer Questions, 6 Oct 2026) */}
+        {/* Insurance: navy copy band over the PPO statement and the practice's carrier logos
+            (client edits, 16 Oct 2026: "add this picture where it says 'we accept most PPO plans'") */}
         <div className={styles.insurance} data-reveal="">
           <div className={styles.insuranceCopy}>
             <div className={styles.insuranceLead}>
@@ -52,10 +54,17 @@ export function Coverage() {
           <div className={styles.logoWall}>
             <p className={styles.ppo}>
               <span className={styles.ppoIcon} aria-hidden="true">
-                <Icon name="shield" size={26} />
+                <Icon name="shield" size={22} />
               </span>
               We accept most PPO plans.
             </p>
+            <ul role="list" className={styles.logos} aria-label="Insurance plans we work with">
+              {carrierLogos.map((carrier) => (
+                <li key={carrier.name}>
+                  <Image src={carrier.logo} alt={carrier.name} sizes="200px" className={styles.logo} />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

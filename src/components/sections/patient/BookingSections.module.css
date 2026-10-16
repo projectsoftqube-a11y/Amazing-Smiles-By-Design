@@ -410,6 +410,11 @@
     linear-gradient(180deg, var(--ice-100) 0%, var(--porcelain) 100%);
 }
 
+/* First on the page: closer to the header */
+.formFirst {
+  padding-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+}
+
 .formWhite {
   background:
     radial-gradient(35% 45% at 100% 0%, var(--ice-100) 0%, transparent 70%),

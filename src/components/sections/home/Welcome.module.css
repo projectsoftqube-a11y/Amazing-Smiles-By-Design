@@ -320,3 +320,13 @@
     font-size: 0.875rem;
   }
 }
+
+/* "Welcome to Amazing Smiles By Design, Where We Provide" above the main heading line */
+.titleLead {
+  display: block;
+  margin-bottom: 0.35em;
+  font-size: 0.5em;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--blue-700);
+}

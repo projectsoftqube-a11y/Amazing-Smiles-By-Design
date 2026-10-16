@@ -202,6 +202,7 @@ export function FormSection({
   side,
   sideFirst = false,
   tone = "ice",
+  first = false,
 }: {
   id: string;
   eyebrow: string;
@@ -211,9 +212,13 @@ export function FormSection({
   side?: ReactNode;
   sideFirst?: boolean;
   tone?: "ice" | "white";
+  /** First section on the page (Scheduling): a shorter gap under the header */
+  first?: boolean;
 }) {
   const head = <SectionHead id={id} eyebrow={eyebrow} title={title} lead={body} />;
-  const classes = [styles.formSection, tone === "white" ? styles.formWhite : null].filter(Boolean).join(" ");
+  const classes = [styles.formSection, tone === "white" ? styles.formWhite : null, first ? styles.formFirst : null]
+    .filter(Boolean)
+    .join(" ");
 
   if (!side) {
     return (
@@ -256,10 +261,14 @@ export function FormSection({
 
 /* ——— Scheduling ——— */
 
-/** "Request an Appointment Online" with "Office Hours" beside it (content order) */
-export function SchedulingForm() {
+/**
+ * "Request an Appointment Online" with "Office Hours" beside it. First on the Scheduling page
+ * since the client's edits (16 Oct 2026: "move the form all the way to the top").
+ */
+export function SchedulingForm({ first = false }: { first?: boolean }) {
   return (
     <FormSection
+      first={first}
       id="request-online-title"
       eyebrow="Request online"
       title={schedulingForm.title}

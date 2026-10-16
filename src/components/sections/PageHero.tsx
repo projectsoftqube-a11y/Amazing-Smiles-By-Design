@@ -26,6 +26,8 @@ type PageHeroProps = {
   aside?: ReactNode;
   /** Small floating cards over the photo frame (decorative summaries of page facts) */
   cards?: ReactNode;
+  /** Not the first section (Scheduling puts its form first): fade up on scroll instead */
+  scrollReveal?: boolean;
 };
 
 /**
@@ -47,13 +49,14 @@ export function PageHero({
   ratio = "5 / 4",
   aside,
   cards,
+  scrollReveal = false,
 }: PageHeroProps) {
   const portrait = ratio === "4 / 5";
   const leadWords = title.lead.split(" ").length;
 
   return (
     <section className={styles.hero} aria-labelledby={id}>
-      <div className={`container ${styles.grid}`}>
+      <div className={`container ${styles.grid}`} data-reveal={scrollReveal ? "" : undefined}>
         <div className={styles.copy}>
           <Breadcrumb items={breadcrumb} className={styles.breadcrumb} />
           <p className={`eyebrow ${styles.eyebrow}`}>{eyebrow}</p>

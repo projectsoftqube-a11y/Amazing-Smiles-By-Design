@@ -28,6 +28,10 @@ export const reviewsHero = {
   cta: { label: "Request an Appointment", href: appointmentHref },
 };
 
+/**
+ * Client edits (16 Oct 2026): "remove all reviews with the name Colleen and Jenish" (John C.'s
+ * review). The homepage review grid reads this same list.
+ */
 export const patientReviews = [
   {
     quote:
@@ -40,12 +44,6 @@ export const patientReviews = [
       "I had an absolutely good experience at this dental office. The staff were incredibly welcoming, the environment was comfortable and modern, and everything about the visit was just top-notch. Highly recommend.",
     name: "Renee V.",
     date: "February 2026",
-  },
-  {
-    quote:
-      "All of my visits to Amazing Smiles by Design have been great! Erin is quick, efficient, careful and friendly as a hygienist. Dr. Jenish is thorough, kind and friendly. Colleen, at the front desk is also always friendly and upbeat.",
-    name: "John C.",
-    date: "January 2026",
   },
   {
     quote:
@@ -67,21 +65,8 @@ export const patientReviews = [
   },
 ];
 
-/**
- * "What Patients Mention Most". Keep the counts in sync with `patientReviews`
- * (Developer Handoff): re-count if reviews are added or removed.
- */
-export const reviewsThemes = {
-  title: "What Patients Mention Most",
-  intro: "Across the six reviews on this page, patients most often mention:",
-  total: 6,
-  items: [
-    { label: "Friendly, welcoming staff", count: 4, icon: "smile" },
-    { label: "Feeling comfortable during their visit", count: 3, icon: "heart" },
-    { label: "Thorough, caring hygienists", count: 2, icon: "tooth" },
-    { label: "Care for the whole family, including help with an emergency appointment", count: 1, icon: "family" },
-  ],
-} as const;
+/* "What Patients Mention Most" was removed at the client's request (16 Oct 2026): it counted
+   only the reviews on this page, and the practice has many more. */
 
 export const reviewsListTitle = "What Our Patients Say";
 

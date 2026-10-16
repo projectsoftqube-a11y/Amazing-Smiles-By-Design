@@ -1,13 +1,22 @@
 import { homeGallery, homeReviews } from "@/content/pages/home";
+import { patientReviews } from "@/content/pages/reviews";
 import { Button } from "@/components/ui/Button";
 import { GalleryCompare } from "./GalleryCompare";
-import { ReviewsSlider } from "./ReviewsSlider";
 import styles from "./Reviews.module.css";
 
+const initials = (name: string) =>
+  name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .replace(/[^A-Z]/g, "");
+
 /**
- * Reviews are the ones on the practice's current site, with name and date. No star
- * ratings and no Review or AggregateRating markup: ratings that can't be verified are
- * not shown (reviews handoff; Developer Questions, 6 Oct 2026).
+ * Several reviews at once in a grid of cards (client edits, 16 Oct 2026: one review at a
+ * time took too much space; set it up like the Hampton site), from the same list as the
+ * Patient Reviews page, so a review removed there disappears here too. The sixth tile links
+ * to that page. No star ratings, Google rating badge or Review/AggregateRating markup until
+ * the practice's verified Google rating and review link are supplied (reviews handoff).
  */
 export function Reviews() {
   return (
@@ -22,7 +31,33 @@ export function Reviews() {
           </h2>
         </div>
 
-        <ReviewsSlider />
+        <ul role="list" className={styles.grid}>
+          {patientReviews.map((review) => (
+            <li key={review.name} className={styles.card} data-reveal="">
+              <span className={styles.glyph} aria-hidden="true">
+                &ldquo;
+              </span>
+              <blockquote className={styles.quote}>
+                <p>{review.quote}</p>
+              </blockquote>
+              <p className={styles.who}>
+                <span className={styles.avatar} aria-hidden="true">
+                  {initials(review.name)}
+                </span>
+                <span>
+                  <span className={styles.name}>{review.name}</span>
+                  <span className={styles.date}>{review.date}</span>
+                </span>
+              </p>
+            </li>
+          ))}
+          <li className={styles.more} data-reveal="">
+            <p className={styles.moreTitle}>Hear from more of our patients</p>
+            <Button href={homeReviews.link.href} variant="inverse">
+              {homeReviews.link.label}
+            </Button>
+          </li>
+        </ul>
 
         {/* Smile gallery teaser */}
         <section className={styles.gallery} aria-labelledby="gallery-title">

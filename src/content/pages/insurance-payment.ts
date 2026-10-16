@@ -1,4 +1,5 @@
 import { appointmentHref } from "@/content/navigation";
+import { carrierSentence } from "@/content/site";
 import { patientInfoCrumb } from "./patient-information";
 
 /**
@@ -24,20 +25,32 @@ export const insuranceHero = {
 };
 
 export const insurancePlans = {
-  title: "Dental Insurance Plans We Work With",
+  // Client edits (16 Oct 2026): reworded title; UnitedHealthcare Medicare taken off; the
+  // carriers in the practice's logo strip plus Dominion and Independence Blue Cross Blue Shield
+  title: "Dental Insurance Plans We Work With, But Not Limited To",
   lead: "We work with a long list of dental insurance carriers and plans, including:",
   featured: [
     "Aetna (including Aetna Medicare)",
     "Anthem",
+    "BlueCross BlueShield",
+    "Careington",
     "Cigna",
     "Delta Dental",
+    "Dominion",
+    "Fidelio Dental Insurance",
+    "GEHA",
     "The Guardian Life Insurance Company",
     "Humana",
+    "Independence Blue Cross Blue Shield",
     "Kaiser Permanente",
+    "LEHB",
+    "ManhattanLife",
     "MetLife",
     "Principal",
+    "Teamsters Care",
+    "Unitas PPO Solutions",
     "United Concordia",
-    "UnitedHealthcare (including UnitedHealthcare Medicare)",
+    "UnitedHealthcare",
   ],
   fullListLabel: "See the full list of insurance plans we work with",
   missing: "Don't see your plan? Call (215) 639-5331 and ask.",
@@ -46,8 +59,9 @@ export const insurancePlans = {
 /**
  * Every carrier and plan on the current site's insurance page (fetched 5 Oct 2026),
  * names exactly as written there (Developer Handoff: keep the text in the HTML so
- * patients can find their plan with Ctrl+F). Only two Blue Cross Blue Shield entries
- * are listed, so never claim "Blue Cross Blue Shield" in general.
+ * patients can find their plan with Ctrl+F). The client added Independence Blue Cross Blue
+ * Shield (edits, 16 Oct 2026; Dominion was already listed) and asked for BlueCross
+ * BlueShield to be named.
  */
 export const insuranceCarriers = [
   "Administrative Services Only (ASO)",
@@ -124,6 +138,7 @@ export const insuranceCarriers = [
   "Humana (Zelis)",
   "Humana Insurance Company and Arcadian Health Plan, Inc.",
   "Imperial*",
+  "Independence Blue Cross Blue Shield",
   "Kaiser Permanente",
   "Key Benefit Administrators",
   "LEHB",
@@ -224,7 +239,7 @@ export const insuranceFaqs = {
     {
       question: "Which dental insurance companies do you work with?",
       answer:
-        "We work with many carriers, including Aetna, Anthem, Cigna, Delta Dental, Guardian, Humana, Kaiser Permanente, MetLife, Principal, United Concordia and UnitedHealthcare.",
+        `We work with many carriers, including ${carrierSentence}.`,
     },
     {
       question: "Will you bill my insurance company?",
