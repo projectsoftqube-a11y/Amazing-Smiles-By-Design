@@ -67,6 +67,9 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
       aria-modal="true"
       aria-label="Site menu"
       hidden
+      // Lenis is stopped while the menu is open and then blocks wheel and touch scrolling,
+      // except inside data-lenis-prevent, so the menu's own scroll needs it
+      data-lenis-prevent=""
     >
       <div className={`container ${styles.top}`}>
         <Logo className={styles.logo} priority={false} />

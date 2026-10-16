@@ -269,8 +269,12 @@
   font-size: 0.875rem;
 }
 
+/* A grid, not CSS columns: columns in a fixed-height box overflow sideways (most plans sat
+   off to the right), while grid rows overflow downward and scroll inside the box */
 .planList {
-  columns: 3 14rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr));
+  align-content: start;
   column-gap: var(--space-m);
   max-height: 30rem;
   overflow-y: auto;
@@ -284,7 +288,6 @@
   align-items: flex-start;
   gap: 0.5rem;
   padding-block: 0.4rem;
-  break-inside: avoid;
   color: var(--white);
   font-size: 0.9375rem;
   line-height: 1.45;

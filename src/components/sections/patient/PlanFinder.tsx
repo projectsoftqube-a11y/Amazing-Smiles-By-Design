@@ -50,7 +50,8 @@ export function PlanFinder({ label, plans }: { label: string; plans: readonly st
           </p>
         </div>
 
-        <ul role="list" className={styles.planList}>
+        {/* Its own scroll area: data-lenis-prevent stops Lenis scrolling the page instead */}
+        <ul role="list" className={styles.planList} data-lenis-prevent="">
           {plans.map((plan) => (
             <li key={plan} hidden={!matches(plan)}>
               <Icon name="check" size={16} />
