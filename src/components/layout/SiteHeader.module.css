@@ -161,6 +161,15 @@
   }
 }
 
+/* Closed by a link click: stays shut while the pointer is still over it (set in SiteHeader) */
+.item[data-closed] > .panel,
+.item[data-closed]:hover > .panel,
+.item[data-closed]:focus-within > .panel {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
 .drop {
   left: -0.75rem;
   min-width: 15rem;

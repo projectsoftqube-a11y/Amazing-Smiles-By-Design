@@ -2,7 +2,7 @@
 
 import Link from "@/components/ui/SiteLink";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type FocusEvent, type MouseEvent } from "react";
 import { appointmentHref, mainNav, type NavItem } from "@/content/navigation";
 import { serviceHubs } from "@/content/services";
 import { contactLinks, practice } from "@/content/site";
@@ -15,6 +15,8 @@ import styles from "./SiteHeader.module.css";
 export function SiteHeader() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  // The menu closed by a link click; hover and focus can't reopen it until the pointer leaves
+  const [closedMenu, setClosedMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -81,7 +83,25 @@ export function SiteHeader() {
     menuButtonRef.current?.focus();
   }, []);
 
-  const toggle = (key: string) => setOpenMenu((current) => (current === key ? null : key));
+  const toggle = (key: string) => {
+    setClosedMenu(null);
+    setOpenMenu((current) => (current === key ? null : key));
+  };
+
+  // Menus also open on hover and focus (CSS). After a link is clicked the pointer is still over
+  // the menu and the link keeps focus, so close it at once and drop the focus; the menu works
+  // again once the pointer leaves it, or when focus comes back in from outside (keyboard).
+  const onPanelClick = (key: string) => (event: MouseEvent<HTMLLIElement>) => {
+    const link = (event.target as Element).closest("a");
+    if (!link) return;
+    setOpenMenu(null);
+    setClosedMenu(key);
+    link.blur();
+  };
+  const onMenuLeave = (key: string) => () => setClosedMenu((current) => (current === key ? null : current));
+  const onMenuFocus = (key: string) => (event: FocusEvent<HTMLLIElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) onMenuLeave(key)();
+  };
 
   const renderItem = (item: NavItem, index: number) => {
     if (item.kind === "link") {
@@ -104,6 +124,10 @@ export function SiteHeader() {
         key={item.label}
         className={`${styles.item} ${isServices ? styles.itemMega : styles.itemDrop}`}
         data-open={isOpen ? "" : undefined}
+        data-closed={closedMenu === key ? "" : undefined}
+        onClick={onPanelClick(key)}
+        onMouseLeave={onMenuLeave(key)}
+        onFocus={onMenuFocus(key)}
       >
         <button
           type="button"
