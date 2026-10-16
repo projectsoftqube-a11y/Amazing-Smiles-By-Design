@@ -25,7 +25,8 @@ export const insuranceHero = {
 };
 
 export const insurancePlans = {
-  // Client edits (16 Oct 2026): reworded title; UnitedHealthcare Medicare taken off; the
+  // Client edits (16 Oct 2026): reworded title; UnitedHealthcare Medicare taken off (here and
+  // in the full list below); the
   // carriers in the practice's logo strip plus Dominion and Independence Blue Cross Blue Shield
   title: "Dental Insurance Plans We Work With, But Not Limited To",
   lead: "We work with a long list of dental insurance carriers and plans, including:",
@@ -194,7 +195,6 @@ export const insuranceCarriers = [
   "United Concordia – UCCI",
   "United Group Programs, Inc",
   "United HealthCare Commercial",
-  "United HealthCare Medicare",
   "Unitas",
 ] as const;
 

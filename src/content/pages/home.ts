@@ -124,7 +124,7 @@ export const homeEmergency = {
 export const homeReviews = {
   title: "What Our Patients Say",
   // The reviews themselves come from content/pages/reviews.ts (patientReviews)
-  link: { label: "Read more patient reviews", href: "/about-us/patient-reviews/" },
+  link: { label: "View patient reviews", href: "/about-us/patient-reviews/" },
 };
 
 export const homeGallery = {

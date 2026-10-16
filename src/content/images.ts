@@ -173,8 +173,11 @@ export const images = {
     },
   },
   /*
-   * Smile gallery before/after cases: the practice's own patient photos from the
-   * current site's gallery, saved by the client from the live site (500×260 each).
+   * Smile gallery before/after cases from the current site's gallery, saved by the client from
+   * the live site (500×260 each). Checked 16 Oct 2026: the files are served from PBHS's shared
+   * asset folder (client-mu-plugins/rw-assets), not the practice's own media library, and case 1
+   * changes lipstick between before and after, so they may be PBHS template photos rather than
+   * Amazing Smiles patients. Source and permission to publish are still to be confirmed.
    */
   galleryCase1Before: {
     src: galleryCase1BeforeImg,
@@ -183,7 +186,7 @@ export const images = {
     source: {
       provider: "practice",
       url: "https://www.pbhshosting.com/wp-content/client-mu-plugins/rw-assets/_public/media/case-1-before_w500_h260.jpg",
-      licence: "The practice's own patient photo, as published on its current site (500×260)",
+      licence: "Published on the practice's current PBHS site (500×260); ownership and consent unconfirmed",
       downloaded: "2026-10-02",
     },
   },
@@ -194,7 +197,7 @@ export const images = {
     source: {
       provider: "practice",
       url: "https://www.pbhshosting.com/wp-content/client-mu-plugins/rw-assets/_public/media/case-1-after_w500_h260.jpg",
-      licence: "The practice's own patient photo, as published on its current site (500×260)",
+      licence: "Published on the practice's current PBHS site (500×260); ownership and consent unconfirmed",
       downloaded: "2026-10-02",
     },
   },
@@ -205,7 +208,7 @@ export const images = {
     source: {
       provider: "practice",
       url: "https://www.pbhshosting.com/wp-content/client-mu-plugins/rw-assets/_public/media/case-2-before_w500_h260.jpg",
-      licence: "The practice's own patient photo, as published on its current site (500×260)",
+      licence: "Published on the practice's current PBHS site (500×260); ownership and consent unconfirmed",
       downloaded: "2026-10-02",
     },
   },
@@ -216,7 +219,7 @@ export const images = {
     source: {
       provider: "practice",
       url: "https://www.pbhshosting.com/wp-content/client-mu-plugins/rw-assets/_public/media/case-2-after_w500_h260.jpg",
-      licence: "The practice's own patient photo, as published on its current site (500×260)",
+      licence: "Published on the practice's current PBHS site (500×260); ownership and consent unconfirmed",
       downloaded: "2026-10-02",
     },
   },
@@ -227,7 +230,7 @@ export const images = {
     source: {
       provider: "practice",
       url: "https://www.pbhshosting.com/wp-content/client-mu-plugins/rw-assets/_public/media/case-3-before_w500_h260.jpg",
-      licence: "The practice's own patient photo, as published on its current site (500×260)",
+      licence: "Published on the practice's current PBHS site (500×260); ownership and consent unconfirmed",
       downloaded: "2026-10-02",
     },
   },
@@ -238,7 +241,7 @@ export const images = {
     source: {
       provider: "practice",
       url: "https://www.pbhshosting.com/wp-content/client-mu-plugins/rw-assets/_public/media/case-3-after_w500_h260.jpg",
-      licence: "The practice's own patient photo, as published on its current site (500×260)",
+      licence: "Published on the practice's current PBHS site (500×260); ownership and consent unconfirmed",
       downloaded: "2026-10-02",
     },
   },
