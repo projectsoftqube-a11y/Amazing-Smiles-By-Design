@@ -34,10 +34,10 @@ function Stars({ value }: { value: number }) {
 
 /**
  * Set up like the Hampton site's reviews (client edits, 16 Oct and 3 Nov 2026): the Google
- * rating badge under the title, a grid of review cards, and an attribution line with a "Read
- * all" button, both linking to the practice's Google listing. Reviews come from the same list
- * as the Patient Reviews page, so a review removed there disappears here too. A card shows
- * stars only when its Google rating is known. No Review/AggregateRating markup (handoff).
+ * rating badge under the title, a grid of review cards, and a "Read all" button, both linking
+ * to the practice's Google listing (no attribution line: user, 3 Nov 2026). The cards are the
+ * first six Google reviews from the list the Patient Reviews page shows in full. A card shows
+ * stars only when its Google rating is set. No Review/AggregateRating markup (handoff).
  */
 export function Reviews() {
   const ratingText = googleRating.rating.toFixed(1);
@@ -70,7 +70,7 @@ export function Reviews() {
         </div>
 
         <ul role="list" className={styles.grid}>
-          {patientReviews.map((review) => (
+          {patientReviews.slice(0, 6).map((review) => (
             <li key={review.name} className={styles.card} data-reveal="">
               <span className={styles.cardTop}>
                 {review.rating ? (
@@ -100,16 +100,10 @@ export function Reviews() {
         </ul>
 
         <div className={styles.foot} data-reveal="">
-          <p className={styles.attribution}>
-            <Icon name="check" size={16} className={styles.attributionIcon} />
-            Shown unedited, in each patient&apos;s own words
-          </p>
-          <div className={styles.footActions}>
-            <Button href={contactLinks.map} icon="arrowUpRight">
-              Read all {googleRating.count} reviews
-            </Button>
-            <TextLink href={homeReviews.link.href}>{homeReviews.link.label}</TextLink>
-          </div>
+          <Button href={contactLinks.map} icon="arrowUpRight">
+            Read all {googleRating.count} reviews
+          </Button>
+          <TextLink href={homeReviews.link.href}>{homeReviews.link.label}</TextLink>
         </div>
 
         {/* Smile gallery teaser */}

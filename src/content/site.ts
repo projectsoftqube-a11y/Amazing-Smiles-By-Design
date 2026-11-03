@@ -56,13 +56,13 @@ export const contactLinks = {
 } as const;
 
 /**
- * The practice's Google rating, as shown on its Google listing (contactLinks.map). Read off
- * the listing in October 2026: re-check it before launch and update all three values together.
- * `checked` is kept as the record of that check; it isn't shown on the page (user, 3 Nov 2026).
+ * The practice's Google rating, as shown on its Google listing (contactLinks.map): confirmed by
+ * the team from the listing on 3 Nov 2026. Re-check before launch and update all three values
+ * together. `checked` is the record of that check; it isn't shown on the page.
  * Shown as a linked badge only (homepage reviews, like the Hampton site); never output as
  * Review or AggregateRating schema (Home Developer Handoff: "A Google review widget is fine").
  */
-export const googleRating = { rating: 4.8, count: 218, checked: "October 2026" } as const;
+export const googleRating = { rating: 4.8, count: 223, checked: "November 2026" } as const;
 
 /** Google Maps directions to the office starting from a town ("Langhorne, PA") */
 export const directionsFrom = (origin: string) => `${contactLinks.directions}&origin=${encodeURIComponent(origin)}`;

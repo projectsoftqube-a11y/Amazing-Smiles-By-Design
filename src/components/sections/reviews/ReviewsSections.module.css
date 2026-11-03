@@ -347,6 +347,11 @@
     grid-column: 1 / -1;
   }
 
+  /* After the full-width featured card the rest pair up; a last one left alone spans the row */
+  .review:last-child:nth-child(even) {
+    grid-column: 1 / -1;
+  }
+
   .nextGrid {
     grid-template-columns: minmax(0, 1fr);
   }

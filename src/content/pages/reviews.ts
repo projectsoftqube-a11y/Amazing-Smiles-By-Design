@@ -2,20 +2,18 @@ import { appointmentHref } from "@/content/navigation";
 
 /**
  * Patient Reviews page copy, verbatim from
- * docs/seo-content/01 Core/04 Proof/Patient Reviews/02 Content.md (Final v1).
- * Reviews are word for word, including spelling ("Xrays", "appt"). Each review is
- * shown once, in full; no Review schema (Developer Handoff).
+ * docs/seo-content/01 Core/04 Proof/Patient Reviews/02 Content.md (Final v1), except the
+ * reviews themselves (see patientReviews). No Review schema (Developer Handoff).
  */
 
 type PatientReview = {
+  /** Verbatim from Google, spelling included. Never reword, shorten or tidy a review. */
   quote: string;
+  /** The reviewer's name exactly as Google shows it */
   name: string;
+  /** Google's own relative date, as shown on 3 Nov 2026 */
   date: string;
-  /**
-   * The review's star rating on Google. Where these reviews were published isn't recorded
-   * (SEO notes), so none is set: add it only once a review is matched on Google, and its
-   * card then shows the stars.
-   */
+  /** The review's star rating on Google; the card shows stars only when this is set */
   rating?: number;
 };
 
@@ -41,39 +39,60 @@ export const reviewsHero = {
 };
 
 /**
- * Client edits (16 Oct 2026): "remove all reviews with the name Colleen and Jenish" (John C.'s
- * review). The homepage review grid reads this same list.
+ * Real Google reviews from the practice's Google listing (contactLinks.map), copied from the
+ * listing by the team on 3 Nov 2026, like the Hampton site. Left out: reviews Google cuts off
+ * with "… More" (only whole reviews are shown), and reviews naming Colleen/Coleen or Jenish
+ * (client edits, 16 Oct 2026) or a dentist the site doesn't list ("Dr. Patel", "Dr. Jessen",
+ * "Dr Andrew Steinkeler"). The first review is the Patient Reviews page's featured card; the
+ * homepage shows the first six.
  */
 export const patientReviews: PatientReview[] = [
   {
     quote:
-      "Husband, daughter, and myself have all had pleasant experiences here. Always able to get an emergency appt (if needed). Very patient with my 10 year old. Everyone in the office is super friendly and always welcoming.",
-    name: "Emily B.",
-    date: "November 2025",
+      "Had such a great experience with Dr. Dudhat! He was very honest and forthcoming and had great bedside manner which is all very important to me. The staff in the office is lovely as well!",
+    name: "Alexis Kirsch",
+    date: "5 months ago",
+  },
+  {
+    quote:
+      "Smiles all around. Friendly staff, professional caring hygienist and doctor, and a beautiful, clean office.",
+    name: "Susan Harder",
+    date: "a month ago",
+  },
+  {
+    quote:
+      "This is the best dentist office I’ve ever been to! Everyone is so nice and welcoming, they do a painless cleaning and thorough checkup and the office is immaculate! Highly recommend!",
+    name: "Melanie M",
+    date: "5 months ago",
+  },
+  {
+    quote:
+      "Just got my teeth cleaned. Super friendly staff, quick and gentle cleaning. my teeth look really nice now (: No pain. Nice office too. Would go back!",
+    name: "Maruf Hossain",
+    date: "6 months ago",
+  },
+  {
+    quote:
+      "Great experience here. Everyone is really friendly and the office is super clean. They make you feel comfortable and take good care of you. Definitely recommend!",
+    name: "Anjali Davara",
+    date: "7 months ago",
   },
   {
     quote:
       "I had an absolutely good experience at this dental office. The staff were incredibly welcoming, the environment was comfortable and modern, and everything about the visit was just top-notch. Highly recommend.",
-    name: "Renee V.",
-    date: "February 2026",
+    name: "Renee Vento",
+    date: "8 months ago",
   },
   {
     quote:
-      "I just recently had some visits to Amazing Smiles. They took Xrays and cleaned my teeth. I returned to get an impression for a nightguard and then to actually get the nightguard. The dentist and staff are friendly, polite, and professional.",
-    name: "Louis F.",
-    date: "December 2025",
+      "Husband, daughter, and myself have all had pleasant experiences here. Always able to get an emergency appt (if needed). Very patient with my 10yo. Everyone in the office is super friendly and always welcoming.",
+    name: "Emily Bernstein",
+    date: "a year ago",
   },
   {
-    quote:
-      "I had a filling and a root canal at Amazing Smiles by Design and the experience was amazing-completely pain-free! The dentist was gentle, professional, and made me feel comfortable throughout the entire process.",
-    name: "Anton A.",
-    date: "August 2025",
-  },
-  {
-    quote:
-      "I had an amazing experience at the dental office! The dental hygienist was fantastic—professional, thorough, and incredibly caring. They made sure I felt comfortable throughout the entire appointment!",
-    name: "L G",
-    date: "March 2025",
+    quote: "We absolutely come there for the hygienist, Erin! She always goes above and beyond.",
+    name: "Kristy Loteckie",
+    date: "2 months ago",
   },
 ];
 

@@ -181,7 +181,7 @@
   color: var(--slate-600);
 }
 
-/* Attribution and "Read all" under the grid */
+/* "Read all" and the Patient Reviews link under the grid */
 .foot {
   display: flex;
   flex-wrap: wrap;
@@ -189,27 +189,6 @@
   justify-content: center;
   gap: var(--space-s) var(--space-m);
   margin-top: var(--space-l);
-}
-
-.attribution {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--slate-600);
-}
-
-.attributionIcon {
-  flex: none;
-  color: var(--blue-500);
-}
-
-.footActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-s) var(--space-m);
 }
 
 /* ——— Smile gallery: copy beside a before/after slider ——— */
@@ -314,13 +293,5 @@
   .rating {
     gap: 0.5rem;
     padding: 0.625rem 1rem;
-  }
-
-  .attribution {
-    align-items: flex-start;
-  }
-
-  .attributionIcon {
-    margin-top: 0.15rem;
   }
 }
