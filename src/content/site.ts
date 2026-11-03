@@ -58,6 +58,7 @@ export const contactLinks = {
 /**
  * The practice's Google rating, as shown on its Google listing (contactLinks.map). Read off
  * the listing in October 2026: re-check it before launch and update all three values together.
+ * `checked` is kept as the record of that check; it isn't shown on the page (user, 3 Nov 2026).
  * Shown as a linked badge only (homepage reviews, like the Hampton site); never output as
  * Review or AggregateRating schema (Home Developer Handoff: "A Google review widget is fine").
  */

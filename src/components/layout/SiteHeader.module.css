@@ -3,9 +3,7 @@
   top: 0;
   z-index: 50;
   background: rgb(255 255 255 / 0.96);
-  transition:
-    transform 420ms var(--ease-out),
-    box-shadow var(--dur-ui) var(--ease-out);
+  transition: box-shadow var(--dur-ui) var(--ease-out);
 }
 
 @supports (backdrop-filter: blur(1px)) {
@@ -17,10 +15,6 @@
 
 .header[data-scrolled] {
   box-shadow: var(--shadow-header);
-}
-
-.header[data-hidden] {
-  transform: translateY(-100%);
 }
 
 .bar {
@@ -162,11 +156,10 @@
 }
 
 /* Closed by a link click, the trigger, Escape or scrolling: stays shut while the pointer is
-   still over it (set in SiteHeader). No panel shows while the header is slid away. */
+   still over it (set in SiteHeader). */
 .item[data-closed] > .panel,
 .item[data-closed]:hover > .panel,
-.item[data-closed]:focus-within > .panel,
-.header[data-hidden] .item > .panel {
+.item[data-closed]:focus-within > .panel {
   visibility: hidden;
   opacity: 0;
   transform: translateY(-6px);
@@ -387,10 +380,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .header[data-hidden] {
-    transform: none;
-  }
-
   .logo img {
     transition: none;
   }

@@ -102,7 +102,7 @@ export function Reviews() {
         <div className={styles.foot} data-reveal="">
           <p className={styles.attribution}>
             <Icon name="check" size={16} className={styles.attributionIcon} />
-            Shown unedited, in each patient&apos;s own words · Google rating last checked {googleRating.checked}
+            Shown unedited, in each patient&apos;s own words
           </p>
           <div className={styles.footActions}>
             <Button href={contactLinks.map} icon="arrowUpRight">

@@ -19,7 +19,6 @@ export function SiteHeader() {
   // reopen it until the pointer leaves it (or focus comes back in from outside)
   const [closedMenu, setClosedMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -33,7 +32,8 @@ export function SiteHeader() {
     setMobileOpen(false);
   }
 
-  // Hide while scrolling down, reveal on any upward scroll.
+  // The header stays at the top while scrolling (client, 3 Nov 2026: it used to slide away on
+  // scroll-down and come back on scroll-up). Scrolling only adds its shadow and closes menus.
   useEffect(() => {
     let lastY = window.scrollY;
     let frame = 0;
@@ -44,14 +44,12 @@ export function SiteHeader() {
       setScrolled(y > 8);
       if (Math.abs(delta) > 4) {
         closeOnScroll();
-        const focusInside = headerRef.current?.contains(document.activeElement) ?? false;
-        setHidden(delta > 0 && y > 160 && !focusInside);
         lastY = y;
       }
     };
-    // Scrolling the page closes the menus. A menu open on hover would otherwise stay open under
-    // a still pointer, and once the header slid away it was left floating over the content.
-    // Mouse focus is dropped too; keyboard focus (:focus-visible) keeps its menu open.
+    // Scrolling the page closes the menus: a menu open on hover would otherwise stay open under
+    // a still pointer while the page moves beneath it. Mouse focus is dropped too; keyboard
+    // focus (:focus-visible) keeps its menu open.
     const closeOnScroll = () => {
       setOpenMenu(null);
       const header = headerRef.current;
@@ -228,7 +226,6 @@ export function SiteHeader() {
       <header
         ref={headerRef}
         className={styles.header}
-        data-hidden={hidden && !openMenu && !mobileOpen ? "" : undefined}
         data-scrolled={scrolled || openMenu ? "" : undefined}
         data-header-bar=""
       >
