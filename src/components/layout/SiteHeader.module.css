@@ -161,10 +161,12 @@
   }
 }
 
-/* Closed by a link click: stays shut while the pointer is still over it (set in SiteHeader) */
+/* Closed by a link click, the trigger, Escape or scrolling: stays shut while the pointer is
+   still over it (set in SiteHeader). No panel shows while the header is slid away. */
 .item[data-closed] > .panel,
 .item[data-closed]:hover > .panel,
-.item[data-closed]:focus-within > .panel {
+.item[data-closed]:focus-within > .panel,
+.header[data-hidden] .item > .panel {
   visibility: hidden;
   opacity: 0;
   transform: translateY(-6px);

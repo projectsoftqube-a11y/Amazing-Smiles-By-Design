@@ -2,7 +2,7 @@
 
 import Link from "@/components/ui/SiteLink";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useId, useRef, useState, type FocusEvent, type MouseEvent } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent } from "react";
 import { appointmentHref, mainNav, type NavItem } from "@/content/navigation";
 import { serviceHubs } from "@/content/services";
 import { contactLinks, practice } from "@/content/site";
@@ -15,7 +15,8 @@ import styles from "./SiteHeader.module.css";
 export function SiteHeader() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  // The menu closed by a link click; hover and focus can't reopen it until the pointer leaves
+  // A menu closed by a link click, the trigger, Escape or scrolling; hover and focus can't
+  // reopen it until the pointer leaves it (or focus comes back in from outside)
   const [closedMenu, setClosedMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -42,10 +43,27 @@ export function SiteHeader() {
       const delta = y - lastY;
       setScrolled(y > 8);
       if (Math.abs(delta) > 4) {
+        closeOnScroll();
         const focusInside = headerRef.current?.contains(document.activeElement) ?? false;
         setHidden(delta > 0 && y > 160 && !focusInside);
         lastY = y;
       }
+    };
+    // Scrolling the page closes the menus. A menu open on hover would otherwise stay open under
+    // a still pointer, and once the header slid away it was left floating over the content.
+    // Mouse focus is dropped too; keyboard focus (:focus-visible) keeps its menu open.
+    const closeOnScroll = () => {
+      setOpenMenu(null);
+      const header = headerRef.current;
+      if (!header) return;
+      const active = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      const keyboard = active?.matches(":focus-visible") ?? false;
+      const item =
+        header.querySelector<HTMLElement>("[data-menu-key]:hover") ??
+        (keyboard ? null : header.querySelector<HTMLElement>("[data-menu-key]:focus-within"));
+      if (!item) return;
+      setClosedMenu(item.dataset.menuKey ?? null);
+      if (active && !keyboard && item.contains(active)) active.blur();
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -64,6 +82,7 @@ export function SiteHeader() {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpenMenu(null);
+        setClosedMenu(openMenu);
         headerRef.current?.querySelector<HTMLButtonElement>(`[aria-controls="${baseId}-${openMenu}"]`)?.focus();
       }
     };
@@ -83,9 +102,17 @@ export function SiteHeader() {
     menuButtonRef.current?.focus();
   }, []);
 
-  const toggle = (key: string) => {
-    setClosedMenu(null);
-    setOpenMenu((current) => (current === key ? null : key));
+  const toggle = (key: string) => (event: MouseEvent<HTMLButtonElement>) => {
+    if (openMenu === key) {
+      // Closing: hover and focus would keep the panel showing, so shut it until the pointer
+      // leaves; a mouse click (detail > 0) also drops the focus it gave the button
+      setOpenMenu(null);
+      setClosedMenu(key);
+      if (event.detail > 0) event.currentTarget.blur();
+    } else {
+      setClosedMenu(null);
+      setOpenMenu(key);
+    }
   };
 
   // Menus also open on hover and focus (CSS). After a link is clicked the pointer is still over
@@ -101,6 +128,13 @@ export function SiteHeader() {
   const onMenuLeave = (key: string) => () => setClosedMenu((current) => (current === key ? null : current));
   const onMenuFocus = (key: string) => (event: FocusEvent<HTMLLIElement>) => {
     if (!event.currentTarget.contains(event.relatedTarget as Node | null)) onMenuLeave(key)();
+  };
+  // Escape also closes a menu that is only open on hover or focus, and returns focus to its trigger
+  const onMenuKey = (key: string) => (event: ReactKeyboardEvent<HTMLLIElement>) => {
+    if (event.key !== "Escape") return;
+    setOpenMenu(null);
+    setClosedMenu(key);
+    event.currentTarget.querySelector("button")?.focus();
   };
 
   const renderItem = (item: NavItem, index: number) => {
@@ -125,16 +159,18 @@ export function SiteHeader() {
         className={`${styles.item} ${isServices ? styles.itemMega : styles.itemDrop}`}
         data-open={isOpen ? "" : undefined}
         data-closed={closedMenu === key ? "" : undefined}
+        data-menu-key={key}
         onClick={onPanelClick(key)}
         onMouseLeave={onMenuLeave(key)}
         onFocus={onMenuFocus(key)}
+        onKeyDown={onMenuKey(key)}
       >
         <button
           type="button"
           className={styles.topLink}
           aria-expanded={isOpen}
           aria-controls={panelId}
-          onClick={() => toggle(key)}
+          onClick={toggle(key)}
         >
           {item.label}
           <Icon name="chevronDown" size={16} className={styles.chevron} />

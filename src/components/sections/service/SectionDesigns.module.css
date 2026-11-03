@@ -2350,17 +2350,23 @@
   color: var(--slate-on-navy);
 }
 
+/* All the carrier logos, --per tiles a row */
 .budgetLogos {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  --per: 6;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.budgetLogos span {
+.budgetLogos li {
+  flex: 0 0 calc((100% - (var(--per) - 1) * 0.5rem) / var(--per));
   display: grid;
   place-items: center;
-  height: 3.25rem;
-  padding: 0.5rem;
+  height: 3rem;
+  padding: 0.4rem;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--white);
@@ -2370,8 +2376,27 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 1.75rem;
+  max-height: 1.5rem;
   object-fit: contain;
+}
+
+/* Two cards side by side are narrow from 992 to 1199px; one card a row is wide again below 768px */
+@media (max-width: 1199px) {
+  .budgetLogos {
+    --per: 4;
+  }
+}
+
+@media (max-width: 767px) {
+  .budgetLogos {
+    --per: 6;
+  }
+}
+
+@media (max-width: 575px) {
+  .budgetLogos {
+    --per: 4;
+  }
 }
 
 .budgetPrices {

@@ -1039,7 +1039,6 @@ function CauseChain({ section, eyebrow }: DesignProps) {
 }
 
 /* ——— General Dentistry hub: budget ——— */
-const BUDGET_LOGOS = carrierLogos.filter((carrier) => ["Aetna", "Cigna", "Delta Dental", "MetLife"].includes(carrier.name));
 
 function BudgetCards({ section, eyebrow }: DesignProps) {
   const list = firstList(section.blocks);
@@ -1061,13 +1060,14 @@ function BudgetCards({ section, eyebrow }: DesignProps) {
               <span className={styles.budgetText}>
                 <Rich text={ins.rest} />
               </span>
-              <span className={styles.budgetLogos} aria-hidden="true">
-                {BUDGET_LOGOS.map((carrier) => (
-                  <span key={carrier.name}>
-                    <Image src={carrier.logo} alt="" sizes="96px" className={styles.budgetLogo} />
-                  </span>
+              {/* Every carrier logo the practice supplied (client edits: "include all insurances") */}
+              <ul role="list" className={styles.budgetLogos} aria-label="Insurance plans we work with">
+                {carrierLogos.map((carrier) => (
+                  <li key={carrier.name}>
+                    <Image src={carrier.logo} alt={carrier.name} sizes="120px" className={styles.budgetLogo} />
+                  </li>
                 ))}
-              </span>
+              </ul>
             </li>
             <li className={`${styles.budgetCard} ${styles.budgetNavy}`} data-reveal="">
               <span className={styles.budgetIcon} aria-hidden="true">

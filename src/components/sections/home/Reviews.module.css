@@ -13,16 +13,95 @@
   text-align: center;
 }
 
-/* ——— Review grid (client edits, 16 Oct 2026: several reviews at once, like the Hampton
-   site): white cards in three columns; the sixth tile links to every review ——— */
+/* ——— Google rating badge (like the Hampton site): links to the practice's listing ——— */
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--space-2xs);
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--navy-800);
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+  transition:
+    border-color var(--dur-ui) var(--ease-out),
+    box-shadow 500ms var(--ease-expo);
+}
+
+.rating:hover {
+  border-color: var(--ice-300);
+  box-shadow: var(--shadow-lift);
+}
+
+.ratingValue {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.ratingRule {
+  width: 1px;
+  height: 1.125rem;
+  background: var(--line);
+}
+
+.ratingCount {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--slate-600);
+}
+
+.ratingArrow {
+  color: var(--slate-600);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.rating:hover .ratingArrow {
+  transform: translate(2px, -2px);
+}
+
+/* Stars: a muted star under a filled one clipped to --fill */
+.stars {
+  display: inline-flex;
+  gap: 0.125rem;
+}
+
+.star {
+  display: inline-grid;
+}
+
+.star > svg {
+  grid-area: 1 / 1;
+  stroke-width: 0;
+}
+
+.starBase {
+  color: var(--ice-300);
+}
+
+.starFill {
+  color: var(--blue-500);
+  clip-path: inset(0 calc(100% - var(--fill)) 0 0);
+}
+
+/* ——— Review grid (client edits: several reviews at once, set up like the Hampton site):
+   white cards, three a row; a short last row is centred ——— */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  --cols: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-s);
   margin-top: var(--space-l);
 }
 
 .card {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--space-s)) / var(--cols));
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: var(--space-s);
@@ -41,11 +120,19 @@
   box-shadow: var(--shadow-lift);
 }
 
-/* Serif quote mark in the corner */
-.glyph {
-  justify-self: end;
+/* Stars (once the review's Google rating is known) on the left, the quote mark on the right */
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-s);
   height: 1.75rem;
   margin-bottom: -0.75rem;
+}
+
+/* Serif quote mark in the corner */
+.glyph {
+  margin-left: auto;
   font-family: var(--font-serif);
   font-size: 3.5rem;
   line-height: 1;
@@ -94,27 +181,35 @@
   color: var(--slate-600);
 }
 
-/* Sixth tile: every review on the Patient Reviews page */
-.more {
-  display: grid;
-  align-content: center;
-  justify-items: start;
-  gap: var(--space-s);
-  padding: var(--space-m);
-  border-radius: var(--radius-l);
-  background:
-    radial-gradient(70% 80% at 100% 0%, rgb(44 106 154 / 0.7) 0%, transparent 70%),
-    var(--navy-900);
-  color: var(--slate-on-navy);
-  box-shadow: var(--shadow-lift);
+/* Attribution and "Read all" under the grid */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s) var(--space-m);
+  margin-top: var(--space-l);
 }
 
-.moreTitle {
-  font-family: var(--font-serif);
-  font-size: var(--step-h3);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--white);
+.attribution {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--slate-600);
+}
+
+.attributionIcon {
+  flex: none;
+  color: var(--blue-500);
+}
+
+.footActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s) var(--space-m);
 }
 
 /* ——— Smile gallery: copy beside a before/after slider ——— */
@@ -207,12 +302,25 @@
 
 @media (max-width: 991px) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    --cols: 2;
   }
 }
 
 @media (max-width: 575px) {
   .grid {
-    grid-template-columns: minmax(0, 1fr);
+    --cols: 1;
+  }
+
+  .rating {
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+  }
+
+  .attribution {
+    align-items: flex-start;
+  }
+
+  .attributionIcon {
+    margin-top: 0.15rem;
   }
 }

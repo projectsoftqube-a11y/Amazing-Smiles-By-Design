@@ -65,14 +65,15 @@ function OfferExtra({ icon }: { icon: string }) {
     );
   }
   if (icon === "shield") {
+    // Every carrier logo the practice supplied (client edits: "include all insurances")
     return (
-      <span className={styles.extraLogos} aria-hidden="true">
-        {OFFER_LOGOS.map((carrier) => (
-          <span key={carrier.name} className={styles.extraLogo}>
-            <Image src={carrier.logo} alt="" sizes="96px" className={styles.extraLogoImg} />
-          </span>
+      <ul role="list" className={styles.extraLogos} aria-label="Insurance plans we work with">
+        {carrierLogos.map((carrier) => (
+          <li key={carrier.name} className={styles.extraLogo}>
+            <Image src={carrier.logo} alt={carrier.name} sizes="120px" className={styles.extraLogoImg} />
+          </li>
         ))}
-      </span>
+      </ul>
     );
   }
   return (
@@ -82,8 +83,6 @@ function OfferExtra({ icon }: { icon: string }) {
     </span>
   );
 }
-
-const OFFER_LOGOS = carrierLogos.filter((carrier) => ["Aetna", "Cigna", "Delta Dental", "MetLife"].includes(carrier.name));
 
 /**
  * "New Patient Specials & Payment Options": the $59 special as a tall navy feature
@@ -139,7 +138,11 @@ export function NewPatientOffers() {
 
           <ul role="list" className={styles.offerRows}>
             {rows.map((item) => (
-              <li key={item.label} className={styles.offerRow} data-reveal="">
+              <li
+                key={item.label}
+                className={`${styles.offerRow} ${item.icon === "shield" ? styles.offerRowWide : ""}`}
+                data-reveal=""
+              >
                 <span className={styles.offerIcon} aria-hidden="true">
                   <Icon name={item.icon as IconName} size={24} />
                 </span>

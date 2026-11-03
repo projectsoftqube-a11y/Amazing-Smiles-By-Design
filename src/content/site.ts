@@ -55,6 +55,14 @@ export const contactLinks = {
     "https://maps.google.com/maps?q=Amazing+Smiles+By+Design,+3101+Bristol+Road+Suite+1,+Bensalem,+PA+19020&z=15&output=embed",
 } as const;
 
+/**
+ * The practice's Google rating, as shown on its Google listing (contactLinks.map). Read off
+ * the listing in October 2026: re-check it before launch and update all three values together.
+ * Shown as a linked badge only (homepage reviews, like the Hampton site); never output as
+ * Review or AggregateRating schema (Home Developer Handoff: "A Google review widget is fine").
+ */
+export const googleRating = { rating: 4.8, count: 218, checked: "October 2026" } as const;
+
 /** Google Maps directions to the office starting from a town ("Langhorne, PA") */
 export const directionsFrom = (origin: string) => `${contactLinks.directions}&origin=${encodeURIComponent(origin)}`;
 

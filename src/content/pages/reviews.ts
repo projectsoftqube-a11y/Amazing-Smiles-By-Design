@@ -4,8 +4,20 @@ import { appointmentHref } from "@/content/navigation";
  * Patient Reviews page copy, verbatim from
  * docs/seo-content/01 Core/04 Proof/Patient Reviews/02 Content.md (Final v1).
  * Reviews are word for word, including spelling ("Xrays", "appt"). Each review is
- * shown once, in full; no star ratings and no Review schema (Developer Handoff).
+ * shown once, in full; no Review schema (Developer Handoff).
  */
+
+type PatientReview = {
+  quote: string;
+  name: string;
+  date: string;
+  /**
+   * The review's star rating on Google. Where these reviews were published isn't recorded
+   * (SEO notes), so none is set: add it only once a review is matched on Google, and its
+   * card then shows the stars.
+   */
+  rating?: number;
+};
 
 export const reviewsMeta = {
   path: "/about-us/patient-reviews/",
@@ -32,7 +44,7 @@ export const reviewsHero = {
  * Client edits (16 Oct 2026): "remove all reviews with the name Colleen and Jenish" (John C.'s
  * review). The homepage review grid reads this same list.
  */
-export const patientReviews = [
+export const patientReviews: PatientReview[] = [
   {
     quote:
       "Husband, daughter, and myself have all had pleasant experiences here. Always able to get an emergency appt (if needed). Very patient with my 10 year old. Everyone in the office is super friendly and always welcoming.",
