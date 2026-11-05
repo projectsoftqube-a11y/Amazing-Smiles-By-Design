@@ -23,8 +23,8 @@ export function Hero() {
   const marquee = serviceHubs.flatMap((hub) => hub.services.map((service) => service.name));
 
   // Art direction: the wide banner from 768px up, a 5:6 portrait crop of the same photo on phones.
-  // The hero is often taller than the banner's 2.36:1 ratio, so the photo is scaled up
-  // to cover it; the wide `sizes` asks for enough pixels to stay sharp when that happens.
+  // The banner is 16:9 and `cover` crops it to the hero's shape (wider on big screens, taller
+  // on tablets); the wide `sizes` asks for enough pixels to stay sharp when it is scaled up.
   const wideSizes = "(min-width: 1600px) 110vw, (min-width: 768px) 150vw, 100vw";
   const common = { alt: banner.alt, sizes: "100vw", quality: 85 } as const;
   const {

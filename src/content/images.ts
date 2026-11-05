@@ -46,7 +46,7 @@ export type SiteImage = {
   position?: string;
   source: {
     /** "content-team": supplied inside the SEO team's content documents */
-    provider: "magnific" | "unsplash" | "pexels" | "practice" | "content-team";
+    provider: "magnific" | "unsplash" | "pexels" | "practice" | "content-team" | "chatgpt";
     id?: string;
     url?: string;
     author?: string;
@@ -62,24 +62,23 @@ export type SiteImage = {
 export const images = {
   /*
    * Home hero background (client edits, 16 Oct 2026: "Put a picture of a family - no false
-   * advertising of office"; it was a dentist and patient in a treatment room that isn't
-   * theirs). Free Pexels photo, mirrored so the family sits on the right; the wide master
-   * (3200×1358) extends its bright window edge into a soft light area for the headline
-   * (composited in code, no AI); the phone master is a 5:6 crop around the family.
+   * advertising of office"). The first family photo (Pexels 7551583) was rejected by the
+   * client; on 5 Nov 2026 it was replaced with a ChatGPT-generated image at the user's request,
+   * an exception to the no-AI rule above. The wide master is the full 1672×941 frame
+   * (16:9, not upscaled) so `cover` crops safely at every hero height; the family sits on the
+   * right and the plain wall on the left carries the headline. The phone master is a
+   * 1024×1229 (5:6) crop of a matching portrait render.
    */
   homeBanner: {
     src: homeBannerImg,
     srcMobile: homeBannerMobileImg,
-    alt: "Three generations of a smiling family together at home",
+    alt: "Three generations of a smiling family sitting together by a bright window at home",
     brief: "Wide banner: smiling multi-generation family at home, clear light space on the left",
-    position: "72% 40%",
+    position: "85% 35%",
     source: {
-      provider: "pexels",
-      id: "7551583",
-      url: "https://www.pexels.com/photo/people-smiling-together-7551583/",
-      author: "Kampus Production",
-      licence: "Pexels licence (free for commercial use)",
-      downloaded: "2026-10-16",
+      provider: "chatgpt",
+      licence: "AI-generated with ChatGPT at the user's request (exception to the no-AI rule)",
+      downloaded: "2026-11-05",
     },
   },
 
