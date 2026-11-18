@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import nodemailer from "nodemailer";
 import type { FormVariant } from "@/content/appointment-form";
 import { practice } from "@/content/site";
+import { buildAppointmentEmail } from "./appointment-email";
 import { validateAppointment, type AppointmentState } from "./appointment-validation";
 
 /**
@@ -52,15 +53,8 @@ export async function submitAppointment(variant: FormVariant, data: FormData): P
     return { status: "error", message: `Online requests aren't available right now. ${fallback}` };
   }
 
-  const subject =
-    variant === "emergency"
-      ? `Emergency visit request: ${fields[0][1]}`
-      : `Appointment request: ${fields[0][1]}`;
-  const text = [
-    variant === "emergency" ? "New emergency visit request from the website." : "New appointment request from the website.",
-    "",
-    ...fields.map(([label, value]) => `${label}: ${value}`),
-  ].join("\n");
+  // HTML for the inbox, plain text as the fallback (see appointment-email.ts)
+  const { subject, text, html } = buildAppointmentEmail({ variant, fields, practiceName: practice.name });
 
   try {
     const transport = nodemailer.createTransport({
@@ -76,6 +70,7 @@ export async function submitAppointment(variant: FormVariant, data: FormData): P
       replyTo: fields.find(([label]) => label === "Email")?.[1],
       subject,
       text,
+      html,
     });
     return { status: "sent" };
   } catch {
