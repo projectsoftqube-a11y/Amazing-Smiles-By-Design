@@ -45,7 +45,8 @@ export const mainNav: NavItem[] = [
   { kind: "link", label: "Contact", href: "/contact-us/" },
 ];
 
-export const appointmentHref = "/patient-information/scheduling/";
+/** Appointment buttons land on the Scheduling form section (heading + form), not the page top (client request, 19 Nov 2026) */
+export const appointmentHref = "/patient-information/scheduling/#request-online";
 export const emergencyHref = "/patient-information/emergency-scheduling/";
 
 export const footerNav: { title: string; links: NavLink[] }[] = [
@@ -59,7 +60,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: "Patients",
     links: [
       { label: "New Patients", href: "/patient-information/new-patients/" },
-      { label: "Request an Appointment", href: "/patient-information/scheduling/" },
+      { label: "Request an Appointment", href: "/patient-information/scheduling/#request-online" },
       { label: "Insurance & Payment", href: "/patient-information/insurance-payment-options/" },
       { label: "Financing Options", href: "/patient-information/financing-options/" },
       { label: "Specials & Membership Plans", href: "/specials/" },

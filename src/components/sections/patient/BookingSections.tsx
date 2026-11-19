@@ -206,6 +206,7 @@ export function FormSection({
   sideFirst = false,
   tone = "ice",
   first = false,
+  anchor,
 }: {
   id: string;
   eyebrow: string;
@@ -217,6 +218,8 @@ export function FormSection({
   tone?: "ice" | "white";
   /** First section on the page (Scheduling): a shorter gap under the header */
   first?: boolean;
+  /** In-page link target for the whole section (heading + form), e.g. "request-online" */
+  anchor?: string;
 }) {
   const head = <SectionHead id={id} eyebrow={eyebrow} title={title} lead={body} />;
   const classes = [styles.formSection, tone === "white" ? styles.formWhite : null, first ? styles.formFirst : null]
@@ -225,7 +228,7 @@ export function FormSection({
 
   if (!side) {
     return (
-      <section className={classes} aria-labelledby={id}>
+      <section id={anchor} className={classes} aria-labelledby={id}>
         <div className={`container ${styles.formGrid}`}>
           <div className={`${styles.formAside} ${styles.sticky}`}>
             {head}
@@ -247,7 +250,7 @@ export function FormSection({
   );
 
   return (
-    <div className={classes}>
+    <div id={anchor} className={classes}>
       <div className={`container ${styles.formGrid} ${sideFirst ? styles.sideFirst : styles.sideLast}`}>
         {sideFirst ? sideColumn : null}
         <section className={styles.formMain} aria-labelledby={id}>
@@ -272,6 +275,7 @@ export function SchedulingForm({ first = false }: { first?: boolean }) {
   return (
     <FormSection
       first={first}
+      anchor="request-online"
       id="request-online-title"
       eyebrow="Request online"
       title={schedulingForm.title}

@@ -51,3 +51,6 @@ desktop.ini
 
 # SEO source workbooks and raw exports stay local (docs/seo-sheets and anywhere else)
 *.xlsx
+
+# responsive audit output (screenshots and reports)
+/responsive-audit/

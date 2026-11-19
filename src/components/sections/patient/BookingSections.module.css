@@ -414,6 +414,8 @@
 /* ——— Form sections ——— */
 .formSection {
   padding-block: var(--space-section);
+  /* Appointment links (#request-online) land with the heading just under the sticky header */
+  scroll-margin-top: var(--header-h);
   background:
     radial-gradient(40% 50% at 0% 0%, var(--ice-200) 0%, transparent 70%),
     radial-gradient(40% 45% at 100% 100%, var(--ice-300) 0%, transparent 70%),

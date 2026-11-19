@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const LINKS: { label: string; href: string; icon: IconName }[] = [
   { label: "Find a service", href: "/general-dentistry/", icon: "tooth" },
   { label: "New patients", href: "/patient-information/new-patients/", icon: "family" },
-  { label: "Book an appointment", href: "/patient-information/scheduling/", icon: "calendar" },
+  { label: "Book an appointment", href: "/patient-information/scheduling/#request-online", icon: "calendar" },
 ];
 
 // Upper front teeth, one missing (drawn as a dashed outline)
