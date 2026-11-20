@@ -21,8 +21,8 @@ export const dentalImplantCost: BlogPostContent = {
     "accent": "Cost in Bensalem, PA?"
   },
   "author": "Dr. Keyur Dudhat, DMD",
-  "published": "2026-10-06",
-  "updated": "2026-10-06",
+  "published": "2026-11-16",
+  "updated": "2026-11-16",
   "quickAnswer": {
     "text": [
       "A single dental implant in the US typically costs about $3,000 to $5,600, including the implant post, the abutment and the crown. Full-arch options cost more. Your exact price depends on how many teeth you are replacing, whether you need a bone graft, and the materials used. At Amazing Smiles By Design in Bensalem, you get a written quote at your consultation, not a guess online."

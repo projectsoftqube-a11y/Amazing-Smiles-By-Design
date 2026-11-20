@@ -21,8 +21,8 @@ export const noDentalInsurance: BlogPostContent = {
     "accent": "How to Afford Care"
   },
   "author": "Dr. Keyur Dudhat, DMD",
-  "published": "2026-10-06",
-  "updated": "2026-10-06",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
   "quickAnswer": {
     "text": [
       "If you don't have dental insurance, you can still afford care in Bensalem. A yearly membership plan covers your cleanings, exams and X-rays for a flat fee and gives 20% off most other treatment. New patients can get a $59 emergency visit, and CareCredit and Cherry spread larger costs into monthly payments. At Amazing Smiles By Design in Bensalem, you don't need insurance to be seen."

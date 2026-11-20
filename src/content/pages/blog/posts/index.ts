@@ -7,7 +7,7 @@ import { porcelainVeneersLast } from "./how-long-do-porcelain-veneers-last";
 import { noDentalInsurance } from "./no-dental-insurance-bensalem";
 
 /**
- * Every blog post, newest first (all four were published 6 Oct 2026, kept in the docs' order).
+ * Every blog post, newest first (published 18, 16, 11 and 9 Nov 2026).
  * A new post: run the converter on its .docx, import it here and add its route in routes.ts.
  */
 const all: BlogPostContent[] = [porcelainVeneersLast, dentalImplantCost, dentalEmergenciesFirst, noDentalInsurance];

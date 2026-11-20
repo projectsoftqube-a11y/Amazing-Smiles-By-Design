@@ -21,8 +21,8 @@ export const porcelainVeneersLast: BlogPostContent = {
     "accent": "Veneers Last?"
   },
   "author": "Dr. Keyur Dudhat, DMD",
-  "published": "2026-10-06",
-  "updated": "2026-10-06",
+  "published": "2026-11-18",
+  "updated": "2026-11-18",
   "quickAnswer": {
     "text": [
       "Porcelain veneers usually last 10 to 15 years, and up to about 20 with good care. How long yours last depends on a few things you control, like grinding, biting hard objects and daily cleaning, and a few your dentist controls, like the fit and the bond. When a veneer wears out, it is replaced rather than repaired."

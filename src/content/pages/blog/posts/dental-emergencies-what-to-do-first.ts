@@ -21,8 +21,8 @@ export const dentalEmergenciesFirst: BlogPostContent = {
     "accent": "What Counts & What to Do First"
   },
   "author": "Dr. Keyur Dudhat, DMD",
-  "published": "2026-10-06",
-  "updated": "2026-10-06",
+  "published": "2026-11-11",
+  "updated": "2026-11-11",
   "quickAnswer": {
     "text": [
       "A dental emergency is any mouth problem causing severe pain, swelling, bleeding that won't stop, or a knocked-out or broken tooth. Call or text Amazing Smiles By Design in Bensalem at (215) 639-5331 right away, and we'll arrange same-day care whenever possible. If you have severe facial swelling, trouble breathing or swallowing, or bleeding that won't stop, call 911 or go to the nearest emergency room.",
